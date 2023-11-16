@@ -1,7 +1,8 @@
 import pyray
-from Base_file_for_objects import Create_Object
-# Импортим класс для создания объектов из Base_file_for_objects.py
-# Для получения большей информации о классе - перейдите в его файл
+from pacman_developer.Game_objects.Objects_on_scene.Base_file_for_objects import Create_Object
+# Импортим класс(Create_Object) для создания объектов из
+# Base_file_for_objects.py(pacman_developer/Game_objects/Objects_on_scene)
+# Для получения большей информации о классе - перейдите в файл
 
 
 # Пока что передвижение призрака описывается с помощью movement_coordinate(координаты перемещения)

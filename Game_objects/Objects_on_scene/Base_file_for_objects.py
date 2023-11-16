@@ -1,5 +1,5 @@
 #  Большая часть данного класса взята из лекции(15.11.2023), которую проводил Кучук Егор Андреевич.
-#  Вырожаю огромную благодарность Егору Андреевичу!
+#  Выражаю огромную благодарность Егору Андреевичу!
 
 import pyray
 
@@ -13,7 +13,7 @@ class Create_Object:
         self.height = rect.height  # Ширина
         pic = pyray.load_image(path)  # Загрузка фотографии
         self.texture = pyray.load_texture_from_image(pic)  # Присваиваем текстуре вид загруженной фотографии
-        pyray.unload_image(pic)  # Выгрузка
+        pyray.unload_image(pic)  # Выгрузка фотографии
         self.rotation = 0  # Поворот текстуры(в градусах)
 
     def activate(self) -> None:
@@ -26,6 +26,8 @@ class Create_Object:
         pass
 
     def draw(self) -> None:
+        # Отрисовка объекта(работает для Ghost.py, Pacman.py).
+        # Для Seed_and_Energizer.py не работает, т.к. там собственный метод отрисовки.
         source = pyray.Rectangle(0, 0, self.texture.width, self.texture.height)
         dest = pyray.Rectangle(self.coordinate[0], self.coordinate[1], self.width, self.height)
         origin = pyray.Vector2(self.width // 2, self.height // 2)
