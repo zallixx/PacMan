@@ -26,8 +26,7 @@ class Create_Object:
         pass
 
     def draw(self) -> None:
-        # Отрисовка объекта(работает для Ghost.py, Pacman.py).
-        # Для Seed_and_Energizer.py не работает, т.к. там собственный метод отрисовки.
+        # Отрисовка объекта(работает для Ghost.py, Pacman.py, Seed_and_Energizer.py).
         source = pyray.Rectangle(0, 0, self.texture.width, self.texture.height)
         dest = pyray.Rectangle(self.coordinate[0], self.coordinate[1], self.width, self.height)
         origin = pyray.Vector2(self.width // 2, self.height // 2)
