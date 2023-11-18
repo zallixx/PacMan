@@ -1,4 +1,4 @@
-class Field:
+class Field:  # В класс передаётся путь txt файла с полем
 
     def __init__(self, field_path: str):
         self.field_path = field_path
