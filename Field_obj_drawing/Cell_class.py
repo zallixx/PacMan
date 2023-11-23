@@ -1,5 +1,6 @@
 import pyray
 from raylib import colors
+from pacman_developer.Game_objects.Objects_on_scene.Seed_and_Energizer import Seed, Energizer
 
 
 class Cell:
@@ -15,10 +16,8 @@ class Cell:
             case 2:  # Прорисовка телепорта
                 pyray.draw_rectangle(x, y, self.s, self.s, colors.DARKPURPLE)
             case 3:  # Зерно
-                pyray.draw_rectangle(x, y, self.s, self.s, colors.YELLOW)
+                d = Seed("frog.png", pyray.Rectangle(x, y, self.s, self.s), 10)
+                d.draw()
             case 4:  # Большое зерно
-                pyray.draw_rectangle(x, y, self.s, self.s, colors.ORANGE)
-            case _:
-                pass
-
-        #  Зёрна пока что отрисовываюься просто цветами, потому что пока нету текстур
+                d1 = Energizer("frog.png", pyray.Rectangle(x, y, self.s, self.s), 10)
+                d1.draw()
