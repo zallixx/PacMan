@@ -1,5 +1,5 @@
 import pyray
-from pacman_developer.Drawing_scenes.menuscene import MenuScene
+from Drawing_scenes.menuscene import MenuScene
 
 class Game:
     def __init__(self):
