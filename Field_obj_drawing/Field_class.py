@@ -35,5 +35,4 @@ class Field:  # В класс передаётся путь txt файла с п
                         pass
 
     def get_field(self):  # Возвращает всё поле в виде двумерного массива
-        while True:
-            return self.field_data
+        return self.field_data
