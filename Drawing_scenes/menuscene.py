@@ -1,9 +1,9 @@
 import pyray
-from Drawing_scenes.scene import Scene
-from Drawing_scenes.button import Button
-from Drawing_scenes.gamescene import GameScene
-from Drawing_scenes.settingsscene import SettingsScene
-from Drawing_scenes.pausescene import PauseScene
+from pacman_developer.Drawing_scenes.scene import Scene
+from pacman_developer.Drawing_scenes.button import Button
+from pacman_developer.Drawing_scenes.gamescene import GameScene
+from pacman_developer.Drawing_scenes.settingsscene import SettingsScene
+from pacman_developer.Drawing_scenes.pausescene import PauseScene
 
 
 class MenuScene(Scene):
