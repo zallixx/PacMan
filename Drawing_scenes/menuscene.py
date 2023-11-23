@@ -24,7 +24,8 @@ class MenuScene(Scene):
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.text == "New Game":
-                    pass  # Действие кнопки "New Game"
+                    self.game.change_scene(GameScene(self.game))
+                  # Действие кнопки "New Game"
                 elif button.text == "Exit":
                     pyray.close_window()
 
