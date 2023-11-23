@@ -1,5 +1,5 @@
-from pacman_developer.Field_obj_drawing.Field_class import Field
-from pacman_developer.Field_obj_drawing.Cell_class import Cell
+from Field_obj_drawing.Field_class import Field
+from Field_obj_drawing.Cell_class import Cell
 
 
 class FieldDrawer:

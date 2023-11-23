@@ -15,8 +15,10 @@ class Cell:
             case 2:  # Прорисовка телепорта
                 pyray.draw_rectangle(x, y, self.s, self.s, colors.DARKPURPLE)
             case 3:  # Зерно
-                pass
+                pyray.draw_rectangle(x, y, self.s, self.s, colors.YELLOW)
             case 4:  # Большое зерно
-                pass
+                pyray.draw_rectangle(x, y, self.s, self.s, colors.ORANGE)
             case _:
                 pass
+
+        #  Зёрна пока что отрисовываюься просто цветами, потому что пока нету текстур

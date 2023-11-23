@@ -1,6 +1,6 @@
 import pyray
-from pacman_developer.Drawing_scenes.scene import Scene
-from pacman_developer.Field_obj_drawing.FieldDrawer import FieldDrawer
+from Drawing_scenes.scene import Scene
+from Field_obj_drawing.FieldDrawer import FieldDrawer
 class GameScene(Scene):
     def __init__(self, game):
         super().__init__()
