@@ -1,11 +1,14 @@
 import pyray
 from raylib import colors
-from Game_objects.Objects_on_scene.Seed_and_Energizer import Seed, Energizer
+from pacman_developer.Game_objects.Objects_on_scene.Seed_and_Energizer import Seed, Energizer
 
 
 class Cell:
     def __init__(self, size):  # На вход подаешся размер стороны ячейки
         self.s = size
+        self.seed = Seed("frog.png", pyray.Rectangle(0, 0, self.s, self.s), 10)
+        # Временное решение - frog.png. TODO: Текстуры
+        self.energizer = Energizer("frog.png", pyray.Rectangle(0, 0, self.s, self.s), 10)
 
     def draw_cell(self, cell: str, x: int, y: int):
         match cell:
@@ -16,8 +19,10 @@ class Cell:
             case 2:  # Прорисовка телепорта
                 pyray.draw_rectangle(x, y, self.s, self.s, colors.DARKPURPLE)
             case 3:  # Зерно
-                d = Seed("frog.png", pyray.Rectangle(x, y, self.s, self.s), 10)
-                d.draw()
+                self.seed.coordinate = [x, y]
+                self.seed.draw()
             case 4:  # Большое зерно
-                d1 = Energizer("frog.png", pyray.Rectangle(x, y, self.s, self.s), 10)
-                d1.draw()
+                self.energizer.coordinate = [x, y]
+                self.energizer.draw()
+            case _:
+                pass
