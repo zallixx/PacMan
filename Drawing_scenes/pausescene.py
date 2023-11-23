@@ -1,5 +1,5 @@
 import pyray
-from pacman_developer.Drawing_scenes.scene import Scene
+from Drawing_scenes.scene import Scene
 
 class PauseScene(Scene):
     def __init__(self, game):
