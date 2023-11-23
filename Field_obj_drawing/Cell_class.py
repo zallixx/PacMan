@@ -6,7 +6,7 @@ from pacman_developer.Game_objects.Objects_on_scene.Seed_and_Energizer import Se
 class Cell:
     def __init__(self, size):  # На вход подаешся размер стороны ячейки
         self.s = size
-        self.seed = Seed("frog.png", pyray.Rectangle(0, 0, self.s, self.s), 10)
+        self.seed = Seed("frog.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 10)
         # Временное решение - frog.png. TODO: Текстуры
         self.energizer = Energizer("frog.png", pyray.Rectangle(0, 0, self.s, self.s), 10)
 
@@ -19,10 +19,10 @@ class Cell:
             case 2:  # Прорисовка телепорта
                 pyray.draw_rectangle(x, y, self.s, self.s, colors.DARKPURPLE)
             case 3:  # Зерно
-                self.seed.coordinate = [x, y]
+                self.seed.coordinate = [x+10, y+10]
                 self.seed.draw()
             case 4:  # Большое зерно
-                self.energizer.coordinate = [x, y]
+                self.energizer.coordinate = [x+10, y+10]
                 self.energizer.draw()
             case _:
                 pass
