@@ -1,4 +1,5 @@
 import pyray
+from raylib import colors
 
 class Scene:
     def __init__(self):

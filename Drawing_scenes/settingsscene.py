@@ -14,4 +14,4 @@ class SettingsScene(Scene):
 
     def draw(self):
         # Отрисовка сцены настроек
-        pyray.draw_text("Setting Scene", 10, 10, 20, pyray.BLACK)
+        pyray.draw_text("Setting Scene", 10, 10, 20, pyray.WHITE)

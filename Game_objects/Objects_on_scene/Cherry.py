@@ -1,6 +1,6 @@
 import pyray
 from raylib import colors
-from pacman_developer.Game_objects.Objects_on_scene.Base_file_for_objects import Create_Object
+from Game_objects.Objects_on_scene.Base_file_for_objects import Create_Object
 
 class Cherry(Create_Object):
     def __init__(self, path: str, rect: pyray.Rectangle, weight: int) -> None:

@@ -14,6 +14,6 @@ class GameScene(Scene):
         pass
 
     def draw(self):
-        pyray.draw_text("Game Scene", 10, 10, 20, pyray.BLACK)
+        pyray.draw_text("Game Scene", 10, 10, 20, pyray.WHITE)
         self.draw_field.draw_field()
 

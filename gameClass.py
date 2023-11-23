@@ -17,7 +17,7 @@ class Game:
             self.current_scene.process_input()
             self.current_scene.update()
             pyray.begin_drawing()
-            pyray.clear_background(pyray.RAYWHITE)
+            pyray.clear_background(pyray.BLACK)
             self.current_scene.draw()
             pyray.end_drawing()
 

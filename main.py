@@ -1,3 +1,4 @@
+import pyray
 from gameClass import Game
 
 def main() -> None:
