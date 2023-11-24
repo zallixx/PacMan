@@ -21,7 +21,7 @@ class GameScene(Scene):
         pass
 
     def draw(self) -> None:
-        pyray.draw_text("Game Scene", 10, 10, 20, pyray.BLACK)  # Отрисовка текста Game Scene в левом верхнем углу
+        pyray.draw_text("Game Scene", 10, 10, 20, pyray.WHITE)  # Отрисовка текста Game Scene в левом верхнем углу
         self.draw_field.draw_field()  # Отрисовка поля
         self.pacman_logic.draw()  # Отрисовка пакмана
         self.pacman_logic.event(self.draw_field.list_of_teleport, self.draw_field.list_of_seeds,
