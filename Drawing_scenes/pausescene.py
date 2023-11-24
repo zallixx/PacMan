@@ -1,8 +1,7 @@
 import pyray
 from Drawing_scenes.scene import Scene
 from Drawing_scenes.button import Button
-#from Drawing_scenes.menuscene import MenuScene
-#from Drawing_scenes.gamescene import GameScene
+
 
 
 class PauseScene(Scene):
@@ -13,15 +12,17 @@ class PauseScene(Scene):
 
 
     def process_input(self):
+        from Drawing_scenes.menuscene import MenuScene
+        from Drawing_scenes.gamescene import GameScene
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.text == "New Game":
-                    pass
-                    #self.game.change_scene(GameScene(self.game))
+                    #pass
+                    self.game.change_scene(GameScene(self.game))
                 # Действие кнопки "New Game"
                 elif button.text == "Exit":
-                    pass
-                    #self.game.change_scene(MenuScene(self.game))
+                    #pass
+                    self.game.change_scene(MenuScene(self.game))
 
     def update(self):
         pass
