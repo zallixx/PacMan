@@ -6,6 +6,7 @@ class Game:
         self.window_width = 800
         self.window_height = 600
         self.current_scene = MenuScene(self)
+        self.PLAYER_NAME = 'dev'
 
     def change_scene(self, scene):
         self.current_scene = scene

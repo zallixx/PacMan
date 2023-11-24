@@ -1,6 +1,8 @@
 from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
 import pyray
 
+from Game_objects.audio import Audio
+
 
 # Импортим класс для создания объектов из
 # Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
@@ -8,41 +10,43 @@ import pyray
 
 
 class Pacman(Sprite):
-    def __init__(self, path: str, rect: pyray.Rectangle) -> None:
+    def __init__(self, path: str, rect: pyray.Rectangle, game) -> None:
         super().__init__(path, rect)
+        self.game = game
+        self.eat_sound = Audio(self.game, 'sounds/eat_seed_sound.wav')
         self.textures = {"UP": pyray.load_texture("images/sprites/pacmanup.png"),
                          "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
                          "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
                          "RIGHT": pyray.load_texture("images/sprites/pacmanright.png")}
 
-    def event(self, list_of_teleports: list, list_of_seeds: list,
-              list_of_energizer: list) -> None:  # Описывается движение пакмана
+    def event(self) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.coordinate[1] -= 1
-            self.texture=self.textures["UP"]
+            self.texture = self.textures["UP"]
         if pyray.is_key_down(pyray.KeyboardKey.KEY_S):
             self.coordinate[1] += 1
-            self.texture=self.textures["DOWN"]
+            self.texture = self.textures["DOWN"]
         if pyray.is_key_down(pyray.KeyboardKey.KEY_A):
             self.coordinate[0] -= 1
-            self.texture=self.textures["LEFT"]
+            self.texture = self.textures["LEFT"]
         if pyray.is_key_down(pyray.KeyboardKey.KEY_D):
             self.coordinate[0] += 1
-            self.texture=self.textures["RIGHT"]
-
-        for i in range(len(list_of_teleports)):
-            teleport_rect = pyray.Rectangle(list_of_teleports[i][0], list_of_teleports[i][1],
-                                            list_of_teleports[i][2],
-                                            list_of_teleports[i][3])
-            pacman_rect = pyray.Rectangle(self.coordinate[0] - self.width / 2,
-                                          self.coordinate[1] - self.height / 2, self.width,
-                                          self.height)
-
-            if pyray.check_collision_recs(teleport_rect, pacman_rect):
-                if i == 0:
-                    self.coordinate = [634 - 18, 272]
-                else:
-                    self.coordinate = [148 + 36, 272]
+            self.texture = self.textures["RIGHT"]
+        pacman_tile = self.game.current_scene.draw_field.get_tile_by_coords(self.coordinate[0], self.coordinate[1])
+        if pacman_tile == 2:
+            row, col = self.game.current_scene.draw_field.coords_to_clear(self.coordinate[0], self.coordinate[1])
+            if col == 0:
+                self.coordinate = [634 - 18, 272]
+            else:
+                self.coordinate = [148 + 36, 272]
+        elif pacman_tile == 3:
+            self.game.current_scene.draw_field.set_tile_by_coords(0, self.coordinate[0], self.coordinate[1])
+            self.eat_sound.play_track()
+            self.game.current_scene.score_draw.add(10)
+        elif pacman_tile == 4:
+            self.game.current_scene.draw_field.set_tile_by_coords(0, self.coordinate[0], self.coordinate[1])
+            self.eat_sound.play_track()
+            self.game.current_scene.score_draw.add(145)
 
     def logic(self, walls_rectangles: list) -> None:
         # Да.. данная функция крайне не понятна. Что ж, постараюсь объяснить
