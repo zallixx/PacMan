@@ -41,5 +41,4 @@ class FieldDrawer:
     def coords_to_clear(self, x, y):
         col = abs(x - self.x) // 18
         row = (y - self.y) // 18
-        print(col, row)
         return int(row), int(col)

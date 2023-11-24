@@ -13,6 +13,7 @@ class Pacman(Sprite):
     def __init__(self, path: str, rect: pyray.Rectangle, game) -> None:
         super().__init__(path, rect)
         self.game = game
+        self.eat_sound = Audio(self.game, 'sounds/eat_seed_sound.wav')
         self.textures = {"UP": pyray.load_texture("images/sprites/pacmanup.png"),
                          "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
                          "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
@@ -34,23 +35,15 @@ class Pacman(Sprite):
             self.texture = self.textures["RIGHT"]
         pacman_tile = self.game.current_scene.draw_field.get_tile_by_coords(self.coordinate[0], self.coordinate[1])
         if pacman_tile == 2:
-            for i in range(len(list_of_teleports)):
-                teleport_rect = pyray.Rectangle(list_of_teleports[i][0], list_of_teleports[i][1],
-                                                list_of_teleports[i][2],
-                                                list_of_teleports[i][3])
-                pacman_rect = pyray.Rectangle(self.coordinate[0] - self.width / 2,
-                                              self.coordinate[1] - self.height / 2, self.width,
-                                              self.height)
-
-                if pyray.check_collision_recs(teleport_rect, pacman_rect):
-                    if i == 0:
-                        self.coordinate = [634 - 18, 272]
-                    else:
-                        self.coordinate = [148 + 36, 272]
+            row, col = self.game.current_scene.draw_field.coords_to_clear(self.coordinate[0], self.coordinate[1])
+            if col == 0:
+                self.coordinate = [634 - 18, 272]
+            else:
+                self.coordinate = [148 + 36, 272]
         elif pacman_tile == 3:
-            self.game.current_scene.draw_field.set_tile_by_coords(0,self.coordinate[0], self.coordinate[1])
-            sound = Audio(self.game, 'sounds/eat_seed_sound.wav')
-            sound.play_track()
+            self.game.current_scene.draw_field.set_tile_by_coords(0, self.coordinate[0], self.coordinate[1])
+            self.eat_sound.play_track()
+            self.game.current_scene.score_draw.add(10)
 
     def logic(self, walls_rectangles: list) -> None:
         # Да.. данная функция крайне не понятна. Что ж, постараюсь объяснить
