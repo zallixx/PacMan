@@ -1,6 +1,6 @@
 import pyray
 from raylib import colors
-from pacman_developer.Game_objects.Objects_on_scene.Seed_and_Energizer import Seed, Energizer
+from pacman_developer.Game_objects.Classes_of_objects_on_gamescene.Seed_and_Energizer import Seed, Energizer
 
 
 class Cell:
