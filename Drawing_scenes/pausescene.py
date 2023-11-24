@@ -20,7 +20,7 @@ class PauseScene(Scene):
                     #pass
                     self.game.change_scene(GameScene(self.game))
                 # Действие кнопки "New Game"
-                elif button.text == "Exit":
+                elif button.text == "Main Menu":
                     #pass
                     self.game.change_scene(MenuScene(self.game))
 
