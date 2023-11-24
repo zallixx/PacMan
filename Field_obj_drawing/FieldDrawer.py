@@ -4,6 +4,8 @@ from Field_obj_drawing.Cell_class import Cell
 
 class FieldDrawer:
     def __init__(self):
+        self.x = 148  # Центрирование по длине ((длина окна - размер ячейки * кол-во рядов) / 2)
+        self.y = 20
         self.field = Field("Field_obj_drawing/field.txt")
         self.field_data = self.field.get_field()
         self.cell = Cell(18)
@@ -21,3 +23,23 @@ class FieldDrawer:
                 x += 18
             x = 148
             y += 18
+
+    def get_tile(self, row, col):
+        return self.field_data[row][col]
+
+    def get_tile_by_coords(self, x, y):
+        row, col = self.coords_to_clear(x, y)
+        return self.get_tile(row, col)
+
+    def set_tile(self, tile, row, col):
+        self.field_data[row][col] = tile
+
+    def set_tile_by_coords(self, tile, x, y):
+        row, col = self.coords_to_clear(x, y)
+        self.set_tile(tile, row, col)
+
+    def coords_to_clear(self, x, y):
+        col = abs(x - self.x) // 18
+        row = (y - self.y) // 18
+        print(col, row)
+        return int(row), int(col)

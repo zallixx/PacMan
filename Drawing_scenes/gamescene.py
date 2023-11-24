@@ -3,7 +3,7 @@ from Drawing_scenes.scene import Scene
 from Field_obj_drawing.FieldDrawer import FieldDrawer
 from Game_objects.Classes_of_objects_on_gamescene.Pacman import Pacman
 from Game_objects.audio import Audio
-from pacman_developer.ScoreDrawer import ScoreDrawer
+from ScoreDrawer import ScoreDrawer
 
 class GameScene(Scene):
     def __init__(self, game) -> None:
@@ -11,7 +11,7 @@ class GameScene(Scene):
         self.game = game
         self.draw_field = FieldDrawer()
         self.score_draw = ScoreDrawer()
-        self.pacman = Pacman("images/sprites/pacmanup.png", pyray.Rectangle(400, 335, 18, 18))
+        self.pacman = Pacman("images/sprites/pacmanup.png", pyray.Rectangle(400, 335, 18, 18), self.game)
         self.start_audio = Audio(game)
         self.start_audio.play_track()
         # Создаем self.pacman на основе класса Pacman
