@@ -22,6 +22,7 @@ class GameScene(Scene):
         pyray.draw_text("Game Scene", 10, 10, 20, pyray.BLACK)  # Отрисовка текста Game Scene в левом верхнем углу
         self.draw_field.draw_field()  # Отрисовка поля
         self.pacman_logic.draw()  # Отрисовка пакмана
-        self.pacman_logic.event()  # Передвижение пакмана
-        self.pacman_logic.logic(self.draw_field.list_of_walls_rectangles)  # Логика пакмана(колизия)
+        self.pacman_logic.event(self.draw_field.list_of_teleport, self.draw_field.list_of_seeds,
+                                self.draw_field.list_of_energizer)  # Передвижение пакмана
+        self.pacman_logic.logic(self.draw_field.list_of_walls_rectangles)  # Логика пакмана
         # TODO: Нужно сделать так, чтобы пакман мог есть..

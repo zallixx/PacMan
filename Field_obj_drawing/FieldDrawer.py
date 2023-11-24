@@ -8,6 +8,9 @@ class FieldDrawer:
         self.field_data = self.field.get_field()
         self.cell = Cell(18)
         self.list_of_walls_rectangles = self.cell.list_of_walls_rectangles
+        self.list_of_seeds = self.cell.list_of_seeds
+        self.list_of_energizer = self.cell.list_of_energizer
+        self.list_of_teleport = self.cell.list_of_teleport
 
     def draw_field(self):
         x = 148  # Центрирование по длине ((длина окна - размер ячейки * кол-во рядов) / 2)

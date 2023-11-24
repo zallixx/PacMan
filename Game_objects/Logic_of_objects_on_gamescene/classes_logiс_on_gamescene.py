@@ -15,10 +15,10 @@ class logic_of_pacman:
         # Отрисовка пакмана
         # Написана так, потому что logic_of_pacman не имеет собственной отрисовки, в отличие от класса пакмана
 
-    def event(self) -> None:
-        self.pacman.event()
-        # Передвижение пакмана
-        # Написана так, потому что logic_of_pacman не имеет собственного передвижения, в отличие от класса пакмана
+    def event(self, list_of_teleports: list, list_of_seeds: list, list_of_energizer: list) -> None:
+        self.pacman.event()  # Передвижение пакмана
+
+
         # TODO: В классе Pacman нужно начать работу над телепортами и кушанием всякой всячины
 
     def logic(self, walls_rectangles: list) -> None:
