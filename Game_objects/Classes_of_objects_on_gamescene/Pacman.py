@@ -1,13 +1,13 @@
-from Game_objects.Classes_of_objects_on_gamescene.Base_file_for_objects import Create_Object
+from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
 import pyray
 
 
 # Импортим класс для создания объектов из
-# Base_file_for_objects.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
+# Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
 # Для получения большей информации о классе - перейдите в файл
 
 
-class Pacman(Create_Object):
+class Pacman(Sprite):
     def __init__(self, path: str, rect: pyray.Rectangle, game) -> None:
         super().__init__(path, rect)
         self.game = game
