@@ -1,6 +1,7 @@
 import pyray
 from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
-# Импортим класс(Create_Object) для создания объектов из
+
+# Импортим класс(Sprite) для создания объектов из
 # Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
 # Для получения большей информации о классе - перейдите в файл
 

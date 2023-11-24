@@ -2,30 +2,28 @@ from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
 import pyray
 
 # Импортим класс для создания объектов из
-# Base_file_for_objects.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
+# Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
 # Для получения большей информации о классе - перейдите в файл
 
 
 class Pacman(Sprite):
     def __init__(self, path: str, rect: pyray.Rectangle) -> None:
         super().__init__(path, rect)
-        self.pacman = None
-        # TODO: Текстуры
 
     def event(self, list_of_teleports: list, list_of_seeds: list,
               list_of_energizer: list) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.coordinate[1] -= 1
-            self.pacman.change_texture("images/sprites/pacmanup.png")
+            self.change_texture("images/sprites/pacmanup.png")
         if pyray.is_key_down(pyray.KeyboardKey.KEY_S):
             self.coordinate[1] += 1
-            self.pacman.change_texture("images/sprites/pacmandown.png")
+            self.change_texture("images/sprites/pacmandown.png")
         if pyray.is_key_down(pyray.KeyboardKey.KEY_A):
             self.coordinate[0] -= 1
-            self.pacman.change_texture("images/sprites/pacmanleft.png")
+            self.change_texture("images/sprites/pacmanleft.png")
         if pyray.is_key_down(pyray.KeyboardKey.KEY_D):
             self.coordinate[0] += 1
-            self.pacman.change_texture("images/sprites/pacmanright.png")
+            self.change_texture("images/sprites/pacmanright.png")
 
         for i in range(len(list_of_teleports)):
             teleport_rect = pyray.Rectangle(list_of_teleports[i][0], list_of_teleports[i][1],
