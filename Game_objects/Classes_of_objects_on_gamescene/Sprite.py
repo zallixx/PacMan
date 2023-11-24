@@ -16,11 +16,6 @@ class Sprite:
         pyray.unload_image(pic)  # Выгрузка фотографии
         self.rotation = 0  # Поворот текстуры(в градусах)
 
-    def change_texture(self, path):
-        pic = pyray.load_image(path)
-        self.texture = pyray.load_texture_from_image(pic)
-        pyray.unload_image(pic)
-
     def activate(self) -> None:
         pass
 

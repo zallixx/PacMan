@@ -1,6 +1,7 @@
 from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
 import pyray
 
+
 # Импортим класс для создания объектов из
 # Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
 # Для получения большей информации о классе - перейдите в файл
@@ -9,21 +10,25 @@ import pyray
 class Pacman(Sprite):
     def __init__(self, path: str, rect: pyray.Rectangle) -> None:
         super().__init__(path, rect)
+        self.textures = {"UP": pyray.load_texture("images/sprites/pacmanup.png"),
+                         "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
+                         "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
+                         "RIGHT": pyray.load_texture("images/sprites/pacmanright.png")}
 
     def event(self, list_of_teleports: list, list_of_seeds: list,
               list_of_energizer: list) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.coordinate[1] -= 1
-            self.change_texture("images/sprites/pacmanup.png")
+            self.texture=self.textures["UP"]
         if pyray.is_key_down(pyray.KeyboardKey.KEY_S):
             self.coordinate[1] += 1
-            self.change_texture("images/sprites/pacmandown.png")
+            self.texture=self.textures["DOWN"]
         if pyray.is_key_down(pyray.KeyboardKey.KEY_A):
             self.coordinate[0] -= 1
-            self.change_texture("images/sprites/pacmanleft.png")
+            self.texture=self.textures["LEFT"]
         if pyray.is_key_down(pyray.KeyboardKey.KEY_D):
             self.coordinate[0] += 1
-            self.change_texture("images/sprites/pacmanright.png")
+            self.texture=self.textures["RIGHT"]
 
         for i in range(len(list_of_teleports)):
             teleport_rect = pyray.Rectangle(list_of_teleports[i][0], list_of_teleports[i][1],
@@ -35,9 +40,9 @@ class Pacman(Sprite):
 
             if pyray.check_collision_recs(teleport_rect, pacman_rect):
                 if i == 0:
-                    self.coordinate = [634-36, 272]
+                    self.coordinate = [634 - 36, 272]
                 else:
-                    self.coordinate = [148+36, 272]
+                    self.coordinate = [148 + 36, 272]
 
     def logic(self, walls_rectangles: list) -> None:
         # Да.. данная функция крайне не понятна. Что ж, постараюсь объяснить

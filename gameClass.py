@@ -12,6 +12,7 @@ class Game:
 
     def run(self):
         pyray.init_window(self.window_width, self.window_height, "Pacman Game")
+        pyray.init_audio_device()
 
         while not pyray.window_should_close():
             self.current_scene.process_input()
@@ -22,3 +23,4 @@ class Game:
             pyray.end_drawing()
 
         pyray.close_window()
+        pyray.close_audio_device()
