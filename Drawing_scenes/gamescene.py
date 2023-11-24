@@ -15,7 +15,7 @@ class GameScene(Scene):
     def process_input(self) -> None:
         from Drawing_scenes.pausescene import PauseScene
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
-            self.game.change_scene(PauseScene(self.game))
+            self.game.change_scene(PauseScene(self.game, self))
 
     def update(self) -> None:
         pass
