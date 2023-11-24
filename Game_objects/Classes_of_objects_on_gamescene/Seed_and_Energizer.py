@@ -1,11 +1,11 @@
 import pyray
-from Game_objects.Classes_of_objects_on_gamescene.Base_file_for_objects import Create_Object
+from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
 # Импортим класс для создания объектов из
-# Base_file_for_objects.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
+# Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
 # Для получения большей информации о классе - перейдите в файл
 
 
-class Seed(Create_Object):
+class Seed(Sprite):
     def __init__(self, path: str,  rect: pyray.Rectangle, weight: int) -> None:
         super().__init__(path, rect)
         self.weight = weight
