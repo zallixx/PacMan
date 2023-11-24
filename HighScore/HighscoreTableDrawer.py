@@ -1,5 +1,5 @@
 import pyray
-from HighscoreTable import HighscoreTable
+from HighScore.HighscoreTable import HighscoreTable
 
 
 class HighscoreTableDrawer:
@@ -7,7 +7,7 @@ class HighscoreTableDrawer:
         self.highscoreTable = HighscoreTable()
 
     def draw(self, posX: int, posY: int, fontSize: int = 24, color=pyray.BLACK):
-        text = ''
+        text = 'High score table\n'
         for i in self.highscoreTable.table:
             text += f"{i['name']} {i['score']}\n"
         pyray.draw_text(text, posX, posY, fontSize, color)

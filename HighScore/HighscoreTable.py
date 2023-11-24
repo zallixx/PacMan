@@ -3,9 +3,10 @@ class HighscoreTable:
         self.table = []
         self.loadDataFromFile()
         self.filterTable()
+        self.fileName = "HighScore/highscores.txt"
 
     def loadDataFromFile(self):
-        with open("highscores.txt", "r", encoding='utf-8') as file:
+        with open("HighScore/highscores.txt", "r", encoding='utf-8') as file:
             listFile = file.readlines()
             for l in listFile:
                 listFile[listFile.index(l)] = l.split()
@@ -32,7 +33,7 @@ class HighscoreTable:
                 self.table.pop()
 
     def saveDataToFile(self):
-        with open("highscores.txt", "w", encoding='utf-8') as file:
+        with open("HighScore/highscores.txt", "w", encoding='utf-8') as file:
             string = ''
             for i in self.table:
                 string += f"{i['name']} {i['score']}\n"
