@@ -6,9 +6,9 @@ from Game_objects.Classes_of_objects_on_gamescene.Seed_and_Energizer import Seed
 class Cell:
     def __init__(self, size: int) -> None:  # На вход подаешся размер стороны ячейки
         self.s = size
-        self.seed = Seed("seed.png", pyray.Rectangle(0, 0, self.s-12, self.s-12), 10)
+        self.seed = Seed("images/seed.png", pyray.Rectangle(0, 0, self.s-12, self.s-12), 10)
         # Временное решение - frog.png. TODO: Текстуры
-        self.energizer = Energizer("frog.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 10)
+        self.energizer = Energizer("images/frog.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 10)
         self.list_of_walls_rectangles = []  # Список с координатами стены и её размером
         self.list_of_teleport = []
         self.list_of_seeds = []

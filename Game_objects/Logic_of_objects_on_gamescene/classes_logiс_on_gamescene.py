@@ -6,7 +6,7 @@ from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
 
 class logic_of_pacman:
     def __init__(self) -> None:
-        self.pacman = Pacman("frog.png", pyray.Rectangle(400, 335, 18, 18))
+        self.pacman = Pacman("images/frog.png", pyray.Rectangle(400, 335, 18, 18))
         self.last_teleport_time = datetime.datetime.now()
         self.flag_to_check_tp_time = True
         # Создаем self.pacman на основе класса Pacman
