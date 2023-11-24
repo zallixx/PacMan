@@ -1,7 +1,7 @@
 import pyray
 
-from pacman_developer.Game_objects.Classes_of_objects_on_gamescene.Pacman import Pacman
-from pacman_developer.Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
+from Game_objects.Classes_of_objects_on_gamescene.Pacman import Pacman
+from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
 
 
 class logic_of_pacman:

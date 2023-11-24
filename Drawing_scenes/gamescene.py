@@ -1,7 +1,7 @@
 import pyray
-from pacman_developer.Drawing_scenes.scene import Scene
-from pacman_developer.Field_obj_drawing.FieldDrawer import FieldDrawer
-from pacman_developer.Game_objects.Logic_of_objects_on_gamescene.classes_logiс_on_gamescene import logic_of_pacman
+from Drawing_scenes.scene import Scene
+from Field_obj_drawing.FieldDrawer import FieldDrawer
+from Game_objects.Logic_of_objects_on_gamescene.classes_logiс_on_gamescene import logic_of_pacman
 
 
 class GameScene(Scene):

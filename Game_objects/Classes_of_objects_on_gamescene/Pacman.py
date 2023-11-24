@@ -1,4 +1,4 @@
-from pacman_developer.Game_objects.Classes_of_objects_on_gamescene.Base_file_for_objects import Create_Object
+from Game_objects.Classes_of_objects_on_gamescene.Base_file_for_objects import Create_Object
 import pyray
 
 # Импортим класс для создания объектов из
