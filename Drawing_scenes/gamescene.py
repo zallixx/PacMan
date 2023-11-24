@@ -22,3 +22,4 @@ class GameScene(Scene):
         self.draw_field.draw_field()
         self.pacman_logic.draw()
         self.pacman_logic.event()
+        self.pacman_logic.logic()
