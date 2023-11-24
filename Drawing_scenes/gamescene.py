@@ -1,5 +1,6 @@
 import pyray
 from Drawing_scenes.scene import Scene
+from Drawing_scenes.pausescene import PauseScene
 from Field_obj_drawing.FieldDrawer import FieldDrawer
 from Game_objects.Logic_of_objects_on_gamescene.classes_logiс_on_gamescene import logic_of_pacman
 
@@ -13,7 +14,8 @@ class GameScene(Scene):
         # Создание pacman_logic на основе класса логики/передвижения пакмана на игровой сцене
 
     def process_input(self) -> None:
-        pass
+        if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
+            self.game.change_scene(PauseScene(self.game))
 
     def update(self) -> None:
         pass
