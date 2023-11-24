@@ -40,7 +40,7 @@ class Pacman(Sprite):
 
             if pyray.check_collision_recs(teleport_rect, pacman_rect):
                 if i == 0:
-                    self.coordinate = [634 - 36, 272]
+                    self.coordinate = [634 - 18, 272]
                 else:
                     self.coordinate = [148 + 36, 272]
 
