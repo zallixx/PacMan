@@ -9,7 +9,7 @@ class GameScene(Scene):
         super().__init__()
         self.game = game
         self.draw_field = FieldDrawer()
-        self.pacman = Pacman("images/frog.png", pyray.Rectangle(400, 335, 18, 18))
+        self.pacman = Pacman("images/sprites/pacmanup.png", pyray.Rectangle(400, 335, 15, 15))
         # Создаем self.pacman на основе класса Pacman
 
     def process_input(self) -> None:
