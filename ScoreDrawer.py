@@ -15,6 +15,3 @@ class ScoreDrawer:  # (RecalculableText):
         #self.score будет изменяться при съедании семечек.
         pass
 
-
-if __name__ == '__main__':
-    main()
