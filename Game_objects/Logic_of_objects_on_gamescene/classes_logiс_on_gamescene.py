@@ -31,13 +31,12 @@ class logic_of_pacman:
             if pyray.check_collision_recs(teleport_rect, pacman_rect):
                 current_time = datetime.datetime.now()
                 time_diff = current_time - self.last_teleport_time
-                print(time_diff.total_seconds())
                 if time_diff.total_seconds() >= 10.0:
                     if i == 0:
-                        self.pacman.coordinate = [634, 272]
+                        self.pacman.coordinate = [634+10, 272]
                         self.last_teleport_time = datetime.datetime.now()
                     else:
-                        self.pacman.coordinate = [148, 272]
+                        self.pacman.coordinate = [148+10, 272]
                         self.last_teleport_time = datetime.datetime.now()
 
 
