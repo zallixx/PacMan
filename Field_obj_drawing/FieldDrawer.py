@@ -7,6 +7,7 @@ class FieldDrawer:
         self.field = Field("Field_obj_drawing/field.txt")
         self.field_data = self.field.get_field()
         self.cell = Cell(18)
+        self.list_of_walls_rectangles = self.cell.list_of_walls_rectangles
 
     def draw_field(self):
         x = 148  # Центрирование по длине ((длина окна - размер ячейки * кол-во рядов) / 2)
