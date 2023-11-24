@@ -31,6 +31,7 @@ class Cell:
                 if [x, y, self.s, self.s] not in self.list_of_teleport:
                     # Проверка, есть ли [x, y, self.s, self.s] телепорта в list_of_teleport
                     self.list_of_teleport.append([x, y, self.s, self.s])
+                    print(self.list_of_teleport)
 
             case 3:  # Зерно
                 self.seed.coordinate = [x+10, y+10]

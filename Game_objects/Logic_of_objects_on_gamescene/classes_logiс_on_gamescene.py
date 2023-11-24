@@ -7,6 +7,7 @@ from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
 class logic_of_pacman:
     def __init__(self) -> None:
         self.pacman = Pacman("frog.png", pyray.Rectangle(400, 335, 18, 18))
+        self.teleport_timer = 0
         # Создаем self.pacman на основе класса Pacman
         # TODO: Текстуры
 
@@ -17,6 +18,23 @@ class logic_of_pacman:
 
     def event(self, list_of_teleports: list, list_of_seeds: list, list_of_energizer: list) -> None:
         self.pacman.event()  # Передвижение пакмана
+
+        for i in range(len(list_of_teleports)):
+            teleport_rect = pyray.Rectangle(list_of_teleports[i][0], list_of_teleports[i][1], list_of_teleports[i][2],
+                                            list_of_teleports[i][3])
+            pacman_rect = pyray.Rectangle(self.pacman.coordinate[0] - self.pacman.width / 2,
+                                          self.pacman.coordinate[1] - self.pacman.height / 2, self.pacman.width,
+                                          self.pacman.height)
+
+            if pyray.check_collision_recs(teleport_rect, pacman_rect):
+                if self.teleport_timer <= 0:
+                    if i == 0:
+                        self.pacman.coordinate = [634, 272]
+                    else:
+                        self.pacman.coordinate = [148, 272]
+                    self.teleport_timer = 10
+                else:
+                    self.teleport_timer -= pyray.get_frame_time()
 
 
         # TODO: В классе Pacman нужно начать работу над телепортами и кушанием всякой всячины
@@ -31,7 +49,7 @@ class logic_of_pacman:
             pacman_rect = pyray.Rectangle(self.pacman.coordinate[0] - self.pacman.width / 2,
                                           self.pacman.coordinate[1] - self.pacman.height / 2, self.pacman.width,
                                           self.pacman.height)  # Создание pyray.Rectangle на основе x(пакмана), y(пакмана),
-                                                                                    # self.pacman.width(18), self.pacman.height(18)
+            # self.pacman.width(18), self.pacman.height(18)
 
             if pyray.check_collision_recs(cube_rect, pacman_rect):
                 overlap_x = min(pacman_rect.x + pacman_rect.width, cube_rect.x + cube_rect.width) - max(pacman_rect.x,
