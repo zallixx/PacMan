@@ -4,7 +4,7 @@
 import pyray
 
 
-class Create_Object:
+class Sprite:
     # Пояснение к данному класу файлу в общем.
     # Данный класс представляет из себя основу всех объектов с текстурами.
     def __init__(self, path: str, rect: pyray.Rectangle) -> None:
