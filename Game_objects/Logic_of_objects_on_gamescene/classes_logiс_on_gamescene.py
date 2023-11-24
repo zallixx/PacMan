@@ -7,8 +7,6 @@ from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
 class logic_of_pacman:
     def __init__(self) -> None:
         self.pacman = Pacman("images/frog.png", pyray.Rectangle(400, 335, 18, 18))
-        self.last_teleport_time = datetime.datetime.now()
-        self.flag_to_check_tp_time = True
         # Создаем self.pacman на основе класса Pacman
         # TODO: Текстуры
 
@@ -29,15 +27,10 @@ class logic_of_pacman:
                                           self.pacman.height)
 
             if pyray.check_collision_recs(teleport_rect, pacman_rect):
-                current_time = datetime.datetime.now()
-                time_diff = current_time - self.last_teleport_time
-                if time_diff.total_seconds() >= 10.0:
-                    if i == 0:
-                        self.pacman.coordinate = [634+10, 272]
-                        self.last_teleport_time = datetime.datetime.now()
-                    else:
-                        self.pacman.coordinate = [148+10, 272]
-                        self.last_teleport_time = datetime.datetime.now()
+                if i == 0:
+                    self.pacman.coordinate = [634-36, 272]
+                else:
+                    self.pacman.coordinate = [148+36, 272]
 
 
         # TODO: В классе Pacman нужно начать работу над телепортами и кушанием всякой всячины
