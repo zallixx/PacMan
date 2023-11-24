@@ -17,12 +17,16 @@ class Pacman(Sprite):
         self.pacman = pacman
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.coordinate[1] -= 1
+            self.pacman.change_texture("images/sprites/pacmanup.png")
         if pyray.is_key_down(pyray.KeyboardKey.KEY_S):
             self.coordinate[1] += 1
+            self.pacman.change_texture("images/sprites/pacmandown.png")
         if pyray.is_key_down(pyray.KeyboardKey.KEY_A):
             self.coordinate[0] -= 1
+            self.pacman.change_texture("images/sprites/pacmanleft.png")
         if pyray.is_key_down(pyray.KeyboardKey.KEY_D):
             self.coordinate[0] += 1
+            self.pacman.change_texture("images/sprites/pacmanright.png")
 
         for i in range(len(list_of_teleports)):
             teleport_rect = pyray.Rectangle(list_of_teleports[i][0], list_of_teleports[i][1],

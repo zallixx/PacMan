@@ -6,9 +6,8 @@ from Game_objects.Classes_of_objects_on_gamescene.Seed_and_Energizer import Seed
 class Cell:
     def __init__(self, size: int) -> None:  # На вход подаешся размер стороны ячейки
         self.s = size
-        self.seed = Seed("images/seed.png", pyray.Rectangle(0, 0, self.s-12, self.s-12), 10)
-        # Временное решение - frog.png. TODO: Текстуры
-        self.energizer = Energizer("images/frog.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 10)
+        self.seed = Seed("images/sprites/seed.png", pyray.Rectangle(0, 0, self.s-12, self.s-12), 10)
+        self.energizer = Energizer("images/sprites/bigseed.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 15)
         self.list_of_walls_rectangles = []  # Список с координатами стены и её размером
         self.list_of_teleport = []
         self.list_of_seeds = []
@@ -33,7 +32,7 @@ class Cell:
                     self.list_of_teleport.append([x, y, self.s, self.s])
 
             case 3:  # Зерно
-                self.seed.coordinate = [x+10, y+10]
+                self.seed.coordinate = [x+9, y+9]
                 self.seed.draw()
 
                 if [x+10, y+10, self.s, self.s] not in self.list_of_seeds:
@@ -41,11 +40,11 @@ class Cell:
                     self.list_of_seeds.append([x+10, y+10, self.s, self.s])
 
             case 4:  # Большое зерно
-                self.energizer.coordinate = [x+10, y+10]
+                self.energizer.coordinate = [x+9, y+9]
                 self.energizer.draw()
 
                 if [x+10, y+10, self.s, self.s] not in self.list_of_energizer:
                     # Проверка, есть ли [x, y, self.s, self.s] большого зерна в list_of_energizer
-                    self.list_of_energizer.append([x+10, y+10, self.s, self.s])
+                    self.list_of_energizer.append([x+9, y+9, self.s, self.s])
             case _:
                 pass
