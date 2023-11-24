@@ -20,6 +20,8 @@ class Pacman(Create_Object):
         if pyray.is_key_down(key_s):
             self.coordinate[1] += 1
         if pyray.is_key_down(key_a):
-            self.coordinate[0] -= 1
+            if self.coordinate[0] > 156:
+                self.coordinate[0] -= 1
         if pyray.is_key_down(key_d):
-            self.coordinate[0] += 1
+            if self.coordinate[0] < 646:
+                self.coordinate[0] += 1
