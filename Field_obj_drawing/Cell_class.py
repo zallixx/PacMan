@@ -6,7 +6,7 @@ from Game_objects.Classes_of_objects_on_gamescene.Seed_and_Energizer import Seed
 class Cell:
     def __init__(self, size: int) -> None:  # На вход подаешся размер стороны ячейки
         self.s = size
-        self.seed = Seed("frog.png", pyray.Rectangle(0, 0, self.s-10, self.s-10), 10)
+        self.seed = Seed("seed.png", pyray.Rectangle(0, 0, self.s-12, self.s-12), 10)
         # Временное решение - frog.png. TODO: Текстуры
         self.energizer = Energizer("frog.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 10)
         self.list_of_walls_rectangles = []  # Список с координатами стены и её размером
@@ -31,7 +31,6 @@ class Cell:
                 if [x, y, self.s, self.s] not in self.list_of_teleport:
                     # Проверка, есть ли [x, y, self.s, self.s] телепорта в list_of_teleport
                     self.list_of_teleport.append([x, y, self.s, self.s])
-                    print(self.list_of_teleport)
 
             case 3:  # Зерно
                 self.seed.coordinate = [x+10, y+10]
