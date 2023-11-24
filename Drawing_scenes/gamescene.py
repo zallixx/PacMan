@@ -30,7 +30,6 @@ class GameScene(Scene):
         self.draw_field.draw_field()  # Отрисовка поля
         self.pacman.draw()  # Отрисовка пакмана
         self.score_draw.draw()  # Отрисовка счета
-        self.pacman.event(self.draw_field.list_of_teleport, self.draw_field.list_of_seeds,
-                          self.draw_field.list_of_energizer)  # Передвижение пакмана
+        self.pacman.event()  # Передвижение пакмана
         self.pacman.logic(self.draw_field.list_of_walls_rectangles)  # Логика пакмана
         # TODO: Нужно сделать так, чтобы пакман мог есть..

@@ -19,8 +19,7 @@ class Pacman(Sprite):
                          "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
                          "RIGHT": pyray.load_texture("images/sprites/pacmanright.png")}
 
-    def event(self, list_of_teleports: list, list_of_seeds: list,
-              list_of_energizer: list) -> None:  # Описывается движение пакмана
+    def event(self) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.coordinate[1] -= 1
             self.texture = self.textures["UP"]
@@ -44,6 +43,10 @@ class Pacman(Sprite):
             self.game.current_scene.draw_field.set_tile_by_coords(0, self.coordinate[0], self.coordinate[1])
             self.eat_sound.play_track()
             self.game.current_scene.score_draw.add(10)
+        elif pacman_tile == 4:
+            self.game.current_scene.draw_field.set_tile_by_coords(0, self.coordinate[0], self.coordinate[1])
+            self.eat_sound.play_track()
+            self.game.current_scene.score_draw.add(145)
 
     def logic(self, walls_rectangles: list) -> None:
         # Да.. данная функция крайне не понятна. Что ж, постараюсь объяснить
