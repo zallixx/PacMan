@@ -4,14 +4,14 @@ from pacman_developer.Game_objects.Classes_of_objects_on_gamescene.Seed_and_Ener
 
 
 class Cell:
-    def __init__(self, size):  # На вход подаешся размер стороны ячейки
+    def __init__(self, size: int) -> None:  # На вход подаешся размер стороны ячейки
         self.s = size
         self.seed = Seed("frog.png", pyray.Rectangle(0, 0, self.s-10, self.s-10), 10)
         # Временное решение - frog.png. TODO: Текстуры
         self.energizer = Energizer("frog.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 10)
         self.list_of_walls_rectangles = []  # Список с координатами стены и её размером
 
-    def draw_cell(self, cell: str, x: int, y: int):
+    def draw_cell(self, cell: str, x: int, y: int) -> None:
         match cell:
             case 0:  # Пустота
                 pass

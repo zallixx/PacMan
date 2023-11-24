@@ -5,23 +5,23 @@ from pacman_developer.Game_objects.Classes_of_objects_on_gamescene.Ghost import 
 
 
 class logic_of_pacman:
-    def __init__(self):
-        self.pacman = Pacman("frog.png", pyray.Rectangle(380, 335, 18, 18))
+    def __init__(self) -> None:
+        self.pacman = Pacman("frog.png", pyray.Rectangle(400, 335, 18, 18))
         # Создаем self.pacman на основе класса Pacman
         # TODO: Текстуры
 
-    def draw(self):
+    def draw(self) -> None:
         self.pacman.draw()
         # Отрисовка пакмана
         # Написана так, потому что logic_of_pacman не имеет собственной отрисовки, в отличие от класса пакмана
 
-    def event(self):
+    def event(self) -> None:
         self.pacman.event()
         # Передвижение пакмана
         # Написана так, потому что logic_of_pacman не имеет собственного передвижения, в отличие от класса пакмана
         # TODO: В классе Pacman нужно начать работу над телепортами и кушанием всякой всячины
 
-    def logic(self, walls_rectangles: list):
+    def logic(self, walls_rectangles: list) -> None:
         # Да.. данная функция крайне не понятна. Что ж, постараюсь объяснить
         for i in range(0,
                        len(walls_rectangles)):  # Цикл по pyray.Rectangle в списке walls_rectangles который создается в Cell_class.py
