@@ -5,7 +5,7 @@ from raylib import colors
 class ScoreDrawer:  # (RecalculableText):
 
     def __init__(self, score: int = 0) -> None:
-        self.score = score
+        self.score = 0
         self.font_size_score = 50
 
     def draw(self):
