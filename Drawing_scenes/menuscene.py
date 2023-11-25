@@ -21,9 +21,6 @@ class MenuScene(Scene):
         elif pyray.is_key_pressed(pyray.KeyboardKey.KEY_TWO):
             self.game.change_scene(SettingsScene(self.game))
 
-        if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
-            self.game.change_scene(PauseScene(self.game))
-
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.text == "New Game":
