@@ -8,10 +8,11 @@ class PauseScene(Scene):
         super().__init__()
         self.GameScene = GameScene
         self.game = game
-        self.buttons = [Button(300, 300, 200, 50, "Continue"), Button(300, 200, 200, 50, "Main Menu")]
+        self.buttons = [Button(300, 250, 200, 50, "Settings"), Button(300, 150 , 200, 50, "Main Menu"), Button(300, 350, 200, 50, "Continue")]
 
     def process_input(self):
         from Drawing_scenes.menuscene import MenuScene
+        from Drawing_scenes.settingsscene import SettingsScene
         for button in self.buttons:
             if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
                 self.game.change_scene(self.GameScene)
@@ -20,6 +21,8 @@ class PauseScene(Scene):
                     self.game.change_scene(self.GameScene)
                 elif button.text == "Main Menu":
                     self.game.change_scene(MenuScene(self.game))
+                elif button.text == "Settings":
+                    self.game.change_scene(SettingsScene(self.game))
 
     def update(self):
         pass
