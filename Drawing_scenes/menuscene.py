@@ -13,7 +13,7 @@ class MenuScene(Scene):
         self.game = game
         self.buttons = [Button(300, 200, 200, 50, "New Game"),
                         Button(300, 125, 200, 50, "Exit")]
-        self.highscore = HighscoreTableDrawer()
+
 
     def process_input(self):
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_ONE):
@@ -34,6 +34,6 @@ class MenuScene(Scene):
 
     def draw(self):
         pyray.draw_text("PUCMAN", 275, 50, 60, pyray.WHITE)
-        self.highscore.draw(325, 275, 18, pyray.WHITE)
+        self.game.highscore.draw(325, 275, 18, pyray.WHITE)
         for button in self.buttons:
             button.draw()
