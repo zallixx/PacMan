@@ -13,7 +13,7 @@ class GameScene(Scene):
         self.game = game
         self.draw_field = FieldDrawer()
         self.score_draw = ScoreDrawer()
-        self.objects = [Pacman("images/sprites/pacmanup.png", pyray.Rectangle(400, 335, 18, 18), self.game),
+        self.objects = [Pacman("images/sprites/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game),
                         Ghost("images/sprites/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0),
                         Ghost("images/sprites/pinkghostdown.png", pyray.Rectangle(415, 299, 18, 18), "x", 0),
                         Ghost("images/sprites/cyanghostup.png", pyray.Rectangle(385, 299, 18, 18), "y", 0),
@@ -36,4 +36,4 @@ class GameScene(Scene):
         for object in self.objects:
             object.draw()  # Отрисовка пакмана
             object.event()  # Передвижение пакмана
-            object.logic(self.draw_field.list_of_walls_rectangles)  # Логика пакмана
+            object.logic()  # Логика пакмана

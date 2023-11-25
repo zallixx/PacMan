@@ -24,5 +24,5 @@ class Ghost(Sprite):
         elif self.movement_coordinate == "y":
             self.coordinate[1] += self.movement_force
 
-    def logic(self, walls_rectangles: list) -> None:
+    def logic(self) -> None:
         pass
