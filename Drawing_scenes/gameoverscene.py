@@ -7,18 +7,17 @@ class GameOverScene(Scene):
     def __init__(self, game) -> None:
         super().__init__()
         self.game = game
-        self.buttons = [Button(300, 200, 200, 50, "Menu"),
-                        Button(300, 125, 200, 50, "Exit")]
+        self.buttons = [Button(300, 200, "Menu"),
+                        Button(300, 125, "Exit")]
 
     def process_input(self) -> None:
         from Drawing_scenes.menuscene import MenuScene
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
-                if button.text == "Menu":
+                if button.text_in_button == "Menu":
                     self.game.change_scene(MenuScene(self.game))
-                elif button.text == "Exit":
+                elif button.text_in_button == "Exit":
                     pyray.close_window()
-
 
     def update(self) -> None:
         pass

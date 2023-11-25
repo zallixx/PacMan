@@ -12,12 +12,12 @@ class SettingsScene(Scene):
         self.GameScene = GameScene
         self.game.volume_level = 50
         self.volume_step = 5  # Шаг изменения громкости
-        self.buttons = [Button(300, 250, 200, 50, "EXIT")]
+        self.buttons = [Button(300, 250, "EXIT")]
 
     def process_input(self):
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
-                if button.text == "EXIT":
+                if button.text_in_button == "EXIT":
                     self.game.change_scene(PauseScene(self.game, self.GameScene))
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_UP):
             self.game.volume_level = min(100,

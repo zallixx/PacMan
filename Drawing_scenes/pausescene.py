@@ -8,8 +8,8 @@ class PauseScene(Scene):
         super().__init__()
         self.GameScene = GameScene
         self.game = game
-        self.buttons = [Button(300, 250, 200, 50, "Settings"), Button(300, 150, 200, 50, "Main Menu"),
-                        Button(300, 350, 200, 50, "Continue")]
+        self.buttons = [Button(300, 250, "Settings"), Button(300, 150, "Main Menu"),
+                        Button(300, 350, "Continue")]
 
     def process_input(self):
         from Drawing_scenes.menuscene import MenuScene
@@ -18,9 +18,9 @@ class PauseScene(Scene):
             if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
                 self.game.change_scene(self.GameScene)
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
-                if button.text == "Continue":
+                if button.text_in_button == "Continue":
                     self.game.change_scene(self.GameScene)
-                elif button.text == "Main Menu":
+                elif button.text_in_button == "Main Menu":
                     isChanges = False
                     for i in range(0, len(self.game.highscore.highscoreTable.table)):
                         if self.game.highscore.highscoreTable.table[i]['name'] == self.game.PLAYER_NAME:
@@ -31,7 +31,7 @@ class PauseScene(Scene):
                     if isChanges == False:
                         self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
                         self.game.change_scene(MenuScene(self.game))
-                elif button.text == "Settings":
+                elif button.text_in_button == "Settings":
                     self.game.change_scene(SettingsScene(self.game))
 
     def update(self):
