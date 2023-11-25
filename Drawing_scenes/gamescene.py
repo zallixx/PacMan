@@ -12,7 +12,7 @@ class GameScene(Scene):
         self.game = game
         self.draw_field = FieldDrawer()
         self.score_draw = ScoreDrawer()
-        self.pacman = Pacman("images/sprites/pacmanup.png", pyray.Rectangle(400, 335, 18, 18), self.game)
+        self.pacman = Pacman("images/sprites/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game)
         self.start_audio = Audio(game, 0.4)
         self.start_audio.play_track()
 
