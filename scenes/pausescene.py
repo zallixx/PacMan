@@ -37,7 +37,7 @@ class PauseScene(Scene):
                         self.game.change_scene(MenuScene(self.game))
 
                 elif button.text_in_button == "Settings":
-                    self.game.change_scene(SettingsScene(self.game))
+                    self.game.change_scene(SettingsScene(self.game, self.GameScene))
 
     def update(self):
         pass

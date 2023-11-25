@@ -6,7 +6,7 @@ from scenes.gamescene import GameScene
 
 
 class SettingsScene(Scene):
-    def __init__(self, game) -> None:
+    def __init__(self, game, GameScene) -> None:
         super().__init__()
         self.game = game
         self.GameScene = GameScene
@@ -17,7 +17,6 @@ class SettingsScene(Scene):
     def process_input(self) -> None:
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
-
                 if button.text_in_button == "EXIT":
                     self.game.change_scene(PauseScene(self.game, self.GameScene))
 
