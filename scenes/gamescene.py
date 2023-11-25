@@ -1,9 +1,9 @@
 import pyray
-from Drawing_scenes.scene import Scene
-from Field_obj_drawing.FieldDrawer import FieldDrawer
-from Game_objects.Classes_of_objects_on_gamescene.Pacman import Pacman
-from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
-from Game_objects.audio import Audio
+from scenes.scene import Scene
+from field.FieldDrawer import FieldDrawer
+from objects.Pacman import Pacman
+from objects.Ghost import Ghost
+from objects.audio import Audio
 
 
 class GameScene(Scene):
@@ -11,17 +11,17 @@ class GameScene(Scene):
         super().__init__()
         self.game = game
         self.draw_field = FieldDrawer()
-        self.objects = [Pacman("images/sprites/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game),
-                        Ghost("images/sprites/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0, self.game),
-                        Ghost("images/sprites/pinkghostdown.png", pyray.Rectangle(415, 299, 18, 18), "x", 0, self.game),
-                        Ghost("images/sprites/cyanghostup.png", pyray.Rectangle(385, 299, 18, 18), "y", 0, self.game),
-                        Ghost("images/sprites/redghostleft.png", pyray.Rectangle(355, 299, 18, 18), "x", 0, self.game)]
+        self.objects = [Pacman("images/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game),
+                        Ghost("images/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0, self.game),
+                        Ghost("images/pinkghostdown.png", pyray.Rectangle(415, 299, 18, 18), "x", 0, self.game),
+                        Ghost("images/cyanghostup.png", pyray.Rectangle(385, 299, 18, 18), "y", 0, self.game),
+                        Ghost("images/redghostleft.png", pyray.Rectangle(355, 299, 18, 18), "x", 0, self.game)]
         self.start_audio = Audio(game, 0.4)
         self.start_audio.play_track()
         self.game.score_draw.score=0
 
     def process_input(self) -> None:
-        from Drawing_scenes.pausescene import PauseScene
+        from scenes.pausescene import PauseScene
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
             self.game.change_scene(PauseScene(self.game, self))
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_F):

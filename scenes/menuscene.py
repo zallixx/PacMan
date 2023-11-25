@@ -1,8 +1,8 @@
 import pyray
-from Drawing_scenes.scene import Scene
-from Drawing_scenes.button import Button
-from Drawing_scenes.gamescene import GameScene
-from Drawing_scenes.settingsscene import SettingsScene
+from scenes.scene import Scene
+from scenes.button import Button
+from scenes.gamescene import GameScene
+from scenes.settingsscene import SettingsScene
 
 
 class MenuScene(Scene):
@@ -26,6 +26,7 @@ class MenuScene(Scene):
                 # Действие кнопки "New Game"
                 elif button.text_in_button == "Exit":
                     pyray.close_window()
+                    pyray.close_audio_device()
 
     def update(self) -> None:
         pass

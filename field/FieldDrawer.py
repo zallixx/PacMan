@@ -1,12 +1,12 @@
-from Field_obj_drawing.Field_class import Field
-from Field_obj_drawing.Cell_class import Cell
+from field.Field_class import Field
+from field.Cell_class import Cell
 
 
 class FieldDrawer:
     def __init__(self):
         self.x = 148  # Центрирование по длине ((длина окна - размер ячейки * кол-во рядов) / 2)
         self.y = 20
-        self.field = Field("Field_obj_drawing/field.txt")
+        self.field = Field("field/field.txt")
         self.field_data = self.field.get_field()
         self.cell = Cell(18)
         self.list_of_walls_rectangles = self.cell.list_of_walls_rectangles

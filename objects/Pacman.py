@@ -1,14 +1,11 @@
-import raylib
-from raylib import colors
-
-from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
+from objects.Sprite import Sprite
 import pyray
 
-from Game_objects.audio import Audio
+from objects.audio import Audio
 
 
 # Импортим класс для создания объектов из
-# Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
+# Sprite.py(pacman_developer/objects/Classes_of_objects_on_gamescene)
 # Для получения большей информации о классе - перейдите в файл
 
 
@@ -20,10 +17,10 @@ class Pacman(Sprite):
         self.shift_x = self.shift_y = 0
         self.future_x = self.future_y = 0
         self.eat_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/eat_seed_sound.wav')
-        self.textures = {"UP": pyray.load_texture("images/sprites/pacmanup.png"),
-                         "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
-                         "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
-                         "RIGHT": pyray.load_texture("images/sprites/pacmanright.png")}
+        self.textures = {"UP": pyray.load_texture("images/pacmanup.png"),
+                         "DOWN": pyray.load_texture("images/pacmandown.png"),
+                         "LEFT": pyray.load_texture("images/pacmanleft.png"),
+                         "RIGHT": pyray.load_texture("images/pacmanright.png")}
         self.directions = {
             pyray.KeyboardKey.KEY_W: "UP",
             pyray.KeyboardKey.KEY_S: "DOWN",

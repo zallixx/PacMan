@@ -1,5 +1,5 @@
 import pyray
-from Drawing_scenes.menuscene import MenuScene
+from scenes.menuscene import MenuScene
 from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
 from LifeDrawer import LifeDrawer
 from ScoreDrawer import ScoreDrawer

@@ -1,8 +1,8 @@
 import pyray
-from Drawing_scenes.scene import Scene
-from Drawing_scenes.button import Button
-from Drawing_scenes.pausescene import PauseScene
-from Drawing_scenes.gamescene import GameScene
+from scenes.scene import Scene
+from scenes.button import Button
+from scenes.pausescene import PauseScene
+from scenes.gamescene import GameScene
 
 
 class SettingsScene(Scene):

@@ -1,6 +1,5 @@
 import pyray
-from raylib import colors
-from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
+from objects.Sprite import Sprite
 
 
 class Cherry(Sprite):

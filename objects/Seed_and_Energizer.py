@@ -1,8 +1,8 @@
 import pyray
-from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
+from objects.Sprite import Sprite
 
 # Импортим класс для создания объектов из
-# Sprite.py(Game_objects/Classes_of_objects_on_gamescene)
+# Sprite.py(objects/Classes_of_objects_on_gamescene)
 
 
 class Seed(Sprite):
