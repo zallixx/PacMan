@@ -61,15 +61,16 @@ class Pacman(Sprite):
         pacman_rect = pyray.Rectangle(self.coordinate[0] - self.width / 2,
                                       self.coordinate[1] - self.height / 2,
                                       self.width, self.height)
-        # Создаем pyray.Rectangle на основе координат пакмана, ширины и высоты.
+        # Создаем pyray.Rectangle на основе координат пакмана, ширины и высоты
 
         for wall_rect_data in walls_rectangles:
 
-            # Цикл по (x, y, self.s, self.s). Где self.s - ширина и высота.
+            # Цикл по списку, содержищий в себе список со следующими значениями:
+            # (x, y, self.s, self.s). Где self.s - ширина и высота
             # Сам walls_rectangles создается в списке walls_rectangles который создается в Cell_class.py
 
             cube_rect = pyray.Rectangle(*wall_rect_data)
-            # Создаем pyray.Rectangle на основе списка в списке, полученного в Cell_class.py.
+            # Создаем pyray.Rectangle на основе списка в списке, полученного в Cell_class.py
 
             # Проверка на коллизию между пакманом и стеной
             if pyray.check_collision_recs(cube_rect, pacman_rect):
