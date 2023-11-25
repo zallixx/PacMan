@@ -23,6 +23,7 @@ class SettingsScene(Scene):
         elif pyray.is_key_pressed(pyray.KeyboardKey.KEY_DOWN):
             self.volume_level = max(0,
                                     self.volume_level - self.volume_step)  # Уменьшаем громкость, ограничивая минимальным значением 0
+        #pyray.set_sound_volume(pyray.get_default_sound_device(), self.volume_level)
 
     def update(self):
         pass
