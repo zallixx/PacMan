@@ -8,7 +8,8 @@ class PauseScene(Scene):
         super().__init__()
         self.GameScene = GameScene
         self.game = game
-        self.buttons = [Button(300, 250, 200, 50, "Settings"), Button(300, 150 , 200, 50, "Main Menu"), Button(300, 350, 200, 50, "Continue")]
+        self.buttons = [Button(300, 250, 200, 50, "Settings"), Button(300, 150, 200, 50, "Main Menu"),
+                        Button(300, 350, 200, 50, "Continue")]
 
     def process_input(self):
         from Drawing_scenes.menuscene import MenuScene
@@ -22,7 +23,7 @@ class PauseScene(Scene):
                 elif button.text == "Main Menu":
                     self.game.change_scene(MenuScene(self.game))
                 elif button.text == "Settings":
-                    self.game.change_scene(SettingsScene(self.game))
+                    self.game.change_scene(SettingsScene(self.game, self.GameScene))
 
     def update(self):
         pass
