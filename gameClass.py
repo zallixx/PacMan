@@ -1,6 +1,7 @@
 import pyray
 from Drawing_scenes.menuscene import MenuScene
 
+
 class Game:
     def __init__(self):
         self.window_width = 800
@@ -14,6 +15,7 @@ class Game:
     def run(self):
         pyray.init_window(self.window_width, self.window_height, "Pacman Game")
         pyray.init_audio_device()
+        pyray.set_target_fps(120)
 
         while not pyray.window_should_close():
             self.current_scene.process_input()
