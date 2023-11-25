@@ -4,7 +4,6 @@ from Field_obj_drawing.FieldDrawer import FieldDrawer
 from Game_objects.Classes_of_objects_on_gamescene.Pacman import Pacman
 from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
 from Game_objects.audio import Audio
-from ScoreDrawer import ScoreDrawer
 
 
 class GameScene(Scene):
@@ -13,10 +12,10 @@ class GameScene(Scene):
         self.game = game
         self.draw_field = FieldDrawer()
         self.objects = [Pacman("images/sprites/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game),
-                        Ghost("images/sprites/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0),
-                        Ghost("images/sprites/pinkghostdown.png", pyray.Rectangle(415, 299, 18, 18), "x", 0),
-                        Ghost("images/sprites/cyanghostup.png", pyray.Rectangle(385, 299, 18, 18), "y", 0),
-                        Ghost("images/sprites/redghostleft.png", pyray.Rectangle(355, 299, 18, 18), "x", 0)]
+                        Ghost("images/sprites/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0, self.game),
+                        Ghost("images/sprites/pinkghostdown.png", pyray.Rectangle(415, 299, 18, 18), "x", 0, self.game),
+                        Ghost("images/sprites/cyanghostup.png", pyray.Rectangle(385, 299, 18, 18), "y", 0, self.game),
+                        Ghost("images/sprites/redghostleft.png", pyray.Rectangle(355, 299, 18, 18), "x", 0, self.game)]
         self.start_audio = Audio(game, 0.4)
         self.start_audio.play_track()
 
@@ -35,4 +34,4 @@ class GameScene(Scene):
         for object in self.objects:
             object.draw()  # Отрисовка пакмана
             object.event()  # Передвижение пакмана
-            object.logic()  # Логика пакмана
+            object.logic(self.objects[0])  # Логика пакмана
