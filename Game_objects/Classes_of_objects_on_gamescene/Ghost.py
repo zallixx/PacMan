@@ -35,3 +35,4 @@ class Ghost(Sprite):
 
         if self.game.life_draw.lifecount == 0:
             self.game.change_scene(GameOverScene(self.game))
+            self.game.life_draw.lifecount = 3
