@@ -13,3 +13,4 @@ class ScoreDrawer:  # (RecalculableText):
 
     def add(self, point):
         self.score += point
+        
