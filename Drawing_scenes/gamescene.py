@@ -19,6 +19,7 @@ class GameScene(Scene):
                         Ghost("images/sprites/redghostleft.png", pyray.Rectangle(355, 299, 18, 18), "x", 0)]
         self.start_audio = Audio(game, game.volume_level/100)
         self.start_audio.play_track()
+        self.game.score_draw.score=0
 
     def process_input(self) -> None:
         from Drawing_scenes.pausescene import PauseScene
