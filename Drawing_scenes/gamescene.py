@@ -12,7 +12,6 @@ class GameScene(Scene):
         super().__init__()
         self.game = game
         self.draw_field = FieldDrawer()
-        self.score_draw = ScoreDrawer()
         self.objects = [Pacman("images/sprites/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game),
                         Ghost("images/sprites/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0),
                         Ghost("images/sprites/pinkghostdown.png", pyray.Rectangle(415, 299, 18, 18), "x", 0),
@@ -32,7 +31,7 @@ class GameScene(Scene):
     def draw(self) -> None:
         pyray.draw_text("Game Scene", 10, 10, 20, pyray.WHITE)  # Отрисовка текста Game Scene в левом верхнем углу
         self.draw_field.draw_field()  # Отрисовка поля
-        self.score_draw.draw()  # Отрисовка счета
+        self.game.score_draw.draw()  # Отрисовка счета
         for object in self.objects:
             object.draw()  # Отрисовка пакмана
             object.event()  # Передвижение пакмана

@@ -31,18 +31,6 @@ class Pacman(Sprite):
             pyray.KeyboardKey.KEY_D: "RIGHT"
         }
 
-    def event(self) -> None:
-        for key, direction in self.directions.items():
-            if pyray.is_key_down(key):
-                if direction == "UP":
-                    self.coordinate[1] -= 1
-                elif direction == "DOWN":
-                    self.coordinate[1] += 1
-                elif direction == "LEFT":
-                    self.coordinate[0] -= 1
-                elif direction == "RIGHT":
-                    self.coordinate[0] += 1
-                self.texture = self.textures[direction]
     def event(self) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.future_y = -self.shift
@@ -81,7 +69,7 @@ class Pacman(Sprite):
                 self.move()
 
     def process_seed(self):
-        self.game.current_scene.score_draw.add(10)
+        self.game.score_draw.add(10)
         self.move()
         self.game.current_scene.draw_field.set_tile(0, self.get_raw_next_tile(self.shift_x, self.shift_y)[0],
                                                     self.get_raw_next_tile(self.shift_x, self.shift_y)[1])
@@ -95,7 +83,7 @@ class Pacman(Sprite):
         elif shift_y == 0:
             current_x = (self.coordinate[0] - self.width / 2) if shift_x <= 0 else (
                     self.coordinate[0] + self.width / 2)
-            current_y=self.coordinate[1]
+            current_y = self.coordinate[1]
 
         next_x = current_x + shift_x
         next_y = current_y + shift_y
@@ -109,7 +97,7 @@ class Pacman(Sprite):
         elif shift_y == 0:
             current_x = (self.coordinate[0] - self.width / 2) if shift_x <= 0 else (
                     self.coordinate[0] + self.width / 2)
-            current_y=self.coordinate[1]
+            current_y = self.coordinate[1]
 
         next_x = current_x + shift_x
         next_y = current_y + shift_y
@@ -156,5 +144,5 @@ class Pacman(Sprite):
         self.move()
 
     def process_big_seed(self):
-        self.game.current_scene.score_draw.add(10)
+        self.game.score_draw.add(10)
         self.process_seed()

@@ -19,6 +19,7 @@ class PauseScene(Scene):
                 if button.text == "Continue":
                     self.game.change_scene(self.GameScene)
                 elif button.text == "Main Menu":
+                    self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
                     self.game.change_scene(MenuScene(self.game))
 
     def update(self):
