@@ -18,8 +18,11 @@ class Ghost(Sprite):
         self.movement_coordinate = movement_coordinate
         self.movement_force = movement_force
 
-    def event(self):
+    def event(self) -> None:
         if self.movement_coordinate == "x":
             self.coordinate[0] += self.movement_force
         elif self.movement_coordinate == "y":
             self.coordinate[1] += self.movement_force
+
+    def logic(self, walls_rectangles: list) -> None:
+        pass
