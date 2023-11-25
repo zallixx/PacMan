@@ -10,23 +10,19 @@ class Textures:
             pic = pyray.load_image(path)
             texture = pyray.load_texture_from_image(pic)
             pyray.unload_image(pic)
-            self.list_textures[path] = ("loaded", texture)
+            self.list_textures[path] = texture
             return texture
         else:
             print("Текстура уже загружена!")
 
     def unload_image(self, path: str) -> None:
         if path in self.list_textures:
-            if self.list_textures[path][1] is not None:
-                del self.list_textures[path]
-                self.list_textures[path] = ("unloaded", None)
-                return
+            del self.list_textures[path]
         print("Данной текстуры нет")
 
     def get_texture(self, path: str) -> pyray.load_texture_from_image:
         if path in self.list_textures:
-            if self.list_textures[path][1] is not None:
-                return self.list_textures[path][1]
+            return self.list_textures[path]
         print("Ошибка при получении текстуры")
 
     def load_main_textures(self) -> None:
@@ -39,7 +35,7 @@ class Textures:
                 pic = pyray.load_image(path)
                 texture = pyray.load_texture_from_image(pic)
                 pyray.unload_image(pic)
-                self.list_textures[path] = ("loaded", texture)
+                self.list_textures[path] = texture
 
     def clear_textures(self) -> None:
         pass
