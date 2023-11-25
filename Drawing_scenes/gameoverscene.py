@@ -19,6 +19,7 @@ class GameOverScene(Scene):
                 elif button.text == "Exit":
                     pyray.close_window()
 
+
     def update(self) -> None:
         pass
 
