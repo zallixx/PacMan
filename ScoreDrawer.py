@@ -11,5 +11,6 @@ class ScoreDrawer:  # (RecalculableText):
     def draw(self):
         pyray.draw_text(str(self.score), 10, 30, self.font_size_score, colors.WHITE)
 
-    def add(self, points):
-        self.score += points
+    def add(self, point):
+        self.score += point
+        
