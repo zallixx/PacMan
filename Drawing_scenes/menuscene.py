@@ -12,7 +12,7 @@ class MenuScene(Scene):
         self.buttons = [Button(300, 200, "New Game"),
                         Button(300, 125, "Exit")]
 
-    def process_input(self):
+    def process_input(self) -> None:
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_ONE):
             self.game.change_scene(GameScene(self.game))
         elif pyray.is_key_pressed(pyray.KeyboardKey.KEY_TWO):
@@ -27,10 +27,10 @@ class MenuScene(Scene):
                 elif button.text_in_button == "Exit":
                     pyray.close_window()
 
-    def update(self):
+    def update(self) -> None:
         pass
 
-    def draw(self):
+    def draw(self) -> None:
         pyray.draw_text("PUCMAN", 275, 50, 60, pyray.WHITE)
         self.game.highscore.draw(325, 275, 18, pyray.WHITE)
         for button in self.buttons:
