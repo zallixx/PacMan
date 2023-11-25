@@ -13,7 +13,7 @@ class Pacman(Sprite):
     def __init__(self, path: str, rect: pyray.Rectangle, game) -> None:
         super().__init__(path, rect)
         self.game = game
-        self.eat_sound = Audio(self.game, 'sounds/eat_seed_sound.wav')
+        self.eat_sound = Audio(self.game, 0.3, 'sounds/eat_seed_sound.wav')
         self.textures = {"UP": pyray.load_texture("images/sprites/pacmanup.png"),
                          "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
                          "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
