@@ -10,7 +10,7 @@ class SettingsScene(Scene):
         super().__init__()
         self.game = game
         self.GameScene = GameScene
-        self.volume_level = 50
+        self.game.volume_level = 50
         self.volume_step = 5  # Шаг изменения громкости
         self.buttons = [Button(300, 250, 200, 50, "EXIT")]
 
@@ -20,11 +20,11 @@ class SettingsScene(Scene):
                 if button.text == "EXIT":
                     self.game.change_scene(PauseScene(self.game, self.GameScene))
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_UP):
-            self.volume_level = min(100,
-                                    self.volume_level + self.volume_step)  # Увеличиваем громкость, ограничивая максимальным значением 100
+            self.game.volume_level = min(100,
+                                    self.game.volume_level + self.volume_step)  # Увеличиваем громкость, ограничивая максимальным значением 100
         elif pyray.is_key_pressed(pyray.KeyboardKey.KEY_DOWN):
-            self.volume_level = max(0,
-                                    self.volume_level - self.volume_step)  # Уменьшаем громкость, ограничивая минимальным значением 0
+            self.game.volume_level = max(0,
+                                    self.game.volume_level - self.volume_step)  # Уменьшаем громкость, ограничивая минимальным значением 0
         # pyray.set_sound_volume(pyray.get_default_sound_device(), self.volume_level)
 
     def update(self):
@@ -34,6 +34,6 @@ class SettingsScene(Scene):
         # Отрисовка сцены настроек
         pyray.draw_text("Settings", 320, 30, 35, pyray.WHITE)
         # Отрисовка уровня громкости
-        pyray.draw_text(f"Volume: {self.volume_level}", 310, 100, 35, pyray.WHITE)
+        pyray.draw_text(f"Volume: {self.game.volume_level}", 310, 100, 35, pyray.WHITE)
         for button in self.buttons:
             button.draw()

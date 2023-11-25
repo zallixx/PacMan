@@ -31,6 +31,6 @@ class PauseScene(Scene):
 
     def draw(self):
         # Отрисовка сцены паузы
-        pyray.draw_text("Pause Scene", 10, 10, 20, pyray.WHITE)
+        pyray.draw_text("", 10, 10, 20, pyray.WHITE)
         for button in self.buttons:
             button.draw()

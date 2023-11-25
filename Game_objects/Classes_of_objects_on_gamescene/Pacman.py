@@ -16,7 +16,6 @@ class Pacman(Sprite):
     def __init__(self, path: str, rect: pyray.Rectangle, game) -> None:
         super().__init__(path, rect)
         self.game = game
-        self.eat_sound = Audio(self.game, 0.3, 'sounds/eat_seed_sound.wav')
         self.shift = 1
         self.shift_x = self.shift_y = 0
         self.future_x = self.future_y = 0
@@ -73,6 +72,7 @@ class Pacman(Sprite):
         self.move()
         self.game.current_scene.draw_field.set_tile(0, self.get_raw_next_tile(self.shift_x, self.shift_y)[0],
                                                     self.get_raw_next_tile(self.shift_x, self.shift_y)[1])
+        self.eat_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/eat_seed_sound.wav')
         self.eat_sound.play_track()
 
     def get_next_tile(self, shift_x, shift_y):

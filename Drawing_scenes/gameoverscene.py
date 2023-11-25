@@ -3,12 +3,11 @@ from Drawing_scenes.scene import Scene
 from Drawing_scenes.button import Button
 
 
-class GameOverScene(Scene):
-    def __init__(self, game) -> None:
-        super().__init__()
-        self.game = game
-        self.buttons = [Button(300, 200, 200, 50, "Menu"),
-                        Button(300, 125, 200, 50, "Exit")]
+class scene_game_over:
+    def __init__(self, width_scene, height_scene, font_size_text):
+        self.width_scene = 600
+        self.height_scene = 800
+        self.font_size_text = 60
 
     def process_input(self) -> None:
         from Drawing_scenes.menuscene import MenuScene
@@ -19,10 +18,3 @@ class GameOverScene(Scene):
                 elif button.text == "Exit":
                     pyray.close_window()
 
-    def update(self) -> None:
-        pass
-
-    def draw(self) -> None:
-        pyray.draw_text("Game Over", 235, 50, 60, pyray.WHITE)
-        for button in self.buttons:
-            button.draw()

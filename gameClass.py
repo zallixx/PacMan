@@ -12,6 +12,7 @@ class Game:
         self.PLAYER_NAME = 'dev'
         self.highscore = HighscoreTableDrawer()
         self.score_draw = ScoreDrawer()
+        self.volume_level = 50
 
     def change_scene(self, scene):
         self.current_scene = scene
