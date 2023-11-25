@@ -9,7 +9,7 @@ class scene_game_over:
         self.font_size_text = 60
 
     def draw(self):
-        pyray.draw_text(str(GAME OVER), 50, 10, self.font_size_text, colors.WHITE)
+        pyray.draw_text(str('GAME OVER'), 50, 10, self.font_size_text, colors.WHITE)
         
 
 

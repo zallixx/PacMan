@@ -148,11 +148,11 @@ class Pacman(Sprite):
         self.shift_x = self.shift_y = 0
 
     def process_teleport(self):
-        row, col = self.get_raw_next_tile(self.coordinate[0], self.coordinate[1])
+        row, col = self.get_raw_next_tile(self.shift_x, self.shift_y)
         if col == 0:
-            self.coordinate = [634 - 18, 272]
+            self.coordinate = [634 - 18, 281]
         else:
-            self.coordinate = [148 + 36, 272]
+            self.coordinate = [148 + 36, 281]
         self.move()
 
     def process_big_seed(self):
