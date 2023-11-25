@@ -3,9 +3,6 @@ from Drawing_scenes.scene import Scene
 from Drawing_scenes.button import Button
 from Drawing_scenes.gamescene import GameScene
 from Drawing_scenes.settingsscene import SettingsScene
-from Drawing_scenes.pausescene import PauseScene
-from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
-from pacman_developer.LifeDrawer import LifeDrawer
 
 
 class MenuScene(Scene):
@@ -14,7 +11,6 @@ class MenuScene(Scene):
         self.game = game
         self.buttons = [Button(300, 200, 200, 50, "New Game"),
                         Button(300, 125, 200, 50, "Exit")]
-
 
     def process_input(self):
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_ONE):
@@ -27,7 +23,7 @@ class MenuScene(Scene):
                 if button.text == "New Game":
                     self.game.change_scene(GameScene(self.game))
                     self.game.life_draw.lifecount = 3
-                  # Действие кнопки "New Game"
+                # Действие кнопки "New Game"
                 elif button.text == "Exit":
                     pyray.close_window()
 

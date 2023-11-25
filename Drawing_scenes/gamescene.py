@@ -4,7 +4,6 @@ from Field_obj_drawing.FieldDrawer import FieldDrawer
 from Game_objects.Classes_of_objects_on_gamescene.Pacman import Pacman
 from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
 from Game_objects.audio import Audio
-from LifeDrawer import LifeDrawer
 
 
 class GameScene(Scene):
