@@ -14,12 +14,15 @@ class PauseScene(Scene):
     def process_input(self):
         from Drawing_scenes.menuscene import MenuScene
         from Drawing_scenes.settingsscene import SettingsScene
+
         for button in self.buttons:
             if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
                 self.game.change_scene(self.GameScene)
+
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.text_in_button == "Continue":
-                    self.game.change_scene(self.GameScene)
+                    self.game.change_scene(self.GameScene(self.game))
+
                 elif button.text_in_button == "Main Menu":
                     isChanges = False
                     for i in range(0, len(self.game.highscore.highscoreTable.table)):
@@ -28,9 +31,11 @@ class PauseScene(Scene):
                             isChanges = True
                             self.game.change_scene(MenuScene(self.game))
                         break
-                    if isChanges == False:
+
+                    if not isChanges:
                         self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
                         self.game.change_scene(MenuScene(self.game))
+
                 elif button.text_in_button == "Settings":
                     self.game.change_scene(SettingsScene(self.game))
 

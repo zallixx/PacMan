@@ -6,7 +6,7 @@ from ScoreDrawer import ScoreDrawer
 
 
 class Game:
-    def __init__(self):
+    def __init__(self) -> None:
         self.window_width = 800
         self.window_height = 600
         self.current_scene = MenuScene(self)
@@ -17,10 +17,10 @@ class Game:
         self.life_draw = LifeDrawer(pyray.Rectangle(680, 30, 18, 18))
         self.volume_level = 50
 
-    def change_scene(self, scene):
+    def change_scene(self, scene) -> None:
         self.current_scene = scene
 
-    def run(self):
+    def run(self) -> None:
         pyray.init_window(self.window_width, self.window_height, "Pacman Game")
         pyray.init_audio_device()
         pyray.set_target_fps(120)
