@@ -31,4 +31,4 @@ class GameScene(Scene):
         self.pacman.draw()  # Отрисовка пакмана
         self.score_draw.draw()  # Отрисовка счета
         self.pacman.event()  # Передвижение пакмана
-        self.pacman.logic(self.draw_field.list_of_walls_rectangles)  # Логика пакмана
+        self.pacman.logic()  # Логика пакмана

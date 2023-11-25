@@ -64,7 +64,7 @@ class Pacman(Sprite):
         self.coordinate[1] += self.shift_y
         self.predict_future()
 
-    def logic(self, walls_rectangles: list) -> None:
+    def logic(self) -> None:
         next_tile = self.get_next_tile(self.shift_x, self.shift_y)
         match next_tile:
             case 0:
