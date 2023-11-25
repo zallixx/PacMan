@@ -18,50 +18,62 @@ class Pacman(Sprite):
                          "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
                          "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
                          "RIGHT": pyray.load_texture("images/sprites/pacmanright.png")}
+        self.directions = {
+            pyray.KeyboardKey.KEY_W: "UP",
+            pyray.KeyboardKey.KEY_S: "DOWN",
+            pyray.KeyboardKey.KEY_A: "LEFT",
+            pyray.KeyboardKey.KEY_D: "RIGHT"
+        }
 
-    def event(self) -> None:  # Описывается движение пакмана
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
-            self.coordinate[1] -= 1
-            self.texture = self.textures["UP"]
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_S):
-            self.coordinate[1] += 1
-            self.texture = self.textures["DOWN"]
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_A):
-            self.coordinate[0] -= 1
-            self.texture = self.textures["LEFT"]
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_D):
-            self.coordinate[0] += 1
-            self.texture = self.textures["RIGHT"]
+    def event(self) -> None:
+        for key, direction in self.directions.items():
+            if pyray.is_key_down(key):
+                if direction == "UP":
+                    self.coordinate[1] -= 1
+                elif direction == "DOWN":
+                    self.coordinate[1] += 1
+                elif direction == "LEFT":
+                    self.coordinate[0] -= 1
+                elif direction == "RIGHT":
+                    self.coordinate[0] += 1
+                self.texture = self.textures[direction]
+
         pacman_tile = self.game.current_scene.draw_field.get_tile_by_coords(self.coordinate[0], self.coordinate[1])
+
         if pacman_tile == 2:
             row, col = self.game.current_scene.draw_field.coords_to_clear(self.coordinate[0], self.coordinate[1])
             if col == 0:
                 self.coordinate = [634 - 18, 272]
             else:
                 self.coordinate = [148 + 36, 272]
+
         elif pacman_tile == 3:
             self.game.current_scene.draw_field.set_tile_by_coords(0, self.coordinate[0], self.coordinate[1])
             self.eat_sound.play_track()
             self.game.current_scene.score_draw.add(10)
+
         elif pacman_tile == 4:
             self.game.current_scene.draw_field.set_tile_by_coords(0, self.coordinate[0], self.coordinate[1])
             self.eat_sound.play_track()
             self.game.current_scene.score_draw.add(145)
 
     def logic(self, walls_rectangles: list) -> None:
-        # Да.. данная функция крайне не понятна. Что ж, постараюсь объяснить
+        pacman_rect = pyray.Rectangle(self.coordinate[0] - self.width / 2,
+                                      self.coordinate[1] - self.height / 2,
+                                      self.width, self.height)
+        # Создаем pyray.Rectangle на основе координат пакмана, ширины и высоты.
 
-        for i in range(0,
-                       len(walls_rectangles)):  # Цикл по pyray.Rectangle в списке walls_rectangles который создается в Cell_class.py
-            cube_rect = pyray.Rectangle(walls_rectangles[i][0], walls_rectangles[i][1], walls_rectangles[i][2],
-                                        walls_rectangles[i][
-                                            3])  # Создание pyray.Rectangle на основе x, y, self.s, self.s(self.s = 18)
-            pacman_rect = pyray.Rectangle(self.coordinate[0] - self.width / 2,
-                                          self.coordinate[1] - self.height / 2, self.width,
-                                          self.height)  # Создание pyray.Rectangle на основе x(пакмана), y(пакмана),
-            # self.pacman.width(18), self.pacman.height(18)
+        for wall_rect_data in walls_rectangles:
 
+            # Цикл по (x, y, self.s, self.s). Где self.s - ширина и высота.
+            # Сам walls_rectangles создается в списке walls_rectangles который создается в Cell_class.py
+
+            cube_rect = pyray.Rectangle(*wall_rect_data)
+            # Создаем pyray.Rectangle на основе списка в списке, полученного в Cell_class.py.
+
+            # Проверка на коллизию между пакманом и стеной
             if pyray.check_collision_recs(cube_rect, pacman_rect):
+
                 overlap_x = min(pacman_rect.x + pacman_rect.width, cube_rect.x + cube_rect.width) - max(pacman_rect.x,
                                                                                                         cube_rect.x)
                 overlap_y = min(pacman_rect.y + pacman_rect.height, cube_rect.y + cube_rect.height) - max(pacman_rect.y,
@@ -69,19 +81,14 @@ class Pacman(Sprite):
                 # Эти две переменные представляют собой размер области,
                 # где прямоугольники пересекаются по горизонтали и вертикали соответственно
 
+                # Если перекрытие по оси x меньше, чем по оси y, значит коллизия произошла горизонтально
                 if overlap_x < overlap_y:
-                    # Если перекрытие по оси x меньше, чем по оси y, значит коллизия произошла горизонтально
-                    if pacman_rect.x < cube_rect.x:  # Проверка на центр пакмана и центр блока по y
-                        # Cмещаем пакмана влево
-                        self.coordinate[0] -= overlap_x
-                    else:
-                        # Cмещаем пакмана вправо
-                        self.coordinate[0] += overlap_x
+
+                    # Проверка на центр пакмана и центр блока по x
+                    # Если центр пакмана по x меньше, чем центр куба(стены), то вычитаем overlap_x
+                    # Иначе прибавляем overlap_x
+
+                    self.coordinate[0] += -overlap_x if (pacman_rect.x < cube_rect.x) else overlap_x
                 else:
-                    # Коллизия произошла вертикально
-                    if pacman_rect.y < cube_rect.y:  # Проверка на центр пакмана и центр блока по y
-                        # Смещаем пакмана вверх
-                        self.coordinate[1] -= overlap_y
-                    else:
-                        # Cмещаем пакмана вниз
-                        self.coordinate[1] += overlap_y
+                    # Всё то же, но по теперь по y
+                    self.coordinate[1] += -overlap_y if (pacman_rect.y < cube_rect.y) else overlap_y

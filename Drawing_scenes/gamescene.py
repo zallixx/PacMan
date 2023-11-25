@@ -15,7 +15,6 @@ class GameScene(Scene):
         self.pacman = Pacman("images/sprites/pacmanup.png", pyray.Rectangle(400, 335, 18, 18), self.game)
         self.start_audio = Audio(game, 0.4)
         self.start_audio.play_track()
-        # Создаем self.pacman на основе класса Pacman
 
     def process_input(self) -> None:
         from Drawing_scenes.pausescene import PauseScene
@@ -33,4 +32,3 @@ class GameScene(Scene):
         self.score_draw.draw()  # Отрисовка счета
         self.pacman.event()  # Передвижение пакмана
         self.pacman.logic(self.draw_field.list_of_walls_rectangles)  # Логика пакмана
-        # TODO: Нужно сделать так, чтобы пакман мог есть..
