@@ -43,8 +43,6 @@ class Pacman(Sprite):
                 elif direction == "RIGHT":
                     self.coordinate[0] += 1
                 self.texture = self.textures[direction]
-
-<<<<<<< Game_objects/Classes_of_objects_on_gamescene/Pacman.py
     def event(self) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.future_y = -self.shift
@@ -160,4 +158,3 @@ class Pacman(Sprite):
     def process_big_seed(self):
         self.game.current_scene.score_draw.add(10)
         self.process_seed()
->>>>>>> Game_objects/Classes_of_objects_on_gamescene/Pacman.py
