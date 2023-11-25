@@ -1,5 +1,6 @@
 import pyray
-from raylib import colors
+from Drawing_scenes.scene import Scene
+from Drawing_scenes.button import Button
 
 
 class scene_game_over:
@@ -8,7 +9,12 @@ class scene_game_over:
         self.height_scene = 800
         self.font_size_text = 60
 
-    def draw(self):
-        pyray.draw_text(str('GAME OVER'), 50, 10, self.font_size_text, colors.WHITE)
-        
+    def process_input(self) -> None:
+        from Drawing_scenes.menuscene import MenuScene
+        for button in self.buttons:
+            if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
+                if button.text == "Menu":
+                    self.game.change_scene(MenuScene(self.game))
+                elif button.text == "Exit":
+                    pyray.close_window()
 
