@@ -4,8 +4,7 @@ from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
 
 
 class LifeDrawer(Sprite):
-    def __init__(self, path: str, rect: pyray.Rectangle, lifecount=3, ) -> None:
-        super().__init__(path, rect)
+    def __init__(self, rect: pyray.Rectangle, lifecount=3, ) -> None:
         self.lifecount = lifecount
         self.radius = 14
         self.coordinate = [rect.x, rect.y]
