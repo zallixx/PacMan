@@ -12,7 +12,6 @@ class GameScene(Scene):
         super().__init__()
         self.game = game
         self.draw_field = FieldDrawer()
-        self.life_draw = LifeDrawer(pyray.Rectangle(680, 30, 18, 18))
         self.objects = [Pacman("images/sprites/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game),
                         Ghost("images/sprites/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0, self.game),
                         Ghost("images/sprites/pinkghostdown.png", pyray.Rectangle(415, 299, 18, 18), "x", 0, self.game),
@@ -27,7 +26,7 @@ class GameScene(Scene):
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
             self.game.change_scene(PauseScene(self.game, self))
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_F):
-            self.life_draw.remove()
+            self.game.life_draw.remove()
 
     def update(self) -> None:
         pass
@@ -36,7 +35,7 @@ class GameScene(Scene):
         pyray.draw_text("Game Scene", 10, 10, 20, pyray.WHITE)  # Отрисовка текста Game Scene в левом верхнем углу
         self.draw_field.draw_field()  # Отрисовка поля
         self.game.score_draw.draw()  # Отрисовка счета
-        self.life_draw.draw()
+        self.game.life_draw.draw()
         for object in self.objects:
             object.draw()  # Отрисовка пакмана
             object.event()  # Передвижение пакмана

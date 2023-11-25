@@ -1,6 +1,7 @@
 import pyray
 from Drawing_scenes.menuscene import MenuScene
 from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
+from LifeDrawer import LifeDrawer
 from ScoreDrawer import ScoreDrawer
 
 
@@ -13,6 +14,7 @@ class Game:
         num = max([int(t['name'][6:]) for t in self.highscore.highscoreTable.table]) + 1
         self.PLAYER_NAME = f"player{num}"
         self.score_draw = ScoreDrawer()
+        self.life_draw = LifeDrawer(pyray.Rectangle(680, 30, 18, 18))
         self.volume_level = 50
 
     def change_scene(self, scene):
