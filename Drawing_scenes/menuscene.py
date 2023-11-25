@@ -33,7 +33,7 @@ class MenuScene(Scene):
         pass
 
     def draw(self):
-        pyray.draw_text("Menu Scene", 200, 50, 60, pyray.WHITE)
+        pyray.draw_text("PUCMAN", 275, 50, 60, pyray.WHITE)
         self.highscore.draw(325, 275, 18, pyray.WHITE)
         for button in self.buttons:
             button.draw()
