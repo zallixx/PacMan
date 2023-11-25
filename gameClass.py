@@ -3,6 +3,7 @@ from scenes.menuscene import MenuScene
 from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
 from LifeDrawer import LifeDrawer
 from ScoreDrawer import ScoreDrawer
+from objects.texture import Textures
 
 
 class Game:
@@ -11,6 +12,7 @@ class Game:
         self.window_height = 600
         self.current_scene = MenuScene(self)
         self.highscore = HighscoreTableDrawer()
+        self.Textures = Textures()
         num = max([int(t['name'][6:]) for t in self.highscore.highscoreTable.table]) + 1
         self.PLAYER_NAME = f"player{num}"
         self.score_draw = ScoreDrawer()

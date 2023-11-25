@@ -7,13 +7,11 @@ import pyray
 class Sprite:
     # Пояснение к данному класу файлу в общем.
     # Данный класс представляет из себя основу всех объектов с текстурами.
-    def __init__(self, path: str, rect: pyray.Rectangle) -> None:
+    def __init__(self, texture: pyray.load_texture_from_image, rect: pyray.Rectangle) -> None:
         self.coordinate = [rect.x, rect.y]  # Координаты
         self.width = rect.width  # Длина
         self.height = rect.height  # Ширина
-        pic = pyray.load_image(path)  # Загрузка фотографии
-        self.texture = pyray.load_texture_from_image(pic)  # Присваиваем текстуре вид загруженной фотографии
-        pyray.unload_image(pic)  # Выгрузка фотографии
+        self.texture = texture
         self.rotation = 0  # Поворот текстуры(в градусах)
 
     def activate(self) -> None:
