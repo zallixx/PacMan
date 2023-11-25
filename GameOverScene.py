@@ -10,6 +10,7 @@ class scene_game_over:
 
     def draw(self):
         pyray.draw_text(str(GAME OVER), 50, 10, self.font_size_text, colors.WHITE)
+        
 
 
 if __name__ == '__main__':
