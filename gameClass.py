@@ -9,8 +9,9 @@ class Game:
         self.window_width = 800
         self.window_height = 600
         self.current_scene = MenuScene(self)
-        self.PLAYER_NAME = 'dev'
         self.highscore = HighscoreTableDrawer()
+        num = max([int(t['name'][6:]) for t in self.highscore.highscoreTable.table]) + 1
+        self.PLAYER_NAME = f"player{num}"
         self.score_draw = ScoreDrawer()
         self.volume_level = 50
 
