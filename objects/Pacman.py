@@ -18,9 +18,9 @@ class Pacman(Sprite):
         self.future_x = self.future_y = 0
         self.eat_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/eat_seed_sound.wav')
         self.textures = {"UP": self.game.Textures.get_texture("images/pacmanup.png"),
-                         "DOWN": self.game.Textures.load_and_get_image("images/pacmandown.png"),
-                         "LEFT": self.game.Textures.load_and_get_image("images/pacmanleft.png"),
-                         "RIGHT": self.game.Textures.load_and_get_image("images/pacmanright.png")}
+                         "DOWN": self.game.Textures.get_texture("images/pacmandown.png"),
+                         "LEFT": self.game.Textures.get_texture("images/pacmanleft.png"),
+                         "RIGHT": self.game.Textures.get_texture("images/pacmanright.png")}
         self.directions = {
             pyray.KeyboardKey.KEY_W: "UP",
             pyray.KeyboardKey.KEY_S: "DOWN",
