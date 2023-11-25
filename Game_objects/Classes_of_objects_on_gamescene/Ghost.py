@@ -1,7 +1,7 @@
 import pyray
 from Game_objects.Classes_of_objects_on_gamescene.Sprite import Sprite
 from Drawing_scenes.gameoverscene import GameOverScene
-
+from Game_objects.audio import Audio
 
 # Импортим класс(Sprite) для создания объектов из
 # Sprite.py(pacman_developer/Game_objects/Classes_of_objects_on_gamescene)
@@ -18,6 +18,7 @@ class Ghost(Sprite):
                  movement_coordinate: str, movement_force: int, game) -> None:
         super().__init__(path, rect)
         self.game = game
+        self.death_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/death_sound.wav')
         self.movement_coordinate = movement_coordinate
         self.movement_force = movement_force
 
@@ -36,3 +37,4 @@ class Ghost(Sprite):
         if self.game.life_draw.lifecount == 0:
             self.game.change_scene(GameOverScene(self.game))
             self.game.life_draw.lifecount = 3
+            self.death_sound.play_track()

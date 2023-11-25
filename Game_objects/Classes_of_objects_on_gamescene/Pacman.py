@@ -19,6 +19,7 @@ class Pacman(Sprite):
         self.shift = 1
         self.shift_x = self.shift_y = 0
         self.future_x = self.future_y = 0
+        self.eat_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/eat_seed_sound.wav')
         self.textures = {"UP": pyray.load_texture("images/sprites/pacmanup.png"),
                          "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
                          "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
@@ -28,7 +29,8 @@ class Pacman(Sprite):
             pyray.KeyboardKey.KEY_S: "DOWN",
             pyray.KeyboardKey.KEY_A: "LEFT",
             pyray.KeyboardKey.KEY_D: "RIGHT"
-        }
+        }  # TODO: Либо мы удалим self.directions, либо же будем использовать -->>
+        # TODO: def event на основе self.directions. Как это сделать - предположения есть(уже затестил)
 
     def event(self) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
@@ -72,7 +74,6 @@ class Pacman(Sprite):
         self.move()
         self.game.current_scene.draw_field.set_tile(0, self.get_raw_next_tile(self.shift_x, self.shift_y)[0],
                                                     self.get_raw_next_tile(self.shift_x, self.shift_y)[1])
-        self.eat_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/eat_seed_sound.wav')
         self.eat_sound.play_track()
 
     def get_next_tile(self, shift_x, shift_y):
