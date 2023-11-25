@@ -39,6 +39,6 @@ class FieldDrawer:
         self.set_tile(tile, row, col)
 
     def coords_to_clear(self, x, y):
-        col = abs(x - self.x) // 18
+        col = (x - self.x) // 18
         row = (y - self.y) // 18
         return int(row), int(col)
