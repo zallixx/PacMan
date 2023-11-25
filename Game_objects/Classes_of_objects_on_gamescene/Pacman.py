@@ -24,7 +24,27 @@ class Pacman(Sprite):
                          "DOWN": pyray.load_texture("images/sprites/pacmandown.png"),
                          "LEFT": pyray.load_texture("images/sprites/pacmanleft.png"),
                          "RIGHT": pyray.load_texture("images/sprites/pacmanright.png")}
+        self.directions = {
+            pyray.KeyboardKey.KEY_W: "UP",
+            pyray.KeyboardKey.KEY_S: "DOWN",
+            pyray.KeyboardKey.KEY_A: "LEFT",
+            pyray.KeyboardKey.KEY_D: "RIGHT"
+        }
 
+    def event(self) -> None:
+        for key, direction in self.directions.items():
+            if pyray.is_key_down(key):
+                if direction == "UP":
+                    self.coordinate[1] -= 1
+                elif direction == "DOWN":
+                    self.coordinate[1] += 1
+                elif direction == "LEFT":
+                    self.coordinate[0] -= 1
+                elif direction == "RIGHT":
+                    self.coordinate[0] += 1
+                self.texture = self.textures[direction]
+
+<<<<<<< Game_objects/Classes_of_objects_on_gamescene/Pacman.py
     def event(self) -> None:  # Описывается движение пакмана
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.future_y = -self.shift
@@ -140,42 +160,4 @@ class Pacman(Sprite):
     def process_big_seed(self):
         self.game.current_scene.score_draw.add(10)
         self.process_seed()
-
-
-'''
-        # Да.. данная функция крайне не понятна. Что ж, постараюсь объяснить
-        for i in range(0,
-                       len(walls_rectangles)):  # Цикл по pyray.Rectangle в списке walls_rectangles который создается в Cell_class.py
-            cube_rect = pyray.Rectangle(walls_rectangles[i][0], walls_rectangles[i][1], walls_rectangles[i][2],
-                                        walls_rectangles[i][
-                                            3])  # Создание pyray.Rectangle на основе x, y, self.s, self.s(self.s = 18)
-            pacman_rect = pyray.Rectangle(self.coordinate[0] - self.width / 2,
-                                          self.coordinate[1] - self.height / 2, self.width,
-                                          self.height)  # Создание pyray.Rectangle на основе x(пакмана), y(пакмана),
-            # self.pacman.width(18), self.pacman.height(18)
-
-            if pyray.check_collision_recs(cube_rect, pacman_rect):
-                overlap_x = min(pacman_rect.x + pacman_rect.width, cube_rect.x + cube_rect.width) - max(pacman_rect.x,
-                                                                                                        cube_rect.x)
-                overlap_y = min(pacman_rect.y + pacman_rect.height, cube_rect.y + cube_rect.height) - max(pacman_rect.y,
-                                                                                                          cube_rect.y)
-                # Эти две переменные представляют собой размер области,
-                # где прямоугольники пересекаются по горизонтали и вертикали соответственно
-
-                if overlap_x < overlap_y:
-                    # Если перекрытие по оси x меньше, чем по оси y, значит коллизия произошла горизонтально
-                    if pacman_rect.x < cube_rect.x:  # Проверка на центр пакмана и центр блока по y
-                        # Cмещаем пакмана влево
-                        self.coordinate[0] -= overlap_x
-                    else:
-                        # Cмещаем пакмана вправо
-                        self.coordinate[0] += overlap_x
-                else:
-                    # Коллизия произошла вертикально
-                    if pacman_rect.y < cube_rect.y:  # Проверка на центр пакмана и центр блока по y
-                        # Смещаем пакмана вверх
-                        self.coordinate[1] -= overlap_y
-                    else:
-                        # Cмещаем пакмана вниз
-                        self.coordinate[1] += overlap_y
-                        '''
+>>>>>>> Game_objects/Classes_of_objects_on_gamescene/Pacman.py

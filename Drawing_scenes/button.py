@@ -11,7 +11,7 @@ class Button:
 
     def draw(self):
         pyray.draw_rectangle(self.x, self.y, self.width, self.height, self.color)
-        pyray.draw_text(self.text, self.x + 10, self.y + 10, 20, pyray.BLACK)
+        pyray.draw_text(self.text, self.x + 50, self.y + 10, 20, pyray.BLACK)
 
     def is_mouse_on_button(self):
         mouse_x, mouse_y = pyray.get_mouse_x(), pyray.get_mouse_y()
