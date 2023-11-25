@@ -32,7 +32,7 @@ class PauseScene(Scene):
                         self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
                         self.game.change_scene(MenuScene(self.game))
                 elif button.text == "Settings":
-                    self.game.change_scene(SettingsScene(self.game, self.GameScene))
+                    self.game.change_scene(SettingsScene(self.game))
 
     def update(self):
         pass
