@@ -4,6 +4,7 @@ from Field_obj_drawing.FieldDrawer import FieldDrawer
 from Game_objects.Classes_of_objects_on_gamescene.Pacman import Pacman
 from Game_objects.Classes_of_objects_on_gamescene.Ghost import Ghost
 from Game_objects.audio import Audio
+from LifeDrawer import LifeDrawer
 
 
 class GameScene(Scene):
@@ -11,7 +12,6 @@ class GameScene(Scene):
         super().__init__()
         self.game = game
         self.draw_field = FieldDrawer()
-        self.score_draw = ScoreDrawer()
         self.life_draw = LifeDrawer(pyray.Rectangle(680, 30, 18, 18))
         self.objects = [Pacman("images/sprites/pacmanup.png", pyray.Rectangle(409, 335, 18, 18), self.game),
                         Ghost("images/sprites/orangeghostup.png", pyray.Rectangle(445, 299, 18, 18), "y", 0, self.game),
@@ -35,7 +35,7 @@ class GameScene(Scene):
     def draw(self) -> None:
         pyray.draw_text("Game Scene", 10, 10, 20, pyray.WHITE)  # Отрисовка текста Game Scene в левом верхнем углу
         self.draw_field.draw_field()  # Отрисовка поля
-        self.score_draw.draw()  # Отрисовка счета
+        self.game.score_draw.draw()  # Отрисовка счета
         self.life_draw.draw()
         for object in self.objects:
             object.draw()  # Отрисовка пакмана

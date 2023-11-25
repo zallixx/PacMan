@@ -1,7 +1,6 @@
 import pyray
 from Drawing_scenes.scene import Scene
 from Drawing_scenes.button import Button
-from Drawing_scenes.menuscene import MenuScene
 
 
 class GameOverScene(Scene):
@@ -12,6 +11,7 @@ class GameOverScene(Scene):
                         Button(300, 125, 200, 50, "Exit")]
 
     def process_input(self) -> None:
+        from Drawing_scenes.menuscene import MenuScene
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.text == "Menu":
