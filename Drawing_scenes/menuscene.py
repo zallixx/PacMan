@@ -5,6 +5,7 @@ from Drawing_scenes.gamescene import GameScene
 from Drawing_scenes.settingsscene import SettingsScene
 from Drawing_scenes.pausescene import PauseScene
 from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
+from pacman_developer.LifeDrawer import LifeDrawer
 
 
 class MenuScene(Scene):
@@ -25,6 +26,7 @@ class MenuScene(Scene):
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.text == "New Game":
                     self.game.change_scene(GameScene(self.game))
+                    self.game.life_draw.lifecount = 3
                   # Действие кнопки "New Game"
                 elif button.text == "Exit":
                     pyray.close_window()
