@@ -2,7 +2,6 @@ import pyray
 from scenes.scene import Scene
 from scenes.button import Button
 
-
 class GameOverScene(Scene):
     def __init__(self, game) -> None:
         super().__init__()

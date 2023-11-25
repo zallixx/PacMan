@@ -3,12 +3,13 @@ from field.Cell_class import Cell
 
 
 class FieldDrawer:
-    def __init__(self):
+    def __init__(self, game):
         self.x = 148  # Центрирование по длине ((длина окна - размер ячейки * кол-во рядов) / 2)
         self.y = 20
+        self.game = game
         self.field = Field("field/field.txt")
         self.field_data = self.field.get_field()
-        self.cell = Cell(18)
+        self.cell = Cell(18, self.game)
         self.list_of_walls_rectangles = self.cell.list_of_walls_rectangles
         self.list_of_seeds = self.cell.list_of_seeds
         self.list_of_energizer = self.cell.list_of_energizer

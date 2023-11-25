@@ -4,10 +4,13 @@ from objects.Seed_and_Energizer import Seed, Energizer
 
 
 class Cell:
-    def __init__(self, size: int) -> None:  # На вход подаешся размер стороны ячейки
+    def __init__(self, size: int, game) -> None:  # На вход подаешся размер стороны ячейки
         self.s = size
-        self.seed = Seed("images/seed.png", pyray.Rectangle(0, 0, self.s-12, self.s-12), 10)
-        self.energizer = Energizer("images/bigseed.png", pyray.Rectangle(0, 0, self.s-5, self.s-5), 15)
+        self.game = game
+        self.game.Textures.clear_textures()
+        self.game.Textures.load_main_textures()
+        self.seed = Seed(self.game.Textures.get_texture("images/seed.png"), pyray.Rectangle(0, 0, self.s-12, self.s-12), 10)
+        self.energizer = Energizer(self.game.Textures.get_texture("images/bigseed.png"), pyray.Rectangle(0, 0, self.s-5, self.s-5), 15)
         self.list_of_walls_rectangles = []  # Список с координатами стены и её размером
         self.list_of_teleport = []
         self.list_of_seeds = []
