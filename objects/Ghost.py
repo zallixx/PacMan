@@ -28,8 +28,8 @@ class Ghost(Image):
         pacman_rect = pyray.Rectangle(pacman.rect.x, pacman.rect.y, pacman.rect.width, pacman.rect.height)
         if pyray.check_collision_recs(ghost_rect, pacman_rect):
             self.game.life_draw.remove()
-            pacman.coordinate[0] = 409
-            pacman.coordinate[1] = 335
+            pacman.rect.x = 409
+            pacman.rect.y = 335
             pacman.future_x = 0
             pacman.future_y = 0
             pacman.shift_x = 0

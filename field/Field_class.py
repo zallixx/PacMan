@@ -66,8 +66,8 @@ class Field(Image):  # В класс передаётся путь txt файл�
     def set_tile(self, tile, row, col):
         self.field_data[row][col] = tile
 
-    def set_tile_by_coords(self, tile, x, y):
-        row, col = self.coords_to_clear(x, y)
+    def set_tile_by_coords(self, tile):
+        row, col = self.coords_to_clear(tile.rect.x, tile.rect.y)
         self.set_tile(tile, row, col)
 
     def coords_to_clear(self, x, y):

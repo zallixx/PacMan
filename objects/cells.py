@@ -29,7 +29,7 @@ class Teleport(Image):
         return self.teleports[(self.index + 1) % len(self.teleports)]
 
     def draw(self):
-        pyray.draw_rectangle_rec(self.rect, colors.DARKPURPLE)
+        pass
 
 
 class Seed(Image):
@@ -37,8 +37,12 @@ class Seed(Image):
 
     def __init__(self, game, rect: pyray.Rectangle):
         super().__init__(game, game.Textures.get_texture(Seed.filename), rect)
-        self.rect.x += self.rect.width // 2
-        self.rect.y += self.rect.height // 2
+
+    def draw(self) -> None:
+        source = pyray.Rectangle(0, 0, self.texture.width, self.texture.height)
+        dest = pyray.Rectangle(self.rect.x+18, self.rect.y+18, self.texture.width, self.texture.height)
+        origin = pyray.Vector2(self.rect.width // 2, self.rect.height // 2)
+        pyray.draw_texture_pro(self.texture, source, dest, origin, self.rotation, pyray.WHITE)
 
 
 class BigSeed(Seed):
@@ -46,3 +50,4 @@ class BigSeed(Seed):
 
     def __init__(self, game, rect: pyray.Rectangle):
         super().__init__(game, rect)
+        self.texture = self.game.Textures.get_texture(self.filename)

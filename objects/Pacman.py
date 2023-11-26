@@ -63,8 +63,9 @@ class Pacman(Image):
     def process_seed(self):
         self.game.score_draw.add(10)
         self.move()
-        self.game.current_scene.draw_field.set_tile(0, self.get_raw_next_tile(self.shift_x, self.shift_y)[0],
-                                                    self.get_raw_next_tile(self.shift_x, self.shift_y)[1])
+        seed = self.get_next_tile(self.shift_x, self.shift_y)
+        empty = Empty(self.game, pyray.Rectangle(seed.rect.x, seed.rect.y, seed.rect.width, seed.rect.height))
+        self.game.field.set_tile_by_coords(empty)
         self.eat_sound.play_track()
 
     def get_next_tile(self, shift_x, shift_y):
@@ -96,12 +97,14 @@ class Pacman(Image):
         return self.game.field.coords_to_clear(next_x, next_y)
 
     def predict_future(self):
-        pacman_rect = self.rect
+        pacman_rect = pyray.Rectangle(self.rect.x - (self.rect.width // 2),
+                                      self.rect.y - (self.rect.height // 2), self.rect.width,
+                                      self.rect.height)
         tile_rect = self.game.field.get_tile_by_coords(self.rect.x, self.rect.y).rect
 
-        if pacman_rect.x == tile_rect.x and pacman_rect.y == tile_rect.y and pacman_rect.width == tile_rect.width and pacman_rect.height == tile_rect.height:
+        if pacman_rect.x == tile_rect.x and pacman_rect.y == tile_rect.y and tile_rect.width == pacman_rect.width:
             next_tile = self.get_next_tile(self.future_x, self.future_y)
-            if not next_tile == 1:
+            if not type(next_tile) == Wall:
                 self.shift_x = self.future_x
                 self.shift_y = self.future_y
                 self.rotate()
