@@ -28,24 +28,22 @@ class Pacman(Image):
                          "DOWN": self.game.Textures.get_texture("images/pacmandown.png"),
                          "LEFT": self.game.Textures.get_texture("images/pacmanleft.png"),
                          "RIGHT": self.game.Textures.get_texture("images/pacmanright.png")}
+
+        self.directions = {
+            pyray.KeyboardKey.KEY_W: {"future_y": -self.shift, "future_x": 0},
+            pyray.KeyboardKey.KEY_S: {"future_y": self.shift, "future_x": 0},
+            pyray.KeyboardKey.KEY_A: {"future_x": -self.shift, "future_y": 0},
+            pyray.KeyboardKey.KEY_D: {"future_x": self.shift, "future_y": 0}
+        }
+
     def event(self) -> None:
         """Обработка ивентов клавиш
         :return: Null
         """
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
-            self.future_y = -self.shift
-            self.future_x = 0
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_S):
-            self.future_y = self.shift
-            self.future_x = 0
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_A):
-            self.future_x = -self.shift
-            self.future_y = 0
-        if pyray.is_key_down(pyray.KeyboardKey.KEY_D):
-            self.future_x = self.shift
-            self.future_y = 0
-        if pyray.is_key_pressed(pyray.KeyboardKey.KEY_ENTER):
-            print(self.shift_x, self.shift_y)
+        for key, elements in self.directions.items():
+            if pyray.is_key_down(key):
+                self.future_x = elements.get("future_x", 0)
+                self.future_y = elements.get("future_y", 0)
 
     def move(self) -> None:
         """Движение пакмана
