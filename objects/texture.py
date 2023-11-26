@@ -69,12 +69,12 @@ class Textures:
 
 class Image(Sprite):
     def __init__(self, game, texture: pyray.Texture, rect: pyray.Rectangle) -> None:
-        """ Класс картинки, содержит отрисовку картинки, а также методы, наследуемые от родительскоого класса(Textures)
-        :param game: arg1
+        """ Класс картинки, содержит отрисовку картинки, а также методы, наследуемые от родительскоого класса(Sprite)
+        :param game: все переменные игры
         :type game: Game
-        :param texture: arg2
+        :param texture: текстура
         :type texture: pyray.Texture
-        :param rect: arg3
+        :param rect: положение, длина и ширина
         :type rect: pyray.Rectangle
         """
         super().__init__(game)
