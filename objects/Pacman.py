@@ -79,6 +79,7 @@ class Pacman(Image):
         self.move()
         self.eat_sound.play_track()
         self.game.score_draw.add(10)
+        # :TODO пофиксить баг с поеданием зёрен наперёд в направлении вправо и вниз
 
 
     def get_next_tile(self, shift_x: int, shift_y: int):
