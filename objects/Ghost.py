@@ -1,5 +1,6 @@
 import pyray
 from objects.Sprite import Sprite
+from objects.texture import Image
 from scenes.gameoverscene import GameOverScene
 from objects.audio import Audio
 
@@ -13,11 +14,10 @@ from objects.audio import Audio
 # C появлением алгоритма перемещения - изменить данный способ перемещения
 
 
-class Ghost(Sprite):
-    def __init__(self, path: str, rect: pyray.Rectangle,
-                 movement_coordinate: str, movement_force: int, game) -> None:
-        super().__init__(path, rect)
-        self.game = game
+class Ghost(Image):
+    def __init__(self, game, texture, rect: pyray.Rectangle,
+                 movement_coordinate: str, movement_force: int, ) -> None:
+        super().__init__(game, texture, rect)
         self.death_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/death_sound.wav')
         self.movement_coordinate = movement_coordinate
         self.movement_force = movement_force

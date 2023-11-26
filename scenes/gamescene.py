@@ -11,11 +11,11 @@ class GameScene(Scene):
         super().__init__()
         self.game = game
         self.draw_field = FieldDrawer(self.game)
-        self.objects = [Pacman(self.game.Textures.get_texture("images/pacmanup.png"), pyray.Rectangle(409, 335, 18, 18), self.game),
-                        Ghost(self.game.Textures.get_texture("images/orangeghostup.png"), pyray.Rectangle(445, 299, 18, 18), "y", 0, self.game),
-                        Ghost(self.game.Textures.get_texture("images/pinkghostdown.png"), pyray.Rectangle(415, 299, 18, 18), "x", 0, self.game),
-                        Ghost(self.game.Textures.get_texture("images/cyanghostup.png"), pyray.Rectangle(385, 299, 18, 18), "y", 0, self.game),
-                        Ghost(self.game.Textures.get_texture("images/redghostleft.png"), pyray.Rectangle(355, 299, 18, 18), "x", 0, self.game)]
+        self.objects = [Pacman(self.game, self.game.Textures.get_texture("images/pacmanup.png"), pyray.Rectangle(409, 335, 18, 18)),
+                        Ghost(self.game, self.game.Textures.get_texture("images/orangeghostup.png"), pyray.Rectangle(445, 299, 18, 18), "y", 0,),
+                        Ghost(self.game, self.game.Textures.get_texture("images/pinkghostdown.png"), pyray.Rectangle(415, 299, 18, 18), "x", 0),
+                        Ghost(self.game, self.game.Textures.get_texture("images/cyanghostup.png"), pyray.Rectangle(385, 299, 18, 18), "y", 0),
+                        Ghost(self.game, self.game.Textures.get_texture("images/redghostleft.png"), pyray.Rectangle(355, 299, 18, 18), "x", 0)]
         self.start_audio = Audio(game, 0.4)
         self.start_audio.play_track()
         self.game.score_draw.score=0
