@@ -1,6 +1,6 @@
 import pyray
 from HighScore.HighscoreTable import HighscoreTable
-from objects.text import Text
+from objects.text import RecalculableText
 
 
 class HighscoreTableDrawer:
@@ -22,7 +22,9 @@ class HighscoreTableDrawer:
         :return: Null
         """
 
-        highscoretable_text_object = Text('High score table\n', posX, posY, fontSize, color)
+        highscoretable_text_object = RecalculableText('High score table\n{}', posX, posY, fontSize, color)
+        highscore_text = ''
         for i in self.highscoreTable.table:
-            highscoretable_text_object.text += f"{i['name']} {i['score']}\n"
+            highscore_text += f"{i['name']} {i['score']}\n"
+            highscoretable_text_object.recreate_text(highscore_text, "{}")
         highscoretable_text_object.draw_text()
