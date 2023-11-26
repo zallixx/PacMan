@@ -4,8 +4,8 @@ from objects.cells import *
 from objects.texture import Image
 
 
-# Импортим класс для создания объектов из
-# Sprite.py(../objects/Sprite.py)
+# Импортим класс(Image) для создания объектов из
+# texture.py(../objects/texture.py)
 # Для получения большей информации о классе - перейдите в файл
 
 

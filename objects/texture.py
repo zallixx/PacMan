@@ -2,6 +2,9 @@ import pyray
 
 from objects.Sprite import Sprite
 
+#  Пара переменных и draw_texture_pro данного класса взяты из лекции(15.11.2023), которую проводил Кучук Егор Андреевич.
+#  Выражаем огромную благодарность Егору Андреевичу!
+
 
 class Textures:
     def __init__(self) -> None:
