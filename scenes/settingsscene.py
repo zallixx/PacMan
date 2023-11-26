@@ -8,7 +8,7 @@ from scenes.gamescene import GameScene
 
 
 class SettingsScene(Scene):
-    def __init__(self, game, GameScene) -> None:
+    def __init__(self, game, GameScene: GameScene) -> None:
         super().__init__()
         self.game = game
         self.GameScene = GameScene

@@ -7,7 +7,7 @@ class HighscoreTable:
         self.filterTable()
         self.fileName = "HighScore/highscores.txt"
 
-    def loadDataFromFile(self):
+    def loadDataFromFile(self) -> None:
         """Загрузить данные из файла в таблицу рекордов
         :return: Null
         """
@@ -19,7 +19,7 @@ class HighscoreTable:
             for l in listFile:
                 self.table.append({'name': l[0], 'score': int(l[1])})
 
-    def filterTable(self):
+    def filterTable(self) -> None:
         """Отсортировать по возрастанию таблицу рекордов
         :return: Null
         """
@@ -31,7 +31,7 @@ class HighscoreTable:
                     self.table[j]['name'], self.table[j +
                                                       1]['name'] = self.table[j+1]['name'], self.table[j]['name']
 
-    def add_score(self, player_name: str, player_score: int):
+    def add_score(self, player_name: str, player_score: int) -> None:
         """Добавить счёт в таблицу
         :param player_name: имя игрока
         :type player_name: str
@@ -47,7 +47,7 @@ class HighscoreTable:
             if len(self.table) > 10:
                 self.table.pop()
 
-    def saveDataToFile(self):
+    def saveDataToFile(self) -> None:
         """Сохранить данные в файл
         :return: Null
         """

@@ -8,7 +8,7 @@ class HighscoreTableDrawer:
         """
         self.highscoreTable = HighscoreTable()
 
-    def draw(self, posX: int, posY: int, fontSize: int = 24, color=pyray.BLACK):
+    def draw(self, posX: int, posY: int, fontSize: int = 24, color=pyray.BLACK) -> None:
         """Отрисовка таблицы рекордов
         :param posX: позиция по x
         :type posX: int

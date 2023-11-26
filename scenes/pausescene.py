@@ -1,10 +1,11 @@
 import pyray
 from scenes.scene import Scene
 from scenes.button import Button
+from scenes.gamescene import GameScene
 
 
 class PauseScene(Scene):
-    def __init__(self, game, GameScene):
+    def __init__(self, game, GameScene: GameScene):
         super().__init__()
         self.GameScene = GameScene
         self.game = game
@@ -27,7 +28,8 @@ class PauseScene(Scene):
                     isChanges = False
                     for i in range(0, len(self.game.highscore.highscoreTable.table)):
                         if self.game.highscore.highscoreTable.table[i]['name'] == self.game.PLAYER_NAME:
-                            self.game.highscore.highscoreTable.table[i]['score'] = self.game.score_draw.score 
+                            if self.game.score_draw.score > self.game.highscore.highscoreTable.table[i]['score']:
+                                self.game.highscore.highscoreTable.table[i]['score'] = self.game.score_draw.score 
                             isChanges = True
                             self.game.change_scene(MenuScene(self.game))
                         break

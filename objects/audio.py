@@ -4,7 +4,7 @@ import pyray
 class Audio:
     sounds = []
 
-    def __init__(self, game, volume, musicname='sounds/begin_sound.wav'):
+    def __init__(self, game, volume: int, musicname='sounds/begin_sound.wav'):
         """Класс звука
         :param game: все переменные игры
         :type game: Game
