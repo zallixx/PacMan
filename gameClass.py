@@ -42,6 +42,7 @@ class Game:
             pyray.clear_background(pyray.BLACK)
             self.current_scene.draw()
             pyray.end_drawing()
+        self.highscore.highscoreTable.saveDataToFile()
 
         pyray.close_window()
         pyray.close_audio_device()

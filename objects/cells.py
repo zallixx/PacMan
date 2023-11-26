@@ -49,7 +49,11 @@ class BigSeed(Seed):
     filename = 'images/bigseed.png'
 
     def __init__(self, game, rect: pyray.Rectangle):
-        rect.x = rect.x-3
-        rect.y = rect.y-4
         super().__init__(game, rect)
         self.texture = self.game.Textures.get_texture(self.filename)
+
+    def draw(self) -> None:
+        source = pyray.Rectangle(0, 0, self.texture.width, self.texture.height)
+        dest = pyray.Rectangle(self.rect.x+14, self.rect.y+14, self.texture.width, self.texture.height)
+        origin = pyray.Vector2(self.rect.width // 2, self.rect.height // 2)
+        pyray.draw_texture_pro(self.texture, source, dest, origin, self.rotation, pyray.WHITE)
