@@ -1,10 +1,11 @@
 from objects.audio import Audio
-
+import pyray
 from objects.cells import *
+from objects.texture import Image
 
 
 # Импортим класс для создания объектов из
-# Sprite.py(pacman_developer/objects/Classes_of_objects_on_gamescene)
+# Sprite.py(../objects/Sprite.py)
 # Для получения большей информации о классе - перейдите в файл
 
 
@@ -54,7 +55,7 @@ class Pacman(Image):
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_ENTER):
             print(self.shift_x, self.shift_y)
 
-    def move(self):
+    def move(self) -> None:
         """Движение пакмана
         :return: Null
         """
@@ -78,7 +79,7 @@ class Pacman(Image):
         process = todo[type(next_tile)]
         process()
 
-    def process_seed(self):
+    def process_seed(self) -> None:
         """ Обработка поедания зерна
         :return: Null
         """
@@ -89,7 +90,7 @@ class Pacman(Image):
         self.game.field.set_tile_by_coords(empty)
         self.eat_sound.play_track()
 
-    def get_next_tile(self, shift_x, shift_y):
+    def get_next_tile(self, shift_x: int, shift_y: int):
         """ Получить координаты следующей клетки по инерции пакмана
         :param shift_x: смещение по x
         :type shift_x: int
@@ -112,7 +113,7 @@ class Pacman(Image):
         next_y = current_y + shift_y
         return self.game.field.coords_to_clear(next_x, next_y)
 
-    def predict_future(self):
+    def predict_future(self) -> None:
         """ Предсказывает поворот
         :return: Null
         """
@@ -123,12 +124,12 @@ class Pacman(Image):
 
         if pacman_rect.x == tile_rect.x and pacman_rect.y == tile_rect.y and tile_rect.width == pacman_rect.width:
             next_tile = self.game.field.get_tile(*self.get_next_tile(self.future_x, self.future_y))
-            if not type(next_tile) == Wall:
+            if type(next_tile) is not Wall:
                 self.shift_x = self.future_x
                 self.shift_y = self.future_y
                 self.rotate()
 
-    def rotate(self):
+    def rotate(self) -> None:
         """Поворачивает пакмана, в зависимости от движения
         :return: Null
         """
@@ -141,7 +142,7 @@ class Pacman(Image):
         elif self.shift_y == -self.shift:
             self.texture = self.textures['UP']
 
-    def process_wall(self):
+    def process_wall(self) -> None:
         """ Обработка стены(остановка)
         :return: Null
         """
@@ -149,7 +150,7 @@ class Pacman(Image):
             self.move()
         self.shift_x = self.shift_y = 0
 
-    def process_teleport(self):
+    def process_teleport(self) -> None:
         """Обработка телепорта
         :return: Null
         """
@@ -162,7 +163,7 @@ class Pacman(Image):
             self.rect.y = 281
         self.move()
 
-    def process_big_seed(self):
+    def process_big_seed(self) -> None:
         """Обработка большого зерна
         :return: Null
         """
