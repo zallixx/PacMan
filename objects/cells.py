@@ -49,5 +49,7 @@ class BigSeed(Seed):
     filename = 'images/bigseed.png'
 
     def __init__(self, game, rect: pyray.Rectangle):
+        rect.x = rect.x-3
+        rect.y = rect.y-3
         super().__init__(game, rect)
         self.texture = self.game.Textures.get_texture(self.filename)
