@@ -12,11 +12,11 @@ from objects.texture import Image
 class Pacman(Image):
     def __init__(self, game, texture: pyray.Texture, rect: pyray.Rectangle) -> None:
         """ Класс пакмана, содержит основную логику и поведение пакмана
-        :param game: arg1
+        :param game: все переменные игры
         :type game: Game
-        :param texture: arg2
+        :param texture: текстура
         :type texture: pyray.Texture
-        :param rect: arg3
+        :param rect: положение, длина и ширина
         :type rect: pyray.Rectangle
         """
         super().__init__(game, texture, rect)
@@ -28,14 +28,6 @@ class Pacman(Image):
                          "DOWN": self.game.Textures.get_texture("images/pacmandown.png"),
                          "LEFT": self.game.Textures.get_texture("images/pacmanleft.png"),
                          "RIGHT": self.game.Textures.get_texture("images/pacmanright.png")}
-        self.directions = {
-            pyray.KeyboardKey.KEY_W: "UP",
-            pyray.KeyboardKey.KEY_S: "DOWN",
-            pyray.KeyboardKey.KEY_A: "LEFT",
-            pyray.KeyboardKey.KEY_D: "RIGHT"
-        }  # TODO: Либо мы удалим self.directions, либо же будем использовать -->>
-        # TODO: def event на основе self.directions. Как это сделать - предположения есть(уже затестил)
-
     def event(self) -> None:
         """Обработка ивентов клавиш
         :return: Null

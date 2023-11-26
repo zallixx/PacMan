@@ -5,10 +5,10 @@ from objects.Sprite import Sprite
 
 class Textures:
     def __init__(self) -> None:
-        self.list_textures = {}
         """ Класс текстур, содержит словарь текстур
             self.list_textures имеет стуктуру "path_to_image": pyray.Texture
         """
+        self.list_textures = {}
 
     def load_and_get_image(self, path: str) -> pyray.Texture:
         """ Загрузка и получение текстуры
