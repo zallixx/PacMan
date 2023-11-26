@@ -69,8 +69,7 @@ class Seed(Image):
 
     def __init__(self, game, rect: pyray.Rectangle) -> None:
         """ Класс "зерна" на игровой сцене, позволяющий работать с ними. Имеет текстуру по пути 'images/seed.png'
-        :param filename: путь к png'шке
-        :type filename: str
+        Класс содержит переменную filename - путь к картинке.
         :param game: все переменные игры
         :type game: Game
         :param rect: положение, длина и ширина
@@ -93,8 +92,7 @@ class BigSeed(Seed):
 
     def __init__(self, game, rect: pyray.Rectangle) -> None:
         """ Класс "большого зерна" на игровой сцене, позволяющий работать с ними. Имеет текстуру по пути 'images/bigseed.png'
-        :param filename: путь к png'шке
-        :type filename: str
+        Класс содержит переменную filename - путь к картинке.
         :param game: все переменные игры
         :type game: Game
         :param rect: положение, длина и ширина
