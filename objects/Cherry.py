@@ -1,10 +1,11 @@
 import pyray
 from objects.Sprite import Sprite
+from objects.texture import Image
 
 
-class Cherry(Sprite):
-    def __init__(self, path: str, rect: pyray.Rectangle, weight: int) -> None:
-        super().__init__(path, rect)
+class Cherry(Image):
+    def __init__(self, game, textures, rect: pyray.Rectangle, weight: int) -> None:
+        super().__init__(game, textures, rect)
         self.weight = weight
         self.eaten = False
         self.radius = 0

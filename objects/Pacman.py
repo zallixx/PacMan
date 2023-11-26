@@ -2,6 +2,7 @@ from objects.Sprite import Sprite
 import pyray
 
 from objects.audio import Audio
+from objects.texture import Image
 
 
 # Импортим класс для создания объектов из
@@ -9,10 +10,9 @@ from objects.audio import Audio
 # Для получения большей информации о классе - перейдите в файл
 
 
-class Pacman(Sprite):
-    def __init__(self, path: str, rect: pyray.Rectangle, game) -> None:
-        super().__init__(path, rect)
-        self.game = game
+class Pacman(Image):
+    def __init__(self, game, texture, rect: pyray.Rectangle) -> None:
+        super().__init__(game, texture, rect)
         self.shift = 1
         self.shift_x = self.shift_y = 0
         self.future_x = self.future_y = 0
