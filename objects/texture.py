@@ -12,9 +12,10 @@ class Textures:
 
     def load_and_get_image(self, path: str) -> pyray.Texture:
         """ Загрузка и получение текстуры
-        :return: pyray.Texture
         :param path: путь до картинки
         :type path: str
+        :rtype: pyray.Texture
+        :return: возвращает текстуру для объекта
         """
         if path not in self.list_textures:
             pic = pyray.load_image(path)
@@ -39,7 +40,8 @@ class Textures:
         """ Получение текстуры
         :param path: путь до картинки
         :type path: str
-        :return: pyray.Texture
+        :rtype: pyray.Texture
+        :return: возвращает текстуру для объекта
         """
         if path in self.list_textures:
             return self.list_textures[path]
