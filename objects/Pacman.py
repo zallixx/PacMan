@@ -10,7 +10,7 @@ from objects.texture import Image
 
 
 class Pacman(Image):
-    def __init__(self, game, texture, rect: pyray.Rectangle) -> None:
+    def __init__(self, game, texture: pyray.Texture, rect: pyray.Rectangle) -> None:
         """ Класс пакмана, содержит основную логику и поведение пакмана
         :param game: arg1
         :type game: Game
