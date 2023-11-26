@@ -10,6 +10,14 @@ from objects.cells import *
 
 class Pacman(Image):
     def __init__(self, game, texture, rect: pyray.Rectangle) -> None:
+        """ Класс пакмана, содержит основную логику и поведение пакмана
+        :param game: arg1
+        :type game: Game
+        :param texture: arg2
+        :type texture: pyray.Texture
+        :param rect: arg3
+        :type rect: pyray.Rectangle
+        """
         super().__init__(game, texture, rect)
         self.shift = 1
         self.shift_x = self.shift_y = 0
@@ -27,7 +35,10 @@ class Pacman(Image):
         }  # TODO: Либо мы удалим self.directions, либо же будем использовать -->>
         # TODO: def event на основе self.directions. Как это сделать - предположения есть(уже затестил)
 
-    def event(self) -> None:  # Описывается движение пакмана
+    def event(self) -> None:
+        """Обработка ивентов клавиш
+        :return: Null
+        """
         if pyray.is_key_down(pyray.KeyboardKey.KEY_W):
             self.future_y = -self.shift
             self.future_x = 0
@@ -44,12 +55,19 @@ class Pacman(Image):
             print(self.shift_x, self.shift_y)
 
     def move(self):
+        """Движение пакмана
+        :return: Null
+        """
         self.rect.x += self.shift_x
         self.rect.y += self.shift_y
         self.predict_future()
 
     def logic(self, pacman) -> None:
-        next_tile = self.get_next_tile(self.shift_x, self.shift_y)
+        """ Обработка логики
+        :param pacman: чтобы стандартизировать(костыль)
+        :return: Null
+        """
+        next_tile = self.game.field.get_tile(*self.get_next_tile(self.shift_x, self.shift_y))
         todo = {
             Empty: self.move,
             Wall: self.process_wall,
@@ -61,28 +79,26 @@ class Pacman(Image):
         process()
 
     def process_seed(self):
+        """ Обработка поедания зерна
+        :return: Null
+        """
         self.game.score_draw.add(10)
         self.move()
-        seed = self.get_next_tile(self.shift_x, self.shift_y)
+        seed = self.game.field.get_tile(*self.get_next_tile(self.shift_x, self.shift_y))
         empty = Empty(self.game, pyray.Rectangle(seed.rect.x, seed.rect.y, seed.rect.width, seed.rect.height))
         self.game.field.set_tile_by_coords(empty)
         self.eat_sound.play_track()
 
     def get_next_tile(self, shift_x, shift_y):
-        if shift_x == 0:
-            current_y = (self.rect.y - self.rect.height / 2) if shift_y <= 0 else (
-                    self.rect.y + self.rect.height / 2)
-            current_x = self.rect.x
-        elif shift_y == 0:
-            current_x = (self.rect.x - self.rect.width / 2) if shift_x <= 0 else (
-                    self.rect.x + self.rect.width / 2)
-            current_y = self.rect.y
+        """ Получить координаты следующей клетки по инерции пакмана
+        :param shift_x: смещение по x
+        :type shift_x: int
+        :param shift_y: смещение по y
+        :type shift_y: int
 
-        next_x = current_x + shift_x
-        next_y = current_y + shift_y
-        return self.game.field.get_tile_by_coords(next_x, next_y)
-
-    def get_raw_next_tile(self, shift_x, shift_y):
+        :rtype: (int, int)
+        :return: возвращает столбец и строку следующей клетки
+        """
         if shift_x == 0:
             current_y = (self.rect.y - self.rect.height / 2) if shift_y <= 0 else (
                     self.rect.y + self.rect.height / 2)
@@ -97,19 +113,25 @@ class Pacman(Image):
         return self.game.field.coords_to_clear(next_x, next_y)
 
     def predict_future(self):
+        """ Предсказывает поворот
+        :return: Null
+        """
         pacman_rect = pyray.Rectangle(self.rect.x - (self.rect.width // 2),
                                       self.rect.y - (self.rect.height // 2), self.rect.width,
                                       self.rect.height)
         tile_rect = self.game.field.get_tile_by_coords(self.rect.x, self.rect.y).rect
 
         if pacman_rect.x == tile_rect.x and pacman_rect.y == tile_rect.y and tile_rect.width == pacman_rect.width:
-            next_tile = self.get_next_tile(self.future_x, self.future_y)
+            next_tile = self.game.field.get_tile(*self.get_next_tile(self.future_x, self.future_y))
             if not type(next_tile) == Wall:
                 self.shift_x = self.future_x
                 self.shift_y = self.future_y
                 self.rotate()
 
     def rotate(self):
+        """Поворачивает пакмана, в зависимости от движения
+        :return: Null
+        """
         if self.shift_x == self.shift:
             self.texture = self.textures['RIGHT']
         elif self.shift_x == -self.shift:
@@ -120,12 +142,18 @@ class Pacman(Image):
             self.texture = self.textures['UP']
 
     def process_wall(self):
+        """ Обработка стены(остановка)
+        :return: Null
+        """
         if self.shift_x > 0 or self.shift_y > 0:
             self.move()
         self.shift_x = self.shift_y = 0
 
     def process_teleport(self):
-        row, col = self.get_raw_next_tile(self.shift_x, self.shift_y)
+        """Обработка телепорта
+        :return: Null
+        """
+        row, col = self.get_next_tile(self.shift_x, self.shift_y)
         if col == 0:
             self.rect.x = 634 - 18
             self.rect.y = 281
@@ -135,5 +163,8 @@ class Pacman(Image):
         self.move()
 
     def process_big_seed(self):
+        """Обработка большого зерна
+        :return: Null
+        """
         self.game.score_draw.add(10)
         self.process_seed()

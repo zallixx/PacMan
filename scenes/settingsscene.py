@@ -1,4 +1,6 @@
 import pyray
+
+from objects.audio import Audio
 from scenes.scene import Scene
 from scenes.button import Button
 from scenes.pausescene import PauseScene
@@ -18,6 +20,7 @@ class SettingsScene(Scene):
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.text_in_button == "EXIT":
+                    Audio.update_volume(self.game.volume_level/100)
                     self.game.change_scene(PauseScene(self.game, self.GameScene))
 
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_UP):
