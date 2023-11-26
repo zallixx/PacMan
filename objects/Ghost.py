@@ -5,8 +5,8 @@ from objects.texture import Image
 from scenes.gameoverscene import GameOverScene
 
 
-# Импортим класс(Sprite) для создания объектов из
-# Sprite.py(pacman_developer/objects/Classes_of_objects_on_gamescene)
+# Импортим класс(Image) для создания объектов из
+# texture.py(.../objects/texture.py)
 # Для получения большей информации о классе - перейдите в файл
 
 
@@ -16,14 +16,31 @@ from scenes.gameoverscene import GameOverScene
 
 
 class Ghost(Image):
-    def __init__(self, game, texture, rect: pyray.Rectangle,
+    def __init__(self, game, texture: pyray.Texture, rect: pyray.Rectangle,
                  movement_coordinate: str, movement_force: int, ) -> None:
+        """ Класс призраков, позволяющий работать с их отрисовкой, событиями, логикой
+        :param game: все переменные игры
+        :type game: Game
+        :param texture: текстура
+        :type texture: pyray.Texture
+        :param rect: положение, длина и ширина
+        :type rect: pyray.Rectangle
+        :param movement_coordinate: координата, по которой двигается призрак
+        :type movement_coordinate: str
+        :param movement_force: сила, с котоой двигается призрак по заданной координате. принимает значения от (-1, 1)
+        :type movement_force: int
+        """
         super().__init__(game, texture, rect)
         self.death_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/death_sound.wav')
         self.movement_coordinate = movement_coordinate
         self.movement_force = movement_force
 
     def logic(self, pacman) -> None:
+        """ Функция логики у призраков, пока что отвечает за: 1) отнятие сердец у пакмана при коллизии с призраком
+        :param pacman: объект класса Pacman
+        :type pacman: <class Pacman>
+        :return: Null
+        """
         ghost_rect = pyray.Rectangle(self.rect.x, self.rect.y, self.rect.width, self.rect.height)
         pacman_rect = pyray.Rectangle(pacman.rect.x, pacman.rect.y, pacman.rect.width, pacman.rect.height)
         if pyray.check_collision_recs(ghost_rect, pacman_rect):
