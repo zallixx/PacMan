@@ -40,7 +40,7 @@ class Seed(Image):
 
     def draw(self) -> None:
         source = pyray.Rectangle(0, 0, self.texture.width, self.texture.height)
-        dest = pyray.Rectangle(self.rect.x+17, self.rect.y+18, self.texture.width, self.texture.height)
+        dest = pyray.Rectangle(self.rect.x + 17, self.rect.y + 18, self.texture.width, self.texture.height)
         origin = pyray.Vector2(self.rect.width // 2, self.rect.height // 2)
         pyray.draw_texture_pro(self.texture, source, dest, origin, self.rotation, pyray.WHITE)
 
@@ -54,6 +54,15 @@ class BigSeed(Seed):
 
     def draw(self) -> None:
         source = pyray.Rectangle(0, 0, self.texture.width, self.texture.height)
-        dest = pyray.Rectangle(self.rect.x+14, self.rect.y+14, self.texture.width, self.texture.height)
+        dest = pyray.Rectangle(self.rect.x + 14, self.rect.y + 14, self.texture.width, self.texture.height)
         origin = pyray.Vector2(self.rect.width // 2, self.rect.height // 2)
         pyray.draw_texture_pro(self.texture, source, dest, origin, self.rotation, pyray.WHITE)
+
+
+class Gate(Empty):
+    def __init__(self, game, rect: pyray.Rectangle):
+        super().__init__(game, rect)
+
+    def draw(self) -> None:
+        draw_rect = pyray.Rectangle(self.rect.x, self.rect.y, self.rect.width, 3)
+        pyray.draw_rectangle_rec(draw_rect, colors.WHITE)

@@ -116,7 +116,7 @@ class Pacman(Image):
 
         if pacman_rect.x == tile_rect.x and pacman_rect.y == tile_rect.y and tile_rect.width == pacman_rect.width:
             next_tile = self.game.field.get_tile(*self.get_next_tile(self.future_x, self.future_y))
-            if type(next_tile) is not Wall:
+            if (type(next_tile) is not Wall) and (type(next_tile) is not Gate):
                 self.shift_x = self.future_x
                 self.shift_y = self.future_y
                 self.rotate()
