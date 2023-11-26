@@ -20,10 +20,10 @@ class PauseScene(Scene):
                 self.game.change_scene(self.GameScene)
 
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
-                if button.text_in_button == "Continue":
+                if button.button_text_object.get_text() == "Continue":
                     self.game.change_scene(self.GameScene)
 
-                elif button.text_in_button == "Main Menu":
+                elif button.button_text_object.get_text() == "Main Menu":
                     isChanges = False
                     for i in range(0, len(self.game.highscore.highscoreTable.table)):
                         if self.game.highscore.highscoreTable.table[i]['name'] == self.game.PLAYER_NAME:
@@ -36,7 +36,7 @@ class PauseScene(Scene):
                         self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
                         self.game.change_scene(MenuScene(self.game))
 
-                elif button.text_in_button == "Settings":
+                elif button.button_text_object.get_text() == "Settings":
                     self.game.change_scene(SettingsScene(self.game, self.GameScene))
 
     def update(self):
@@ -44,6 +44,5 @@ class PauseScene(Scene):
 
     def draw(self):
         # Отрисовка сцены паузы
-        pyray.draw_text("", 10, 10, 20, pyray.WHITE)
         for button in self.buttons:
             button.draw()

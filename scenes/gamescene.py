@@ -4,12 +4,14 @@ from objects.Ghost import Ghost
 from objects.Pacman import Pacman
 from objects.audio import Audio
 from scenes.scene import Scene
+from objects.text import Text
 
 
 class GameScene(Scene):
     def __init__(self, game) -> None:
         super().__init__()
         self.game = game
+        self.gamescene_text_object = Text("Game Scene", 10, 10, 20, pyray.WHITE)
         self.objects = [
             Pacman(self.game, self.game.Textures.get_texture("images/pacmanup.png"), pyray.Rectangle(409, 335, 18, 18)),
             Ghost(self.game, self.game.Textures.get_texture("images/orangeghostup.png"),
@@ -36,7 +38,7 @@ class GameScene(Scene):
         pass
 
     def draw(self) -> None:
-        pyray.draw_text("Game Scene", 10, 10, 20, pyray.WHITE)  # Отрисовка текста Game Scene в левом верхнем углу
+        self.gamescene_text_object.draw_text()  # Отрисовка текста Game Scene в левом верхнем углу
         self.game.field.draw()  # Отрисовка поля
         self.game.score_draw.draw()  # Отрисовка счета
         self.game.life_draw.draw()
