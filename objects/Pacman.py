@@ -42,8 +42,8 @@ class Pacman(Image):
         """
         for key, elements in self.directions.items():
             if pyray.is_key_down(key):
-                self.future_x = elements.get("future_x", 0)
-                self.future_y = elements.get("future_y", 0)
+                self.future_x = elements.get("future_x")
+                self.future_y = elements.get("future_y")
 
     def move(self) -> None:
         """Движение пакмана
