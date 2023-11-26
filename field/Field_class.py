@@ -2,6 +2,8 @@ import pyray
 
 from objects.cells import Wall, Empty, Teleport, Seed, BigSeed, Gate
 from objects.texture import Image
+from objects.Pacman import Pacman
+from objects.Ghost import Ghost
 
 
 class Field(Image):  # В класс передаётся путь txt файла с полем
@@ -45,7 +47,9 @@ class Field(Image):  # В класс передаётся путь txt файл�
             "T": Teleport,
             ".": Seed,
             "S": BigSeed,
-            "+": Gate
+            "+": Gate,
+            "G": Ghost,
+            "P": Pacman,
         }
         try:
             return tiles[value]
@@ -128,7 +132,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
         row, col = self.coords_to_clear(tile.rect.x, tile.rect.y)
         self.set_tile(tile, row, col)
 
-    def coords_to_clear(self, x: int, y: int) -> None:
+    def coords_to_clear(self, x: int, y: int):
         """Преобразовать координаты в строку и столбец
         :param x: координата x
         :type x: int
@@ -139,4 +143,4 @@ class Field(Image):  # В класс передаётся путь txt файл�
         """
         col = (x - self.rect.x) // Field.CELL_SIZE
         row = (y - self.rect.y) // Field.CELL_SIZE
-        return int(row), int(col)
+        return (int(row), int(col))

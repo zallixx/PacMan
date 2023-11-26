@@ -41,6 +41,9 @@ class Ghost(Image):
         :type pacman: <class Pacman>
         :return: Null
         """
+        x_fieldTxt, y_fieldTxt = self.game.field.coords_to_clear(
+            self.rect.x, self.rect.y)
+        self.game.fieldTxt[x_fieldTxt][y_fieldTxt] = "G"
         ghost_rect = pyray.Rectangle(self.rect.x, self.rect.y, self.rect.width, self.rect.height)
         pacman_rect = pyray.Rectangle(pacman.rect.x, pacman.rect.y, pacman.rect.width, pacman.rect.height)
         if pyray.check_collision_recs(ghost_rect, pacman_rect):
@@ -56,3 +59,5 @@ class Ghost(Image):
             self.game.change_scene(GameOverScene(self.game))
             self.game.life_draw.lifecount = 3
             self.death_sound.play_track()
+
+        
