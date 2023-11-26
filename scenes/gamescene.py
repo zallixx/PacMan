@@ -23,6 +23,7 @@ class GameScene(Scene):
         self.start_audio = Audio(game, 0.4)
         self.start_audio.play_track()
         self.game.score_draw.score = 0
+        self.game.field.load('field/field.txt')
 
     def process_input(self) -> None:
         from scenes.pausescene import PauseScene
