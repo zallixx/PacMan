@@ -41,8 +41,7 @@ class Teleport(Image):
 
     def __init__(self, game, rect: pyray.Rectangle) -> None:
         """ Класс "телепорта" на игровой сцене, позволяющий работать с ними. Не имеет текстуры
-        :param teleports: список телепортов
-        :type teleports: list
+        Класс содержит переменную teleports[] - список объектов этого же класса.
         :param game: все переменные игры
         :type game: Game
         :param rect: положение, длина и ширина
