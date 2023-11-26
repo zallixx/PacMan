@@ -73,12 +73,13 @@ class Pacman(Image):
         """ Обработка поедания зерна
         :return: Null
         """
-        self.game.score_draw.add(10)
-        self.move()
         seed = self.game.field.get_tile(*self.get_next_tile(self.shift_x, self.shift_y))
         empty = Empty(self.game, pyray.Rectangle(seed.rect.x, seed.rect.y, seed.rect.width, seed.rect.height))
         self.game.field.set_tile_by_coords(empty)
+        self.move()
         self.eat_sound.play_track()
+        self.game.score_draw.add(10)
+
 
     def get_next_tile(self, shift_x: int, shift_y: int):
         """ Получить координаты следующей клетки по инерции пакмана
