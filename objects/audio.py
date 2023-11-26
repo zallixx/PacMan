@@ -10,5 +10,3 @@ class Audio:
     def play_track(self):
         pyray.set_sound_volume(self.track, self.volume)
         pyray.play_sound(self.track)
-
-

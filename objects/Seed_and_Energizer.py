@@ -1,5 +1,5 @@
 import pyray
-from objects.Sprite import Sprite
+
 from objects.texture import Image
 
 
@@ -8,12 +8,12 @@ from objects.texture import Image
 
 
 class Seed(Image):
-    def __init__(self, game, texture,  rect: pyray.Rectangle, weight: int) -> None:
+    def __init__(self, game, texture, rect: pyray.Rectangle, weight: int) -> None:
         super().__init__(game, texture, rect)
         self.weight = weight  # Очки за съеденное зерно
         self.coordinate = [rect.x, rect.y]  # Координаты зерна
 
 
 class Energizer(Seed):
-    def __init__(self, game, texture,  rect: pyray.Rectangle, weight: int) -> None:
+    def __init__(self, game, texture, rect: pyray.Rectangle, weight: int) -> None:
         super().__init__(game, texture, rect, weight)

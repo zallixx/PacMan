@@ -3,7 +3,6 @@ import pyray
 
 class Button:
     def __init__(self, x_coordinate_of_button: int, y_coordinate_of_button: int, button_text: str) -> None:
-
         self.x_coordinate_of_button = x_coordinate_of_button
         self.y_coordinate_of_button = y_coordinate_of_button
         self.width = 200

@@ -1,5 +1,5 @@
 import pyray
-from objects.Sprite import Sprite
+
 from objects.texture import Image
 
 

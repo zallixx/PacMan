@@ -1,8 +1,6 @@
-from objects.Sprite import Sprite
-import pyray
-
 from objects.audio import Audio
-from objects.texture import Image
+
+from objects.cells import *
 
 
 # Импортим класс для создания объектов из
@@ -46,25 +44,21 @@ class Pacman(Image):
             print(self.shift_x, self.shift_y)
 
     def move(self):
-        self.coordinate[0] += self.shift_x
-        self.coordinate[1] += self.shift_y
+        self.rect.x += self.shift_x
+        self.rect.y += self.shift_y
         self.predict_future()
 
     def logic(self, pacman) -> None:
         next_tile = self.get_next_tile(self.shift_x, self.shift_y)
-        match next_tile:
-            case 0:
-                self.move()
-            case 1:
-                self.process_wall()
-            case 2:
-                self.process_teleport()
-            case 3:
-                self.process_seed()
-            case 4:
-                self.process_big_seed()
-            case _:
-                self.move()
+        todo = {
+            Empty: self.move,
+            Wall: self.process_wall,
+            Teleport: self.process_teleport,
+            Seed: self.process_seed,
+            BigSeed: self.process_big_seed
+        }
+        process = todo[type(next_tile)]
+        process()
 
     def process_seed(self):
         self.game.score_draw.add(10)
@@ -75,42 +69,36 @@ class Pacman(Image):
 
     def get_next_tile(self, shift_x, shift_y):
         if shift_x == 0:
-            current_y = (self.coordinate[1] - self.height / 2) if shift_y <= 0 else (
-                    self.coordinate[1] + self.height / 2)
-            current_x = self.coordinate[0]
+            current_y = (self.rect.y - self.rect.height / 2) if shift_y <= 0 else (
+                    self.rect.y + self.rect.height / 2)
+            current_x = self.rect.x
         elif shift_y == 0:
-            current_x = (self.coordinate[0] - self.width / 2) if shift_x <= 0 else (
-                    self.coordinate[0] + self.width / 2)
-            current_y = self.coordinate[1]
+            current_x = (self.rect.x - self.rect.width / 2) if shift_x <= 0 else (
+                    self.rect.x + self.rect.width / 2)
+            current_y = self.rect.y
 
         next_x = current_x + shift_x
         next_y = current_y + shift_y
-        return self.game.current_scene.draw_field.get_tile_by_coords(next_x, next_y)
+        return self.game.field.get_tile_by_coords(next_x, next_y)
 
     def get_raw_next_tile(self, shift_x, shift_y):
         if shift_x == 0:
-            current_y = (self.coordinate[1] - self.height / 2) if shift_y <= 0 else (
-                    self.coordinate[1] + self.height / 2)
-            current_x = self.coordinate[0]
+            current_y = (self.rect.y - self.rect.height / 2) if shift_y <= 0 else (
+                    self.rect.y + self.rect.height / 2)
+            current_x = self.rect.x
         elif shift_y == 0:
-            current_x = (self.coordinate[0] - self.width / 2) if shift_x <= 0 else (
-                    self.coordinate[0] + self.width / 2)
-            current_y = self.coordinate[1]
+            current_x = (self.rect.x - self.rect.width / 2) if shift_x <= 0 else (
+                    self.rect.x + self.rect.width / 2)
+            current_y = self.rect.y
 
         next_x = current_x + shift_x
         next_y = current_y + shift_y
-        return self.game.current_scene.draw_field.coords_to_clear(next_x, next_y)
+        return self.game.field.coords_to_clear(next_x, next_y)
 
     def predict_future(self):
-        pacman_rect = pyray.Rectangle(self.coordinate[0] - self.width / 2,
-                                      self.coordinate[1] - self.height / 2, self.width,
-                                      self.height)
-        tile_rect = pyray.Rectangle(
-            148 + (self.game.current_scene.draw_field.coords_to_clear(self.coordinate[0], self.coordinate[1])[
-                1]) * 18,
-            20 + (self.game.current_scene.draw_field.coords_to_clear(self.coordinate[0], self.coordinate[1])[
-                0]) * 18,
-            18, 18)
+        pacman_rect = self.rect
+        tile_rect = self.game.field.get_tile_by_coords(self.rect.x, self.rect.y).rect
+
         if pacman_rect.x == tile_rect.x and pacman_rect.y == tile_rect.y and pacman_rect.width == tile_rect.width and pacman_rect.height == tile_rect.height:
             next_tile = self.get_next_tile(self.future_x, self.future_y)
             if not next_tile == 1:
@@ -136,9 +124,11 @@ class Pacman(Image):
     def process_teleport(self):
         row, col = self.get_raw_next_tile(self.shift_x, self.shift_y)
         if col == 0:
-            self.coordinate = [634 - 18, 281]
+            self.rect.x = 634 - 18
+            self.rect.y = 281
         else:
-            self.coordinate = [148 + 36, 281]
+            self.rect.x = 148 + 36
+            self.rect.y = 281
         self.move()
 
     def process_big_seed(self):

@@ -1,8 +1,9 @@
 import pyray
-from objects.Sprite import Sprite
+
+from objects.audio import Audio
 from objects.texture import Image
 from scenes.gameoverscene import GameOverScene
-from objects.audio import Audio
+
 
 # Импортим класс(Sprite) для создания объектов из
 # Sprite.py(pacman_developer/objects/Classes_of_objects_on_gamescene)
@@ -23,8 +24,8 @@ class Ghost(Image):
         self.movement_force = movement_force
 
     def logic(self, pacman) -> None:
-        ghost_rect = pyray.Rectangle(self.coordinate[0], self.coordinate[1], self.width, self.height)
-        pacman_rect = pyray.Rectangle(pacman.coordinate[0], pacman.coordinate[1], pacman.width, pacman.height)
+        ghost_rect = pyray.Rectangle(self.rect.x, self.rect.y, self.rect.width, self.rect.height)
+        pacman_rect = pyray.Rectangle(pacman.rect.x, pacman.rect.y, pacman.rect.width, pacman.rect.height)
         if pyray.check_collision_recs(ghost_rect, pacman_rect):
             self.game.life_draw.remove()
             pacman.coordinate[0] = 409
