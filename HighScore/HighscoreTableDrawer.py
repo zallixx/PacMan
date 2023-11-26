@@ -1,5 +1,6 @@
 import pyray
 from HighScore.HighscoreTable import HighscoreTable
+from objects.text import Text
 
 
 class HighscoreTableDrawer:
@@ -8,7 +9,7 @@ class HighscoreTableDrawer:
         """
         self.highscoreTable = HighscoreTable()
 
-    def draw(self, posX: int, posY: int, fontSize: int = 24, color=pyray.BLACK):
+    def draw(self, posX: int, posY: int, fontSize: int = 24, color=pyray.BLACK) -> None:
         """Отрисовка таблицы рекордов
         :param posX: позиция по x
         :type posX: int
@@ -20,7 +21,8 @@ class HighscoreTableDrawer:
         :type color: Raylib.colors
         :return: Null
         """
-        text = 'High score table\n'
+
+        highscoretable_text_object = Text('High score table\n', posX, posY, fontSize, color)
         for i in self.highscoreTable.table:
-            text += f"{i['name']} {i['score']}\n"
-        pyray.draw_text(text, posX, posY, fontSize, color)
+            highscoretable_text_object.text += f"{i['name']} {i['score']}\n"
+        highscoretable_text_object.draw_text()

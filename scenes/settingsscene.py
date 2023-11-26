@@ -5,12 +5,15 @@ from scenes.scene import Scene
 from scenes.button import Button
 from scenes.pausescene import PauseScene
 from scenes.gamescene import GameScene
+from objects.text import Text, RecalculableText
 
 
 class SettingsScene(Scene):
     def __init__(self, game, GameScene) -> None:
         super().__init__()
         self.game = game
+        self.settingsscene_text_object = Text("Settings", 320, 30, 35, pyray.WHITE)
+        self.settingsscene_text_volume = RecalculableText("Volume: {}",  310, 100, 35, pyray.WHITE)
         self.GameScene = GameScene
         self.game.volume_level = 50
         self.volume_step = 5  # Шаг изменения громкости
@@ -19,7 +22,7 @@ class SettingsScene(Scene):
     def process_input(self) -> None:
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
-                if button.text_in_button == "EXIT":
+                if button.button_text_object.get_text() == "EXIT":
                     Audio.update_volume(self.game.volume_level/100)
                     self.game.change_scene(PauseScene(self.game, self.GameScene))
 
@@ -38,8 +41,9 @@ class SettingsScene(Scene):
 
     def draw(self) -> None:
         # Отрисовка сцены настроек
-        pyray.draw_text("Settings", 320, 30, 35, pyray.WHITE)
+        self.settingsscene_text_object.draw_text()
         # Отрисовка уровня громкости
-        pyray.draw_text(f"Volume: {self.game.volume_level}", 310, 100, 35, pyray.WHITE)
+        self.settingsscene_text_volume.recreate_text(self.game.volume_level, "{}")
+        self.settingsscene_text_volume.draw_text()
         for button in self.buttons:
             button.draw()
