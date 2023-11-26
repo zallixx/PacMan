@@ -5,10 +5,10 @@ from objects.Sprite import Sprite
 
 class Textures:
     def __init__(self) -> None:
-        self.list_textures = {}
         """ Класс текстур, содержит словарь текстур
             self.list_textures имеет стуктуру "path_to_image": pyray.Texture
         """
+        self.list_textures = {}
 
     def load_and_get_image(self, path: str) -> pyray.Texture:
         """ Загрузка и получение текстуры
@@ -71,12 +71,12 @@ class Textures:
 
 class Image(Sprite):
     def __init__(self, game, texture: pyray.Texture, rect: pyray.Rectangle) -> None:
-        """ Класс картинки, содержит отрисовку картинки, а также методы, наследуемые от родительскоого класса(Textures)
-        :param game: arg1
+        """ Класс картинки, содержит отрисовку картинки, а также методы, наследуемые от родительскоого класса(Sprite)
+        :param game: все переменные игры
         :type game: Game
-        :param texture: arg2
+        :param texture: текстура
         :type texture: pyray.Texture
-        :param rect: arg3
+        :param rect: положение, длина и ширина
         :type rect: pyray.Rectangle
         """
         super().__init__(game)
