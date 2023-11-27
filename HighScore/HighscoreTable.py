@@ -39,6 +39,12 @@ class HighscoreTable:
         :type player_score: int
         :return: Null
         """
+        for i in range(0, len(self.table)):
+            if self.table[i]['name'] == player_name:
+                if player_score > self.table[i]['score']:
+                    self.table[i]['score'] = player_score
+                return None
+
         if len(self.table) == 0:
             self.table.append({'name': player_name, 'score': player_score})
         elif len(self.table) > 0 and (player_score > self.table[-1]['score'] or len(self.table) < 10):
