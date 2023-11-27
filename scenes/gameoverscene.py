@@ -17,7 +17,8 @@ class GameOverScene(Scene):
         from scenes.menuscene import MenuScene
         for button in self.buttons:
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
-                if button.button_text_object.get_text() == "Menu":
+                self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
+                if button.text_in_button == "Menu":
                     self.game.change_scene(MenuScene(self.game))
                 elif button.button_text_object.get_text() == "Exit":
                     pyray.close_window()

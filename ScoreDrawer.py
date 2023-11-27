@@ -14,6 +14,5 @@ class ScoreDrawer:
         self.score_text_object.recreate_text(str(self.score), "{}")
         self.score_text_object.draw_text()
 
-    def add(self, point):
+    def add(self, point: int):
         self.score += point
-        

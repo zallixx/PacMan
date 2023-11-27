@@ -1,10 +1,11 @@
 import pyray
 from scenes.scene import Scene
 from scenes.button import Button
+from scenes.gamescene import GameScene
 
 
 class PauseScene(Scene):
-    def __init__(self, game, GameScene):
+    def __init__(self, game, GameScene: GameScene):
         super().__init__()
         self.GameScene = GameScene
         self.game = game
@@ -24,15 +25,16 @@ class PauseScene(Scene):
                     self.game.change_scene(self.GameScene)
 
                 elif button.button_text_object.get_text() == "Main Menu":
-                    isChanges = False
-                    for i in range(0, len(self.game.highscore.highscoreTable.table)):
-                        if self.game.highscore.highscoreTable.table[i]['name'] == self.game.PLAYER_NAME:
-                            self.game.highscore.highscoreTable.table[i]['score'] = self.game.score_draw.score 
-                            isChanges = True
-                            self.game.change_scene(MenuScene(self.game))
-                        break
+                    # isChanges = False
+                    # for i in range(0, len(self.game.highscore.highscoreTable.table)):
+                    #     if self.game.highscore.highscoreTable.table[i]['name'] == self.game.PLAYER_NAME:
+                    #         if self.game.score_draw.score > self.game.highscore.highscoreTable.table[i]['score']:
+                    #             self.game.highscore.highscoreTable.table[i]['score'] = self.game.score_draw.score 
+                    #         isChanges = True
+                    #         self.game.change_scene(MenuScene(self.game))
+                    #     break
 
-                    if not isChanges:
+                    # if not isChanges:
                         self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
                         self.game.change_scene(MenuScene(self.game))
 

@@ -12,16 +12,17 @@ class GameScene(Scene):
         super().__init__()
         self.game = game
         self.gamescene_text_object = Text("Game Scene", 10, 10, 20, pyray.WHITE)
+        speedGhost = 1
         self.objects = [
             Pacman(self.game, self.game.Textures.get_texture("images/pacmanup.png"), pyray.Rectangle(409, 335, 18, 18)),
             Ghost(self.game, self.game.Textures.get_texture("images/orangeghostup.png"),
-                  pyray.Rectangle(445, 299, 18, 18), "y", 0, ),
+                  pyray.Rectangle(445, 299, 18, 18), "y", speedGhost),
             Ghost(self.game, self.game.Textures.get_texture("images/pinkghostdown.png"),
-                  pyray.Rectangle(415, 299, 18, 18), "x", 0),
+                  pyray.Rectangle(415, 299, 18, 18), "x", speedGhost),
             Ghost(self.game, self.game.Textures.get_texture("images/cyanghostup.png"),
-                  pyray.Rectangle(385, 299, 18, 18), "y", 0),
+                  pyray.Rectangle(385, 299, 18, 18), "y", speedGhost),
             Ghost(self.game, self.game.Textures.get_texture("images/redghostleft.png"),
-                  pyray.Rectangle(355, 299, 18, 18), "x", 0)]
+                  pyray.Rectangle(355, 299, 18, 18), "x", speedGhost)]
         self.start_audio = Audio(game, 0.4)
         self.start_audio.play_track()
         self.game.score_draw.score = 0

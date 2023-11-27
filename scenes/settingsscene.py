@@ -9,7 +9,7 @@ from objects.text import Text, RecalculableText
 
 
 class SettingsScene(Scene):
-    def __init__(self, game, GameScene) -> None:
+    def __init__(self, game, GameScene: GameScene) -> None:
         super().__init__()
         self.game = game
         self.settingsscene_text_object = Text("Settings", 320, 30, 35, pyray.WHITE)

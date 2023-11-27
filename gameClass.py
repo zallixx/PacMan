@@ -27,6 +27,11 @@ class Game:
             (self.window_width-Field.CELL_SIZE * 28) // 2,
             20
         )
+        with open("field/field.txt", "r") as file:
+            self.fieldTxtStart = file.readlines()
+            for i in range(len(self.fieldTxtStart)):
+                self.fieldTxtStart[i] = list(self.fieldTxtStart[i][:-1])
+            self.fieldTxt = self.fieldTxtStart
 
     def change_scene(self, scene) -> None:
         self.current_scene = scene

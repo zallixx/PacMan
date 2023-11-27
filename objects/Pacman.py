@@ -58,6 +58,10 @@ class Pacman(Image):
         :param pacman: чтобы стандартизировать(костыль)
         :return: Null
         """
+        x_fieldTxt, y_fieldTxt = self.game.field.coords_to_clear(self.rect.x, self.rect.y)
+        self.game.fieldTxt = self.game.fieldTxtStart
+        # print(f"x = {x_fieldTxt}, y = {y_fieldTxt}")
+        self.game.fieldTxt[x_fieldTxt][y_fieldTxt] = "P"
         next_tile = self.game.field.get_tile(*self.get_next_tile(self.shift_x, self.shift_y))
         todo = {
             Empty: self.move,

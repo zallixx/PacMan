@@ -2,12 +2,14 @@ import pyray
 
 from objects.cells import Wall, Empty, Teleport, Seed, BigSeed, Gate
 from objects.texture import Image
+from objects.Pacman import Pacman
+from objects.Ghost import Ghost
 
 
 class Field(Image):  # В класс передаётся путь txt файла с полем
     CELL_SIZE = 18
 
-    def __init__(self, game, x, y):
+    def __init__(self, game, x: int, y: int):
         """ Поле для игры пакман
         :param game: все переменные игры
         :type game: Game
@@ -21,7 +23,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
         self.field_data = []
         self.load(self.field_path)
 
-    def load(self, field_path):
+    def load(self, field_path: str) -> None:
         """ Загрузка поля в переменную field_data
         :param field_path: путь до поля
         :type field_path: str
@@ -33,7 +35,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
             )
 
     @staticmethod
-    def convert_str_to_tile(value):
+    def convert_str_to_tile(value: int):
         """Преобразовывает строчное значение в класс клетки
         :param value: значение клетки
         :type value: int
@@ -45,7 +47,9 @@ class Field(Image):  # В класс передаётся путь txt файл�
             "T": Teleport,
             ".": Seed,
             "S": BigSeed,
-            "+": Gate
+            "+": Gate,
+            "G": Ghost,
+            "P": Pacman,
         }
         try:
             return tiles[value]
@@ -59,7 +63,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
         """
         return self.field_data
 
-    def convert(self, lines):
+    def convert(self, lines: list):
         """ Заполняет массив field классами клеток
         :param lines: линии для преобразования
         :type lines: list
@@ -80,7 +84,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
             field_data.append(row)
         return field_data
 
-    def draw(self):
+    def draw(self) -> None:
         """Отрисовка каждой клетки
         :return: Null
         """
@@ -88,7 +92,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
             for tile in row:
                 tile.draw()
 
-    def get_tile(self, row, col):
+    def get_tile(self, row: int, col: int):
         """ Получение клетки по строке и столбцу
         :param row: строка
         :type row: int
@@ -98,7 +102,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
         """
         return self.field_data[row][col]
 
-    def get_tile_by_coords(self, x, y):
+    def get_tile_by_coords(self, x: int, y: int) -> None:
         """Получение клетки по координатам
         :param x: координата x
         :type x: int
@@ -109,7 +113,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
         row, col = self.coords_to_clear(x, y)
         return self.get_tile(row, col)
 
-    def set_tile(self, tile, row, col):
+    def set_tile(self, tile, row: int, col: int) -> None:
         """Установить клетку по строке и столбцу
         :param tile: клетка
         :param row: строка
@@ -120,7 +124,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
         """
         self.field_data[row][col] = tile
 
-    def set_tile_by_coords(self, tile):
+    def set_tile_by_coords(self, tile) -> None:
         """Установить клетку по координатам(достаются из клетки)
         :param tile: клетка
         :return: Null
@@ -128,7 +132,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
         row, col = self.coords_to_clear(tile.rect.x, tile.rect.y)
         self.set_tile(tile, row, col)
 
-    def coords_to_clear(self, x, y):
+    def coords_to_clear(self, x: int, y: int):
         """Преобразовать координаты в строку и столбец
         :param x: координата x
         :type x: int
@@ -139,4 +143,4 @@ class Field(Image):  # В класс передаётся путь txt файл�
         """
         col = (x - self.rect.x) // Field.CELL_SIZE
         row = (y - self.rect.y) // Field.CELL_SIZE
-        return int(row), int(col)
+        return (int(row), int(col))
