@@ -11,7 +11,7 @@ class Button:
         self.fontSize = 20
         self.color_of_button = pyray.WHITE
         self.color_text_in_button = pyray.BLACK
-        self.button_text_object = Text(button_text, 0, 0, self.fontSize, self.color_text_in_button)
+        self.button_text_object = Text(button_text, pyray.Vector2(0, 0), self.fontSize, self.color_text_in_button)
 
     def draw(self) -> None:
         # Отрисовка самой кнопки

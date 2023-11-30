@@ -12,8 +12,8 @@ class SettingsScene(Scene):
     def __init__(self, game, GameScene: GameScene) -> None:
         super().__init__()
         self.game = game
-        self.settingsscene_text_object = Text("Settings", 320, 30, 35, pyray.WHITE)
-        self.settingsscene_text_volume = RecalculableText("Volume: {}",  310, 100, 35, pyray.WHITE)
+        self.settingsscene_text_object = Text("Settings",pyray.Vector2(320, 30), 35, pyray.WHITE)
+        self.settingsscene_text_volume = RecalculableText("Volume: {}",pyray.Vector2(310, 100), 35, pyray.WHITE)
         self.GameScene = GameScene
         self.game.volume_level = 50
         self.volume_step = 5  # Шаг изменения громкости

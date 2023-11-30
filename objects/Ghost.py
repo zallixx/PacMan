@@ -37,7 +37,6 @@ class Ghost(Image):
         self.movement_force = movement_force
         self.bfs = Bfs()
 
-
     def logic(self, pacman) -> None:
         """ Функция логики у призраков, пока что отвечает за: 1) отнятие сердец у пакмана при коллизии с призраком
         :param pacman: объект класса Pacman
@@ -72,16 +71,16 @@ class Ghost(Image):
         # print(f"s = {self.bfs.path[0]}, t = {self.bfs.path[1]}" if len(self.bfs.path) >= 2 else "Byyyyym!")
         sxy = self.bfs.path[0]
         if len(self.bfs.path) >= 2:
-            txy = self.bfs.path[1] 
+            txy = self.bfs.path[1]
         else:
             # self.bfs.print_map(self.game.fieldTxt, self.bfs.path[1:-1])
             return 0
         if sxy[0] == txy[0]:
-            n = txy[1]-sxy[1]
-            self.rect.x += n/2.0
+            n = txy[1] - sxy[1]
+            self.rect.x += n / 2.0
         elif sxy[1] == txy[1]:
-            n = txy[0]-sxy[0]
-            self.rect.y += n/2.0
+            n = txy[0] - sxy[0]
+            self.rect.y += n / 2.0
 
         """
         TODO: доделать движение (а именно, исправить поподание приведений в стены)

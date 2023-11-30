@@ -9,7 +9,7 @@ class GameOverScene(Scene):
     def __init__(self, game) -> None:
         super().__init__()
         self.game = game
-        self.gameoverscene_text_object = Text("Game Over", 235, 50, 60, pyray.WHITE)
+        self.gameoverscene_text_object = Text("Game Over", pyray.Vector2(235, 50), 60, pyray.WHITE)
         self.buttons = [Button(300, 200, "Menu"),
                         Button(300, 125, "Exit")]
 
