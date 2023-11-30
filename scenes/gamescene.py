@@ -11,7 +11,7 @@ class GameScene(Scene):
     def __init__(self, game) -> None:
         super().__init__()
         self.game = game
-        self.gamescene_text_object = Text("Game Scene", 10, 10, 20, pyray.WHITE)
+        self.gamescene_text_object = Text("Game Scene", pyray.Vector2(10, 10), 20, pyray.WHITE)
         speedGhost = 1
         self.objects = [
             Pacman(self.game, self.game.Textures.get_texture("images/pacmanup.png"), pyray.Rectangle(409, 335, 18, 18)),

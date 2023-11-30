@@ -22,7 +22,7 @@ class HighscoreTableDrawer:
         :return: Null
         """
 
-        highscoretable_text_object = RecalculableText('High score table\n{}', posX, posY, fontSize, color)
+        highscoretable_text_object = RecalculableText('High score table\n{}', pyray.Vector2(posX, posY), fontSize, color)
         highscore_text = ''
         for i in self.highscoreTable.table:
             highscore_text += f"{i['name']} {i['score']}\n"

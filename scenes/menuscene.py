@@ -10,7 +10,7 @@ class MenuScene(Scene):
     def __init__(self, game):
         super().__init__()
         self.game = game
-        self.menuscene_text_object = Text("PUCMAN", 275, 50, 60, pyray.WHITE)
+        self.menuscene_text_object = Text("PUCMAN", pyray.Vector2(275, 50), 60, pyray.WHITE)
         self.buttons = [Button(300, 200, "New Game"),
                         Button(300, 125, "Exit")]
 
