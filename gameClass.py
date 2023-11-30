@@ -6,7 +6,7 @@ from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
 from LifeDrawer import LifeDrawer
 from ScoreDrawer import ScoreDrawer
 from objects.texture import Textures
-
+from settings import Settings
 
 class Game:
     def __init__(self) -> None:
@@ -35,9 +35,8 @@ class Game:
         :param self.Field: переменная, которая хранит поле
         :type self.field: <class Field>
         """
-        self.window_width = 800
-        self.window_height = 600
-        pyray.init_window(self.window_width, self.window_height, "Pacman Game")
+        self.Settings = Settings()
+        pyray.init_window(self.Settings.get_width_of_window(), self.Settings.get_height_of_window(), "Pacman Game")
         self.current_scene = MenuScene(self)
         self.highscore = HighscoreTableDrawer()
         self.Textures = Textures()
@@ -49,7 +48,7 @@ class Game:
         self.volume_level = 50
         self.field = Field(
             self,
-            (self.window_width-Field.CELL_SIZE * 28) // 2,
+            (self.Settings.get_width_of_window()-Field.CELL_SIZE * 28) // 2,
             20
         )
         with open("field/field.txt", "r") as file:
