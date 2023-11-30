@@ -60,6 +60,8 @@ class Game:
 
     def change_scene(self, scene) -> None:
         """ Функция смены сцены
+        :param scene: переменная, которая сцену, на которую надо сменить
+        :type scene: <class Game>
         :return: Null
         """
         self.current_scene = scene
