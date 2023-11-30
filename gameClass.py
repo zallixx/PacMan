@@ -10,6 +10,31 @@ from objects.texture import Textures
 
 class Game:
     def __init__(self) -> None:
+        """ Класс игры, позволяющий работать с размерами окна, названием окна, загрузкой текстур, таблицей рекордов, уровнем звука, загрузкой поля
+        Далее - объяснение переменных, которые присутствуют в этом классе.
+        :param self.window_width: ширина окна
+        :type self.window_width: int
+        :param self.window_height: высота окна
+        :type self.window_height: int
+        :param self.current_scene: переменная, которая хранит текущую сцену
+        :type self.current_scene: <class Game>
+        :param self.highscore: переменная, которая хранит в себе таблицу рекордов
+        :type self.highscore: <class HighscoreTableDrawer>
+        :param self.Textures: переменная, которая хранит в себе текстуры игры
+        :type self.Textures: <class Textures>
+        :param num: переменная, которая хранит цифру нового игрока
+        :type num: int
+        :param self.PLAYER_NAME: переменная, которая хранит имя нового игрока
+        :type self.PLAYER_NAME: str
+        :param self.score_draw: переменная, которая хранит счёт и отрисовывает счёт
+        :type self.score_draw: <class ScoreDrawer>
+        :param self.life_draw: переменная, которая хранит жизни и отрисовывает их кол-во
+        :type self.life_draw: <class LifeDrawer>
+        :param self.volume_level: переменная, которая хранит уровень звука
+        :type self.volume_level: int
+        :param self.Field: переменная, которая хранит поле
+        :type self.field: <class Field>
+        """
         self.window_width = 800
         self.window_height = 600
         pyray.init_window(self.window_width, self.window_height, "Pacman Game")
@@ -34,9 +59,15 @@ class Game:
             self.fieldTxt = self.fieldTxtStart
 
     def change_scene(self, scene) -> None:
+        """ Функция смены сцены
+        :return: Null
+        """
         self.current_scene = scene
 
     def run(self) -> None:
+        """ Функция запуска игры(сцены)
+        :return: Null
+        """
         pyray.init_audio_device()
         pyray.set_target_fps(120)
 
