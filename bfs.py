@@ -3,9 +3,23 @@ from collections import deque
 
 class Bfs:
     def __init__(self):
+        """ 
+        Конструктор класс Bfs
+        """
         self.path = []
 
     def logic(self, field: list, s: tuple, t: tuple, wall: str) -> None:
+        """
+        Логика поиска кратчайшего пути
+        :param field: Двумерный список поля для кратчайшего пути
+        :type field: list
+        :param s: Стартовая позиция в виде tuple (x, y) 
+        :type s: tuple
+        :param s: Конечная позиция в виде tuple (x, y) 
+        :type s: tuple
+        :param wall: Символ стены
+        :type wall: str
+        """
         n, m = len(field), len(field[0])
         INF = 10 ** 9
         delta = [(1, 0), (-1, 0), (0, 1), (0, -1)]

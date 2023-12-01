@@ -59,13 +59,14 @@ class Ghost(Image):
             self.death_sound.play_track()
 
     def move(self) -> None:
-        # print(f"path = {self.bfs.path}")
-        # print(f"s = {self.bfs.path[0]}, t = {self.bfs.path[1]}" if len(self.bfs.path) >= 2 else "Byyyyym!")
+        """
+        Движение приведения
+        :return: Null
+        """
         sxy = self.bfs.path[0]
         if len(self.bfs.path) >= 2:
             txy = self.bfs.path[1]
         else:
-            # self.bfs.print_map(self.game.fieldTxt, self.bfs.path[1:-1])
             return 0
         if sxy[0] == txy[0]:
             n = txy[1] - sxy[1]
