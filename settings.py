@@ -87,7 +87,6 @@ class Settings:
 
     def minus_one_seed(self) -> None:
         self.__amount_of_seeds -= 1
-        print(self.__amount_of_seeds)
 
     def get_amount_of_seeds(self) -> int:
         return self.__amount_of_seeds
