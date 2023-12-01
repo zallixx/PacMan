@@ -2,9 +2,6 @@ import pyray
 
 from field.Field_class import Field
 from scenes.menuscene import MenuScene
-from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
-from LifeDrawer import LifeDrawer
-from ScoreDrawer import ScoreDrawer
 from objects.texture import Textures
 from settings import Settings
 
@@ -36,15 +33,11 @@ class Game:
         :type self.field: <class Field>
         """
         self.Settings = Settings()
-        pyray.init_window(self.Settings.get_width_of_window(), self.Settings.get_height_of_window(), "Pacman Game")
+        self.Settings.init_window()
+        self.Settings.get_new_player_name()
         self.current_scene = MenuScene(self)
-        self.highscore = HighscoreTableDrawer()
         self.Textures = Textures()
         self.Textures.load_main_textures()
-        num = max([int(t['name'][6:]) for t in self.highscore.highscoreTable.table]) + 1
-        self.PLAYER_NAME = f"player{num}"
-        self.score_draw = ScoreDrawer()
-        self.life_draw = LifeDrawer(pyray.Rectangle(680, 30, 18, 18))
         self.field = Field(
             self,
             (self.Settings.get_width_of_window()-Field.CELL_SIZE * 28) // 2,
@@ -78,7 +71,7 @@ class Game:
             pyray.clear_background(pyray.BLACK)
             self.current_scene.draw()
             pyray.end_drawing()
-        self.highscore.highscoreTable.saveDataToFile()
+            self.Settings.save_highscore()
 
         pyray.close_window()
         pyray.close_audio_device()
