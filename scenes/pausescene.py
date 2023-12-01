@@ -25,18 +25,8 @@ class PauseScene(Scene):
                     self.game.change_scene(self.GameScene)
 
                 elif button.button_text_object.get_text() == "Main Menu":
-                    # isChanges = False
-                    # for i in range(0, len(self.game.highscore.highscoreTable.table)):
-                    #     if self.game.highscore.highscoreTable.table[i]['name'] == self.game.PLAYER_NAME:
-                    #         if self.game.score_draw.score > self.game.highscore.highscoreTable.table[i]['score']:
-                    #             self.game.highscore.highscoreTable.table[i]['score'] = self.game.score_draw.score 
-                    #         isChanges = True
-                    #         self.game.change_scene(MenuScene(self.game))
-                    #     break
-
-                    # if not isChanges:
-                        self.game.highscore.highscoreTable.add_score(self.game.PLAYER_NAME, self.game.score_draw.score)
-                        self.game.change_scene(MenuScene(self.game))
+                    self.game.Settings.add_new_score_to_table()
+                    self.game.change_scene(MenuScene(self.game))
 
                 elif button.button_text_object.get_text() == "Settings":
                     self.game.change_scene(SettingsScene(self.game, self.GameScene))

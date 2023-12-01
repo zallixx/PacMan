@@ -24,7 +24,6 @@ class MenuScene(Scene):
             if button.is_mouse_on_button() and pyray.is_mouse_button_pressed(pyray.MouseButton.MOUSE_BUTTON_LEFT):
                 if button.button_text_object.get_text() == "New Game":
                     self.game.change_scene(GameScene(self.game))
-                    self.game.life_draw.lifecount = 3
                 # Действие кнопки "New Game"
                 elif button.button_text_object.get_text() == "Exit":
                     pyray.close_window()
@@ -35,6 +34,6 @@ class MenuScene(Scene):
 
     def draw(self) -> None:
         self.menuscene_text_object.draw_text()
-        self.game.highscore.draw(325, 275, 18, pyray.WHITE)
+        self.game.Settings.draw_highscore()
         for button in self.buttons:
             button.draw()

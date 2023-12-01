@@ -23,7 +23,7 @@ class Pacman(Image):
         self.shift = 1
         self.shift_x = self.shift_y = 0
         self.future_x = self.future_y = 0
-        self.eat_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/eat_seed_sound.wav')
+        self.eat_sound = Audio(self.game, self.game.Settings.get_volume_level(), 'sounds/eat_seed_sound.wav')
         self.textures = {"UP": self.game.Textures.get_texture("images/pacmanup.png"),
                          "DOWN": self.game.Textures.get_texture("images/pacmandown.png"),
                          "LEFT": self.game.Textures.get_texture("images/pacmanleft.png"),
@@ -82,9 +82,8 @@ class Pacman(Image):
         self.game.field.set_tile_by_coords(empty)
         self.move()
         self.eat_sound.play_track()
-        self.game.score_draw.add(10)
+        self.game.Settings.add_points_to_score(10)
         # :TODO пофиксить баг с поеданием зёрен наперёд в направлении вправо и вниз
-
 
     def get_next_tile(self, shift_x: int, shift_y: int):
         """ Получить координаты следующей клетки по инерции пакмана
@@ -163,5 +162,5 @@ class Pacman(Image):
         """Обработка большого зерна
         :return: Null
         """
-        self.game.score_draw.add(10)
+        self.game.Settings.add_points_to_score(10)
         self.process_seed()
