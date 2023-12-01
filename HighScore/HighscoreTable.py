@@ -12,12 +12,11 @@ class HighscoreTable:
         :return: Null
         """
         with open("HighScore/highscores.txt", "r", encoding='utf-8') as file:
-            listFile = file.readlines()
-            for l in listFile:
-                listFile[listFile.index(l)] = l.split()
+            listFile = file.readlines()[:10]
 
-            for l in listFile:
-                self.table.append({'name': l[0], 'score': int(l[1])})
+            ListFile = [line.split() for line in listFile]
+
+            self.table = [{'name': line[0], 'score': int(line[1])} for line in ListFile]
 
     def filterTable(self) -> None:
         """Отсортировать по возрастанию таблицу рекордов
@@ -63,5 +62,5 @@ class HighscoreTable:
                 string += f"{i['name']} {i['score']}\n"
             file.write(string)
 
-    def get_max(self):
+    def get_max(self) -> None:
         return max(self.table)

@@ -44,8 +44,13 @@ class HighscoreTableDrawer:
         # Находим максимальное значение в таблице
         max_score = max(i['score'] for i in self.highscoreTable.table)
 
+        # Загрузка в файл таблицы и последующая её выгрузка(для лайв-обновления таблицы)
+        self.highscoreTable.saveDataToFile()
+        self.highscoreTable.loadDataFromFile()
+
         # Создаем объект текста
-        max_score_text_object = RecalculableText(f'Max Score: \n{max_score}', pyray.Vector2(posX, posY), fontSize, color)
+        max_score_text_object = RecalculableText('Max Score: \n{}', pyray.Vector2(posX, posY), fontSize, color)
+        max_score_text_object.recreate_text(max_score, "{}")
 
         # Отображаем текст
         max_score_text_object.draw_text()

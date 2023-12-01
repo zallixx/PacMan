@@ -44,6 +44,7 @@ class GameScene(Scene):
         self.game.field.draw()  # Отрисовка поля
         self.game.Settings.draw_score()  # Отрисовка счета
         self.game.Settings.draw_pacman_lifes()
+        self.game.Settings.add_new_score_to_table()
         self.game.Settings.draw_max()
 
         for object in self.objects:
