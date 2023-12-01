@@ -5,8 +5,7 @@ from objects.Pacman import Pacman
 from objects.audio import Audio
 from scenes.scene import Scene
 from objects.text import Text
-from HighScore.HighscoreTable import HighscoreTable
-
+from scenes.gameoverscene import GameOverScene
 
 class GameScene(Scene):
     def __init__(self, game) -> None:
@@ -27,6 +26,7 @@ class GameScene(Scene):
                   pyray.Rectangle(355, 299, 18, 18))]
         self.start_audio = Audio(game, self.game.Settings.get_volume_level())
         self.start_audio.play_track()
+        self.win_audio = Audio(game, self.game.Settings.get_volume_level(), "sounds/win_sound.mp3")
         self.game.field.load('field/field.txt')
 
     def process_input(self) -> None:
@@ -35,6 +35,9 @@ class GameScene(Scene):
             self.game.change_scene(PauseScene(self.game, self))
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_F):
             self.game.Settings.remove_pacman_life()
+        if self.game.Settings.get_amount_of_seeds() == 0:
+            self.game.change_scene(GameOverScene(self.game))
+            self.win_audio.play_track()
 
     def update(self) -> None:
         pass

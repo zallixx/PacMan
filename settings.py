@@ -5,7 +5,10 @@ from LifeDrawer import LifeDrawer
 
 
 class Settings:
-    def __init__(self) -> None:
+    def __init__(self, game) -> None:
+
+        self.game = game
+
         self.__width_of_window = 800
         self.__height_of_window = 600
         self.__title_of_window = "Pacman Game"
@@ -15,7 +18,8 @@ class Settings:
         self.__score_draw = ScoreDrawer()
         self.__score_draw.score = 0
         self.__player_name = None
-        self.__life_draw = LifeDrawer(pyray.Rectangle(680, 30, 18, 18))
+        self.__life_draw = None
+        self.__amount_of_seeds = 246
 
     def init_window(self) -> None:
         pyray.init_window(self.__width_of_window, self.__height_of_window, self.__title_of_window)
@@ -60,6 +64,9 @@ class Settings:
     def score_reset(self) -> None:
         self.__score_draw.score = 0
 
+    def init_pacman_lifes(self) -> None:
+        self.__life_draw = LifeDrawer(pyray.Rectangle(680, 30, 50, 50), self.game.Textures.get_texture("images/pacmanleft.png"), self.game)
+
     def draw_pacman_lifes(self) -> None:
         self.__life_draw.draw()
 
@@ -70,4 +77,11 @@ class Settings:
         self.__life_draw.remove()
 
     def update_pacman_lifes(self) -> None:
+        self.init_pacman_lifes()
         self.__life_draw.lifecount = 3
+
+    def minus_one_seed(self) -> None:
+        self.__amount_of_seeds -= 1
+
+    def get_amount_of_seeds(self) -> int:
+        return self.__amount_of_seeds
