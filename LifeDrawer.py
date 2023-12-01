@@ -15,8 +15,11 @@ class LifeDrawer(Image):
         self.lifecount = lifecount
         self.game = game
         self.texture = texture
-        self.texture.width += 20
-        self.texture.height += 20
+        print(self.texture.width)
+        print(self.texture.height)
+        size_of_texture = self.game.Settings.get_width_and_height_of_lifes()
+        self.texture.width = size_of_texture[0]
+        self.texture.height = size_of_texture[1]
 
     def draw(self) -> None:
         """ Функция отрисовки жизней

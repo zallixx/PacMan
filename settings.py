@@ -20,6 +20,8 @@ class Settings:
         self.__player_name = None
         self.__life_draw = None
         self.__amount_of_seeds = 246
+        self.__width_of_lifes = 32
+        self.__height_of_lifes = 32
 
     def init_window(self) -> None:
         pyray.init_window(self.__width_of_window, self.__height_of_window, self.__title_of_window)
@@ -85,3 +87,6 @@ class Settings:
 
     def get_amount_of_seeds(self) -> int:
         return self.__amount_of_seeds
+
+    def get_width_and_height_of_lifes(self) -> list:
+        return [self.__width_of_lifes, self.__height_of_lifes]
