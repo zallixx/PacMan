@@ -68,7 +68,8 @@ class Pacman(Image):
             Wall: self.process_wall,
             Teleport: self.process_teleport,
             Seed: self.process_seed,
-            BigSeed: self.process_big_seed
+            BigSeed: self.process_big_seed,
+            Cherry: self.process_cherry
         }
         process = todo[type(next_tile)]
         process()
@@ -163,5 +164,23 @@ class Pacman(Image):
         """Обработка большого зерна
         :return: Null
         """
-        self.game.Settings.add_points_to_score(10)
-        self.process_seed()
+        big_seed = self.game.field.get_tile(*self.get_next_tile(self.shift_x, self.shift_y))
+        empty = Empty(self.game, pyray.Rectangle(big_seed.rect.x, big_seed.rect.y, big_seed.rect.width, big_seed.rect.height))
+        self.game.field.set_tile_by_coords(empty)
+        self.move()
+        self.eat_sound.play_track()
+        self.game.Settings.add_points_to_score(30)
+
+    def process_cherry(self) -> None:
+        """Обработка вишенки
+        :return: Null
+        """
+        self.move()
+        if self.game.Settings.get_bool_of_cherry_exsist():
+            self.game.Settings.add_points_to_score(100)
+            cherry = self.game.field.get_tile(*self.get_next_tile(self.shift_x, self.shift_y))
+            empty = Empty(self.game, pyray.Rectangle(cherry.rect.x, cherry.rect.y, cherry.rect.width, cherry.rect.height))
+            self.game.Settings.update_gamescene_run_timer()
+            self.game.field.set_tile_by_coords(empty)
+            self.eat_sound.play_track()
+            self.game.Settings.update_cherry_exsist()

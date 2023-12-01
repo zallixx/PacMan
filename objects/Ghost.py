@@ -70,10 +70,10 @@ class Ghost(Image):
             return 0
         if sxy[0] == txy[0]:
             n = txy[1] - sxy[1]
-            self.rect.x += n / 2.0
+            self.rect.x += 0
         elif sxy[1] == txy[1]:
             n = txy[0] - sxy[0]
-            self.rect.y += n / 2.0
+            self.rect.y += 0
 
         """
         TODO: доделать движение (а именно, исправить поподание приведений в стены)

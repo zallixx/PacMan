@@ -57,7 +57,7 @@ class Textures:
         main_textures_path = ["images/seed.png", "images/bigseed.png", "images/pacmanup.png",
                               "images/orangeghostup.png", "images/pinkghostdown.png", "images/cyanghostup.png",
                               "images/redghostleft.png", "images/pacmandown.png", "images/pacmanleft.png",
-                              "images/pacmanright.png"]
+                              "images/pacmanright.png", "images/cherry.png"]
         for path in main_textures_path:
             if path not in self.list_textures:
                 pic = pyray.load_image(path)
