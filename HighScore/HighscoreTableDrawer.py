@@ -21,7 +21,7 @@ class HighscoreTableDrawer:
         :type color: Raylib.colors
         :return: Null
         """
-
+        self.highscoreTable.filterTable()
         highscoretable_text_object = RecalculableText('High score table\n{}', pyray.Vector2(posX, posY), fontSize, color)
         highscore_text = ''
         for i in self.highscoreTable.table:
