@@ -23,13 +23,13 @@ class HighscoreTable:
         """Отсортировать по возрастанию таблицу рекордов
         :return: Null
         """
-        for i in range(len(self.table)-1):
-            for j in range(len(self.table)-i-1):
-                if self.table[j]['score'] < self.table[j+1]['score']:
+        for i in range(len(self.table) - 1):
+            for j in range(len(self.table) - i - 1):
+                if self.table[j]['score'] < self.table[j + 1]['score']:
                     self.table[j]['score'], self.table[j +
-                                                       1]['score'] = self.table[j+1]['score'], self.table[j]['score']
+                                                       1]['score'] = self.table[j + 1]['score'], self.table[j]['score']
                     self.table[j]['name'], self.table[j +
-                                                      1]['name'] = self.table[j+1]['name'], self.table[j]['name']
+                                                      1]['name'] = self.table[j + 1]['name'], self.table[j]['name']
 
     def add_score(self, player_name: str, player_score: int) -> None:
         """Добавить счёт в таблицу
@@ -62,3 +62,6 @@ class HighscoreTable:
             for i in self.table:
                 string += f"{i['name']} {i['score']}\n"
             file.write(string)
+
+    def get_max(self):
+        return max(self.table)
