@@ -20,7 +20,7 @@ class Settings:
         self.__score_draw.score = 0
         self.__player_name = None
         self.__life_draw = None
-        self.__amount_of_seeds = 246
+        self.__amount_of_seeds = 243
         self.__width_of_lifes = 32
         self.__height_of_lifes = 32
         self.__total_time_after_gamescene_run = None
@@ -87,6 +87,7 @@ class Settings:
 
     def minus_one_seed(self) -> None:
         self.__amount_of_seeds -= 1
+        print(self.__amount_of_seeds)
 
     def get_amount_of_seeds(self) -> int:
         return self.__amount_of_seeds
