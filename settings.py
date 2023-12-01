@@ -12,6 +12,7 @@ class Settings:
         self.__volume = 1
         self.__volume_step = 1
         self.__highscore = HighscoreTableDrawer()
+        self.__maxdraw = HighscoreTableDrawer()
         self.__score_draw = ScoreDrawer()
         self.__score_draw.score = 0
         self.__player_name = None
@@ -41,6 +42,9 @@ class Settings:
 
     def draw_highscore(self) -> None:
         self.__highscore.draw(325, 275, 18, pyray.WHITE)
+
+    def draw_max(self) -> None:
+        self.__maxdraw.draw_max(10, 90, 24, pyray.WHITE)
 
     def add_new_score_to_table(self) -> None:
         self.__highscore.highscoreTable.add_score(self.__player_name, self.__score_draw.score)

@@ -5,6 +5,7 @@ from objects.Pacman import Pacman
 from objects.audio import Audio
 from scenes.scene import Scene
 from objects.text import Text
+from HighScore.HighscoreTable import HighscoreTable
 
 
 class GameScene(Scene):
@@ -43,6 +44,8 @@ class GameScene(Scene):
         self.game.field.draw()  # Отрисовка поля
         self.game.Settings.draw_score()  # Отрисовка счета
         self.game.Settings.draw_pacman_lifes()
+        self.game.Settings.draw_max()
+
         for object in self.objects:
             object.draw()  # Отрисовка пакмана
             object.event()  # Передвижение пакмана
