@@ -19,6 +19,7 @@ class Settings:
         self.__score_draw.score = 0
         self.__player_name = None
         self.__life_draw = None
+        self.__amount_of_seeds = 246
 
     def init_window(self) -> None:
         pyray.init_window(self.__width_of_window, self.__height_of_window, self.__title_of_window)
@@ -78,3 +79,9 @@ class Settings:
     def update_pacman_lifes(self) -> None:
         self.init_pacman_lifes()
         self.__life_draw.lifecount = 3
+
+    def minus_one_seed(self) -> None:
+        self.__amount_of_seeds -= 1
+
+    def get_amount_of_seeds(self) -> int:
+        return self.__amount_of_seeds
