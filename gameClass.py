@@ -18,7 +18,7 @@ class Game:
         :param self.Field: переменная, которая хранит поле
         :type self.field: <class Field>
         """
-        self.Settings = Settings()
+        self.Settings = Settings(self)
         self.Settings.init_window()
         self.Settings.get_new_player_name()
         self.current_scene = MenuScene(self)
