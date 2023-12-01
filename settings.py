@@ -18,8 +18,8 @@ class Settings:
         return self.__height_of_window
 
     def get_volume_level(self) -> int:
-        return int(self.__volume / 100)
+        return self.__volume
 
-    def change_volume(self) -> None:
-        self.__volume += 5
+    def change_volume(self, new_volume: int) -> None:
+        self.__volume = new_volume
 

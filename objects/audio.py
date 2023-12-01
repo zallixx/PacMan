@@ -14,7 +14,7 @@ class Audio:
         :type musicname: str
         """
         self.game = game
-        self.volume = volume
+        self.volume = volume/100
         self.track = pyray.load_sound(musicname)
         self.sounds.append(self)
 

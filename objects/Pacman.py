@@ -23,7 +23,7 @@ class Pacman(Image):
         self.shift = 1
         self.shift_x = self.shift_y = 0
         self.future_x = self.future_y = 0
-        self.eat_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/eat_seed_sound.wav')
+        self.eat_sound = Audio(self.game, self.game.Settings.get_volume_level(), 'sounds/eat_seed_sound.wav')
         self.textures = {"UP": self.game.Textures.get_texture("images/pacmanup.png"),
                          "DOWN": self.game.Textures.get_texture("images/pacmandown.png"),
                          "LEFT": self.game.Textures.get_texture("images/pacmanleft.png"),

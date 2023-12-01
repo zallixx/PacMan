@@ -32,7 +32,7 @@ class Ghost(Image):
         :type movement_force: int
         """
         super().__init__(game, texture, rect)
-        self.death_sound = Audio(self.game, self.game.volume_level / 100, 'sounds/death_sound.wav')
+        self.death_sound = Audio(self.game, self.game.Settings.get_volume_level(), 'sounds/death_sound.wav')
         self.movement_coordinate = movement_coordinate
         self.movement_force = movement_force
         self.bfs = Bfs()

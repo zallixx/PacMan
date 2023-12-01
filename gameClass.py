@@ -45,7 +45,6 @@ class Game:
         self.PLAYER_NAME = f"player{num}"
         self.score_draw = ScoreDrawer()
         self.life_draw = LifeDrawer(pyray.Rectangle(680, 30, 18, 18))
-        self.volume_level = 50
         self.field = Field(
             self,
             (self.Settings.get_width_of_window()-Field.CELL_SIZE * 28) // 2,
