@@ -12,10 +12,9 @@ class SettingsScene(Scene):
     def __init__(self, game, GameScene: GameScene) -> None:
         super().__init__()
         self.game = game
-        self.settingsscene_text_object = Text("Settings",pyray.Vector2(320, 30), 35, pyray.WHITE)
-        self.settingsscene_text_volume = RecalculableText("Volume: {}",pyray.Vector2(310, 100), 35, pyray.WHITE)
+        self.settingsscene_text_object = Text("Settings", pyray.Vector2(320, 30), 35, pyray.WHITE)
+        self.settingsscene_text_volume = RecalculableText("Volume: {}", pyray.Vector2(310, 100), 35, pyray.WHITE)
         self.GameScene = GameScene
-        self.volume_step = 5  # Шаг изменения громкости
         self.buttons = [Button(300, 250, "EXIT")]
 
     def process_input(self) -> None:
@@ -26,11 +25,11 @@ class SettingsScene(Scene):
                     self.game.change_scene(PauseScene(self.game, self.GameScene))
 
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_UP):
-            self.game.Settings.change_volume(min(100, self.game.Settings.get_volume_level() + self.volume_step))
+            self.game.Settings.change_volume(min(10, self.game.Settings.get_volume_level() + self.game.Settings.get_volume_step()))
             # Увеличиваем громкость, ограничивая максимальным значением 100
 
         elif pyray.is_key_pressed(pyray.KeyboardKey.KEY_DOWN):
-            self.game.Settings.change_volume(max(0, self.game.Settings.get_volume_level() - self.volume_step))
+            self.game.Settings.change_volume(max(0, self.game.Settings.get_volume_level() - self.game.Settings.get_volume_step()))
             # Уменьшаем громкость, ограничивая минимальным значением 0
 
         # pyray.set_sound_volume(pyray.get_default_sound_device(), self.volume_level)
@@ -42,8 +41,7 @@ class SettingsScene(Scene):
         # Отрисовка сцены настроек
         self.settingsscene_text_object.draw_text()
         # Отрисовка уровня громкости
-        print(self.game.Settings.get_volume_level())
-        self.settingsscene_text_volume.recreate_text(self.game.Settings.get_volume_level(), "{}")
+        self.settingsscene_text_volume.recreate_text(self.game.Settings.get_volume_level()*10, "{}")
         self.settingsscene_text_volume.draw_text()
         for button in self.buttons:
             button.draw()
