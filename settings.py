@@ -3,6 +3,7 @@ from ScoreDrawer import ScoreDrawer
 from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
 from LifeDrawer import LifeDrawer
 
+
 class Settings:
     def __init__(self) -> None:
         self.__width_of_window = 800
