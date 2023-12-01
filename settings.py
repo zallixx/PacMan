@@ -1,3 +1,4 @@
+import datetime
 import pyray
 from ScoreDrawer import ScoreDrawer
 from HighScore.HighscoreTableDrawer import HighscoreTableDrawer
@@ -19,9 +20,11 @@ class Settings:
         self.__score_draw.score = 0
         self.__player_name = None
         self.__life_draw = None
-        self.__amount_of_seeds = 246
+        self.__amount_of_seeds = 243
         self.__width_of_lifes = 32
         self.__height_of_lifes = 32
+        self.__total_time_after_gamescene_run = None
+        self.__is_any_cherry_on_scene = False
 
     def init_window(self) -> None:
         pyray.init_window(self.__width_of_window, self.__height_of_window, self.__title_of_window)
@@ -84,9 +87,25 @@ class Settings:
 
     def minus_one_seed(self) -> None:
         self.__amount_of_seeds -= 1
+        print(self.__amount_of_seeds)
 
     def get_amount_of_seeds(self) -> int:
         return self.__amount_of_seeds
 
     def get_width_and_height_of_lifes(self) -> list:
         return [self.__width_of_lifes, self.__height_of_lifes]
+
+    def update_gamescene_run_timer(self) -> None:
+        self.__total_time_after_gamescene_run = datetime.datetime.now()
+
+    def get_gamescene_run_timer(self) -> datetime.datetime.now():
+        return self.__total_time_after_gamescene_run
+
+    def get_bool_of_cherry_exsist(self) -> bool:
+        return self.__is_any_cherry_on_scene
+
+    def update_cherry_exsist(self) -> None:
+        if self.__is_any_cherry_on_scene:
+            self.__is_any_cherry_on_scene = False
+        else:
+            self.__is_any_cherry_on_scene = True

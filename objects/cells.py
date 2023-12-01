@@ -1,3 +1,4 @@
+import datetime
 import pyray
 from raylib import colors
 
@@ -109,6 +110,33 @@ class BigSeed(Seed):
         dest = pyray.Rectangle(self.rect.x + 14, self.rect.y + 14, self.texture.width, self.texture.height)
         origin = pyray.Vector2(self.rect.width // 2, self.rect.height // 2)
         pyray.draw_texture_pro(self.texture, source, dest, origin, self.rotation, pyray.WHITE)
+
+
+class Cherry(Seed):
+    filename = 'images/cherry.png'
+
+    def __init__(self, game, rect: pyray.Rectangle) -> None:
+        """ Класс вишенки, позволяющий работать с их отрисовкой и появлением
+        :param game: все переменные игры
+        :type game: Game
+        :param rect: положение, длина и ширина
+        :type rect: pyray.Rectangle
+        """
+        super().__init__(game, rect)
+        self.texture = self.game.Textures.get_texture(self.filename)
+
+    def draw(self) -> None:
+        """ Функция отрисовки вишенки
+        :return: Null
+        """
+        time_diff = datetime.datetime.now() - self.game.Settings.get_gamescene_run_timer()
+        if time_diff.total_seconds() > 10:
+            source = pyray.Rectangle(0, 0, self.texture.width, self.texture.height)
+            dest = pyray.Rectangle(self.rect.x + 14, self.rect.y + 14, self.texture.width, self.texture.height)
+            origin = pyray.Vector2(self.rect.width // 2, self.rect.height // 2)
+            pyray.draw_texture_pro(self.texture, source, dest, origin, self.rotation, pyray.WHITE)
+            if not self.game.Settings.get_bool_of_cherry_exsist():
+                self.game.Settings.update_cherry_exsist()
 
 
 class Gate(Empty):

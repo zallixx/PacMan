@@ -68,22 +68,31 @@ class Pacman(Image):
             Wall: self.process_wall,
             Teleport: self.process_teleport,
             Seed: self.process_seed,
-            BigSeed: self.process_big_seed
+            BigSeed: self.process_big_seed,
+            Cherry: self.process_cherry
         }
         process = todo[type(next_tile)]
         process()
 
-    def process_seed(self) -> None:
+    def process_seed(self, what_was_eaten: str = "") -> None:
         """ Обработка поедания зерна
         :return: Null
         """
+        self.move()
+        if what_was_eaten == "":
+            self.game.Settings.add_points_to_score(10)
+            self.game.Settings.minus_one_seed()
+        elif what_was_eaten == "cherry":
+            self.game.Settings.add_points_to_score(100)
+            self.game.Settings.update_gamescene_run_timer()
+            self.game.Settings.update_cherry_exsist()
+        elif what_was_eaten == "big_seed":
+            self.game.Settings.add_points_to_score(30)
         seed = self.game.field.get_tile(*self.get_next_tile(self.shift_x, self.shift_y))
         empty = Empty(self.game, pyray.Rectangle(seed.rect.x, seed.rect.y, seed.rect.width, seed.rect.height))
         self.game.field.set_tile_by_coords(empty)
-        self.move()
         self.eat_sound.play_track()
-        self.game.Settings.add_points_to_score(10)
-        self.game.Settings.minus_one_seed()
+
         # :TODO пофиксить баг с поеданием зёрен наперёд в направлении вправо и вниз
 
     def get_next_tile(self, shift_x: int, shift_y: int):
@@ -163,5 +172,13 @@ class Pacman(Image):
         """Обработка большого зерна
         :return: Null
         """
-        self.game.Settings.add_points_to_score(10)
-        self.process_seed()
+        self.process_seed("big_seed")
+
+    def process_cherry(self) -> None:
+        """Обработка вишенки
+        :return: Null
+        """
+        if self.game.Settings.get_bool_of_cherry_exsist():
+            self.process_seed("cherry")
+        else:
+            self.move()

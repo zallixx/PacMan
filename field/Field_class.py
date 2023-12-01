@@ -1,6 +1,6 @@
 import pyray
 
-from objects.cells import Wall, Empty, Teleport, Seed, BigSeed, Gate
+from objects.cells import Wall, Empty, Teleport, Seed, BigSeed, Gate, Cherry
 from objects.texture import Image
 from objects.Pacman import Pacman
 from objects.Ghost import Ghost
@@ -50,6 +50,7 @@ class Field(Image):  # В класс передаётся путь txt файл�
             "+": Gate,
             "G": Ghost,
             "P": Pacman,
+            "C": Cherry
         }
         try:
             return tiles[value]
