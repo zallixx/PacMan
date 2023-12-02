@@ -50,13 +50,7 @@ class Ghost(Image):
         self.move()
         if pyray.check_collision_recs(ghost_rect, pacman_rect):
             self.game.Settings.remove_pacman_life()
-            pacman.rect.x = 409
-            pacman.rect.y = 335
-            pacman.future_x = 0
-            pacman.future_y = 0
-            pacman.shift_x = 0
-            pacman.shift_y = 0
-
+            pacman.to_spawn()
         if self.game.Settings.get_pacman_lifes() == 0:
             self.game.change_scene(GameOverScene(self.game))
             self.death_sound.play_track()

@@ -25,6 +25,7 @@ class GameScene(Scene):
                   pyray.Rectangle(385, 299, 18, 18)),
             Ghost(self.game, self.game.Textures.get_texture("images/redghostleft.png"),
                   pyray.Rectangle(355, 299, 18, 18))]
+        self.objects[0].to_spawn()
         self.start_audio = Audio(game, self.game.Settings.get_volume_level())
         self.start_audio.play_track()
         self.win_audio = Audio(game, self.game.Settings.get_volume_level(), "sounds/win_sound.mp3")

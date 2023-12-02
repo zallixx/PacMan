@@ -1,5 +1,6 @@
-from objects.audio import Audio
 import pyray
+
+from objects.audio import Audio
 from objects.cells import *
 from objects.texture import Image
 
@@ -69,10 +70,21 @@ class Pacman(Image):
             Teleport: self.process_teleport,
             Seed: self.process_seed,
             BigSeed: self.process_big_seed,
-            Cherry: self.process_cherry
+            Cherry: self.process_cherry,
+            PacmanSpawn: self.move
         }
         process = todo[type(next_tile)]
         process()
+
+    def to_spawn(self):
+        """Перемещение пакмана на спавн
+        :return: Null
+        """
+        spawn = self.game.field.get_tile_by_type(PacmanSpawn)
+        self.rect.x = int(spawn.rect.x) + 9
+        self.rect.y = int(spawn.rect.y) + 9
+        self.shift_y = 0
+        self.shift_x = 0
 
     def process_seed(self, what_was_eaten: str = "") -> None:
         """ Обработка поедания зерна

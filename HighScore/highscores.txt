@@ -1,1 +1,10 @@
+player3 2850
+player5 2840
+player2 2250
+player10 780
+player4 70
 player0 0
+player1 0
+player6 0
+player7 0
+player8 0
