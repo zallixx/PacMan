@@ -32,3 +32,8 @@ Moving Pacman:
 * A = Left
 * S = Down
 * D = Right
+
+Changing volume in Settings:
+
+* Increase = ↑ (Up Arrow)
+* Reduce = ↓ (Down Arrow)
