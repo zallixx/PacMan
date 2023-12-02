@@ -18,11 +18,11 @@ class GameScene(Scene):
         self.objects = [
             Pacman(self.game, self.game.Textures.get_texture("images/pacmanup.png"), pyray.Rectangle(409, 335, 18, 18)),
             Ghost(self.game, self.game.Textures.get_texture("images/orangeghostup.png"),
-                  pyray.Rectangle(445, 299, 18, 18)),
+                  pyray.Rectangle(409, 299, 18, 18)),
             Ghost(self.game, self.game.Textures.get_texture("images/pinkghostdown.png"),
-                  pyray.Rectangle(415, 299, 18, 18)),
+                  pyray.Rectangle(391, 299, 18, 18)),
             Ghost(self.game, self.game.Textures.get_texture("images/cyanghostup.png"),
-                  pyray.Rectangle(385, 299, 18, 18)),
+                  pyray.Rectangle(373, 299, 18, 18)),
             Ghost(self.game, self.game.Textures.get_texture("images/redghostleft.png"),
                   pyray.Rectangle(355, 299, 18, 18))]
         self.objects[0].to_spawn()
