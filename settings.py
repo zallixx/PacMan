@@ -23,7 +23,7 @@ class Settings:
         self.__score_draw.score = 0  # Присваивание 0 кол-ву счета
         self.__player_name = None  # Имя игрока
         self.__life_draw = None  # Отрисовка жизней
-        self.__amount_of_seeds = 243  # Кол-во зёрен
+        self.__amount_of_seeds = 242  # Кол-во зёрен
         self.__width_of_lifes = 32  # Ширина текстуры жизни пакмана
         self.__height_of_lifes = 32  # Высота текстуры жизни пакмана
         self.__total_time_after_gamescene_run = None  # Время, когда была запущена игровая сцена
@@ -194,3 +194,6 @@ class Settings:
             self.__is_any_cherry_on_scene = False
         else:
             self.__is_any_cherry_on_scene = True
+
+    def reset_amount_of_seeds(self) -> None:
+        self.__amount_of_seeds = 242

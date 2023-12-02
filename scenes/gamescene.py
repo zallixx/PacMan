@@ -14,6 +14,7 @@ class GameScene(Scene):
         self.game.Settings.score_reset()
         self.game.Settings.update_pacman_lifes()
         self.game.Settings.update_gamescene_run_timer()
+        self.game.Settings.reset_amount_of_seeds()
         self.gamescene_text_object = Text("Game Scene", pyray.Vector2(10, 10), 20, pyray.WHITE)
         self.objects = [
             Pacman(self.game, self.game.Textures.get_texture("images/pacmanup.png"), pyray.Rectangle(409, 335, 18, 18)),
