@@ -1,9 +1,9 @@
 import pyray
 
+from bfs import Bfs
 from objects.audio import Audio
 from objects.texture import Image
 from scenes.gameoverscene import GameOverScene
-from bfs import Bfs
 
 
 # Импортим класс(Image) для создания объектов из
@@ -17,6 +17,9 @@ from bfs import Bfs
 
 
 class Ghost(Image):
+    current_frame = 0
+    frame_to_shift = 20
+
     def __init__(self, game, texture: pyray.Texture, rect: pyray.Rectangle) -> None:
         """ Класс призраков, позволяющий работать с их отрисовкой, событиями, логикой
         :param game: все переменные игры
@@ -63,6 +66,10 @@ class Ghost(Image):
         Движение приведения
         :return: Null
         """
+        self.current_frame += 1
+        if self.current_frame != self.frame_to_shift:
+            return
+
         sxy = self.bfs.path[0]
         if len(self.bfs.path) >= 2:
             txy = self.bfs.path[1]
@@ -70,11 +77,14 @@ class Ghost(Image):
             return 0
         if sxy[0] == txy[0]:
             n = txy[1] - sxy[1]
-            self.rect.x += n / 2.0
+            if n < 0:
+                self.rect.x -= self.game.field.CELL_SIZE
+            else:
+                self.rect.x += self.game.field.CELL_SIZE
         elif sxy[1] == txy[1]:
             n = txy[0] - sxy[0]
-            self.rect.y += n / 2.0
-
-        """
-        TODO: доделать движение (а именно, исправить поподание приведений в стены)
-        """
+            if n < 0:
+                self.rect.y -= self.game.field.CELL_SIZE
+            else:
+                self.rect.y += self.game.field.CELL_SIZE
+        self.current_frame=0
