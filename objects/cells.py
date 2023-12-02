@@ -1,8 +1,10 @@
 import datetime
+
 import pyray
 from raylib import colors
 
 from objects.texture import Image
+
 
 # Импортим класс(Image) для создания объектов из
 # texture.py(.../objects/texture.py)
@@ -156,3 +158,7 @@ class Gate(Empty):
         """
         draw_rect = pyray.Rectangle(self.rect.x, self.rect.y, self.rect.width, self.height_of_gate)
         pyray.draw_rectangle_rec(draw_rect, colors.WHITE)
+
+
+class PacmanSpawn(Empty):
+    pass

@@ -1,6 +1,6 @@
 import pyray
 
-from objects.cells import Wall, Empty, Teleport, Seed, BigSeed, Gate, Cherry
+from objects.cells import Wall, Empty, Teleport, Seed, BigSeed, Gate, Cherry, PacmanSpawn
 from objects.texture import Image
 from objects.Pacman import Pacman
 from objects.Ghost import Ghost
@@ -50,7 +50,8 @@ class Field(Image):  # В класс передаётся путь txt файл�
             "+": Gate,
             "G": Ghost,
             "P": Pacman,
-            "C": Cherry
+            "C": Cherry,
+            "p": PacmanSpawn
         }
         try:
             return tiles[value]
@@ -92,6 +93,17 @@ class Field(Image):  # В класс передаётся путь txt файл�
         for row in self.field_data:
             for tile in row:
                 tile.draw()
+
+    def get_tile_by_type(self, tile_type: type):
+        """Получение клетки по типу
+        :param tile_type: тип клетки
+        :type tile_type: type
+        :return: клетка
+        """
+        for row in self.field_data:
+            for tile in row:
+                if isinstance(tile, tile_type):
+                    return tile
 
     def get_tile(self, row: int, col: int):
         """ Получение клетки по строке и столбцу
