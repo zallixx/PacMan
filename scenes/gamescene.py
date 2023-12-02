@@ -34,8 +34,6 @@ class GameScene(Scene):
         from scenes.pausescene import PauseScene
         if pyray.is_key_pressed(pyray.KeyboardKey.KEY_P):
             self.game.change_scene(PauseScene(self.game, self))
-        if pyray.is_key_pressed(pyray.KeyboardKey.KEY_F):
-            self.game.Settings.remove_pacman_life()
         if self.game.Settings.get_amount_of_seeds() == 0:
             self.game.change_scene(GameOverScene(self.game))
             self.win_audio.play_track()

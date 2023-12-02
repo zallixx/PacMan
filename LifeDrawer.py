@@ -26,7 +26,6 @@ class LifeDrawer(Image):
         for i in range(self.lifecount):
             pyray.draw_texture(self.texture, int(self.rect.x) + (i * 42), int(self.rect.y), colors.YELLOW)
 
-    # будет вызываться по нажатию на клавишу F
     def remove(self) -> None:
         """ Функция убавления жизней у пакмана
         :return: Null
